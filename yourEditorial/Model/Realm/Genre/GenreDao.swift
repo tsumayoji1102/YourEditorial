@@ -12,15 +12,14 @@ class GenreDao: NSObject, Dao {
     
     var realm: Realm!
     
-    override init(){
+    init(realm: Realm){
         super.init()
-        
+        connect(realm: realm)
     }
     
     func connect(realm: Realm) {
         self.realm = realm
     }
-
     
     func create(dic: Dictionary<String, Any?>){
         let genre = Genre()

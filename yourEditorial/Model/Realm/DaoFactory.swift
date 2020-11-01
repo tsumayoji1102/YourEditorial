@@ -10,6 +10,7 @@ import RealmSwift
 
 enum DaoRoutes: Int{
     case clip = 0
+    case favoriteNewsPaper
     case genre
 }
 
@@ -28,12 +29,13 @@ final class DaoFactory: NSObject {
         
         switch daoRoute {
         case DaoRoutes.clip:
-            let clipDao = ClipDao()
-            clipDao.connect(realm: realm)
+            let clipDao = ClipDao(realm: realm)
             return clipDao
+        case DaoRoutes.favoriteNewsPaper:
+            let favoriteNewsPaperDao = FavoriteNewsPaperDao(realm: realm)
+            return favoriteNewsPaperDao
         case DaoRoutes.genre:
-            let genreDao = GenreDao()
-            genreDao.connect(realm: realm)
+            let genreDao = GenreDao(realm: realm)
             return genreDao
         }
     }

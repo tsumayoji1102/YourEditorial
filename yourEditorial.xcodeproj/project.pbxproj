@@ -23,6 +23,8 @@
 		E72E54F1254E6A9800402151 /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72E54F0254E6A9800402151 /* SelectViewController.swift */; };
 		E72E54F3254E6FF000402151 /* FavoriteNewsPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72E54F2254E6FF000402151 /* FavoriteNewsPaper.swift */; };
 		E72E54F6254E821600402151 /* TransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72E54F5254E821600402151 /* TransitionController.swift */; };
+		E72E54F8254EEEC400402151 /* NewsPaperEditorialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72E54F7254EEEC400402151 /* NewsPaperEditorialViewModel.swift */; };
+		E72E54FA254EEF1C00402151 /* FavoriteNewsPaperDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72E54F9254EEF1B00402151 /* FavoriteNewsPaperDao.swift */; };
 		E758B9E02545C38100EED590 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E758B9DF2545C38100EED590 /* Realm.framework */; };
 		E758B9E42545C38E00EED590 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E758B9E32545C38E00EED590 /* RealmSwift.framework */; };
 		E758B9E72545C44400EED590 /* PKHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E758B9E62545C44400EED590 /* PKHUD.framework */; };
@@ -31,7 +33,6 @@
 		E758B9F12545C7AB00EED590 /* DaoFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E758B9F02545C7AB00EED590 /* DaoFactory.swift */; };
 		E758B9F32545D5B100EED590 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = E758B9F22545D5B100EED590 /* Log.swift */; };
 		E77C5E472546AAC700F65677 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E462546AAC700F65677 /* extension.swift */; };
-		E77C5E4A2546B1C100F65677 /* FavoriteEditorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E492546B1C100F65677 /* FavoriteEditorialViewController.swift */; };
 		E77C5E4C25470E4000F65677 /* ClipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E4B25470E4000F65677 /* ClipsViewController.swift */; };
 		E77C5E51254710B300F65677 /* ClipsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E50254710B300F65677 /* ClipsViewModel.swift */; };
 		E77C5E542548534400F65677 /* NewsPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E532548534400F65677 /* NewsPaper.swift */; };
@@ -89,6 +90,8 @@
 		E72E54F0254E6A9800402151 /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
 		E72E54F2254E6FF000402151 /* FavoriteNewsPaper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNewsPaper.swift; sourceTree = "<group>"; };
 		E72E54F5254E821600402151 /* TransitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionController.swift; sourceTree = "<group>"; };
+		E72E54F7254EEEC400402151 /* NewsPaperEditorialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPaperEditorialViewModel.swift; sourceTree = "<group>"; };
+		E72E54F9254EEF1B00402151 /* FavoriteNewsPaperDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNewsPaperDao.swift; sourceTree = "<group>"; };
 		E758B9DF2545C38100EED590 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		E758B9E32545C38E00EED590 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		E758B9E62545C44400EED590 /* PKHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PKHUD.framework; path = Carthage/Build/iOS/PKHUD.framework; sourceTree = "<group>"; };
@@ -97,7 +100,6 @@
 		E758B9F02545C7AB00EED590 /* DaoFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaoFactory.swift; sourceTree = "<group>"; };
 		E758B9F22545D5B100EED590 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		E77C5E462546AAC700F65677 /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
-		E77C5E492546B1C100F65677 /* FavoriteEditorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEditorialViewController.swift; sourceTree = "<group>"; };
 		E77C5E4B25470E4000F65677 /* ClipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipsViewController.swift; sourceTree = "<group>"; };
 		E77C5E50254710B300F65677 /* ClipsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipsViewModel.swift; sourceTree = "<group>"; };
 		E77C5E532548534400F65677 /* NewsPaper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPaper.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				E72E54F2254E6FF000402151 /* FavoriteNewsPaper.swift */,
+				E72E54F9254EEF1B00402151 /* FavoriteNewsPaperDao.swift */,
 			);
 			path = FavoriteNewsPaper;
 			sourceTree = "<group>";
@@ -291,7 +294,6 @@
 		E77C5E482546B17900F65677 /* TabView */ = {
 			isa = PBXGroup;
 			children = (
-				E77C5E4F2547108200F65677 /* FavoriteEditorialViewController */,
 				E77C5E4E2547106A00F65677 /* NewsPaperEditorialsViewController */,
 				E77C5E4D2547105B00F65677 /* ClipsViewController */,
 			);
@@ -311,16 +313,9 @@
 			isa = PBXGroup;
 			children = (
 				E719F0F2253DD46E00E54D1E /* NewsPaperEditorialsViewController.swift */,
+				E72E54F7254EEEC400402151 /* NewsPaperEditorialViewModel.swift */,
 			);
 			path = NewsPaperEditorialsViewController;
-			sourceTree = "<group>";
-		};
-		E77C5E4F2547108200F65677 /* FavoriteEditorialViewController */ = {
-			isa = PBXGroup;
-			children = (
-				E77C5E492546B1C100F65677 /* FavoriteEditorialViewController.swift */,
-			);
-			path = FavoriteEditorialViewController;
 			sourceTree = "<group>";
 		};
 		E77C5E522548533000F65677 /* NSObject */ = {
@@ -579,6 +574,8 @@
 				E758B9F32545D5B100EED590 /* Log.swift in Sources */,
 				E77C5E56254861AC00F65677 /* WebViewModel.swift in Sources */,
 				E77C5E5C2548657F00F65677 /* GenreDao.swift in Sources */,
+				E72E54FA254EEF1C00402151 /* FavoriteNewsPaperDao.swift in Sources */,
+				E72E54F8254EEEC400402151 /* NewsPaperEditorialViewModel.swift in Sources */,
 				E719F0AB253DC11300E54D1E /* SceneDelegate.swift in Sources */,
 				E77C5E51254710B300F65677 /* ClipsViewModel.swift in Sources */,
 				E719F0EE253DC66800E54D1E /* HomeViewController.swift in Sources */,
@@ -586,7 +583,6 @@
 				E719F0FA253DDB2C00E54D1E /* Constraints.swift in Sources */,
 				E77C5E59254862F900F65677 /* Genre.swift in Sources */,
 				E719F0F3253DD46E00E54D1E /* NewsPaperEditorialsViewController.swift in Sources */,
-				E77C5E4A2546B1C100F65677 /* FavoriteEditorialViewController.swift in Sources */,
 				E758B9F12545C7AB00EED590 /* DaoFactory.swift in Sources */,
 				E77C5E4C25470E4000F65677 /* ClipsViewController.swift in Sources */,
 				E72E54F6254E821600402151 /* TransitionController.swift in Sources */,

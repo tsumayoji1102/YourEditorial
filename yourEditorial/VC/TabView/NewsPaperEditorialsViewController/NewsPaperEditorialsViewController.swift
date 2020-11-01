@@ -9,43 +9,88 @@ import UIKit
 import PKHUD
 
 final class NewsPaperEditorialsViewController: UIViewController {
+    
+    enum SortMode: Int{
+        case all = 0
+        case favorite
+    }
 
     @IBOutlet weak var editorialView: UITableView!
     
-    private var nationWideNewsPapers: Array<NewsPaper> = []
-    private var localNewsPapers:  Array<NewsPaper> = []
-    private var blockNewsPapers:  Array<NewsPaper> = []
+    private var appDelegate: AppDelegate!
+    private var viewModel:   NewsPaperEditorialViewModel!
+    private var sortMode:    SortMode = SortMode.all
+    private var arrayList:   Array<Array<NewsPaper>> = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let favoriteNewsPaperDao: FavoriteNewsPaperDao = appDelegate.daoFactory.getDao(daoRoute: DaoRoutes.favoriteNewsPaper) as! FavoriteNewsPaperDao
+        viewModel = NewsPaperEditorialViewModel(favoriteNewsPaperDao: favoriteNewsPaperDao)
+        
+        self.sort()
         editorialView.delegate = self
         editorialView.dataSource = self
         editorialView.tableFooterView = UIView()
-        
-        nationWideNewsPapers = Constraints.newsPapers.filter{ newspaper in
-            return newspaper.group == NewsPaper.groups.nationWide
-        }
-        blockNewsPapers = Constraints.newsPapers.filter{ newspaper in
-            return newspaper.group == NewsPaper.groups.block
-        }
-        localNewsPapers = Constraints.newsPapers.filter{ newspaper in
-            return newspaper.group == NewsPaper.groups.local
-        }
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         editorialView.frame = self.view.bounds
     }
+    
+    private func sort(){
+        arrayList = Array<Array<NewsPaper>>()
+        switch sortMode {
+        case SortMode.all:
+            for groupIndex in 0..<NewsPaper.groups.groupsCount.rawValue{
+                let fillterArray = Constraints.newsPapers.filter{ newspaper in
+                    return newspaper.group.rawValue == groupIndex
+                }
+                arrayList.append(fillterArray)
+            }
+            break
+        case SortMode.favorite:
+            let favoriteNewsPapers = viewModel.getFavoriteNewsPapers()
+            arrayList.append(favoriteNewsPapers)
+            break
+        }
+    }
+    
+    // HomeViewから入れる
+    func changeSortMode(index: Int){
+        switch index{
+        case SortMode.all.rawValue:
+            sortMode = SortMode.all
+            self.sort()
+            break
+        case SortMode.favorite.rawValue:
+            sortMode = SortMode.favorite
+            self.sort()
+            break
+        default:
+            break
+        }
+        editorialView.reloadData()
+    }
 }
 
 extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return NewsPaper.groups.groupsCount.rawValue
+        switch sortMode {
+        case SortMode.all:
+            return NewsPaper.groups.groupsCount.rawValue
+        case SortMode.favorite:
+            return 1
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -56,18 +101,23 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = UIColor.white
         header.addSubview(label)
-        switch section {
-        case NewsPaper.groups.nationWide.rawValue:
-            label.text = "全国紙"
-            break
-        case NewsPaper.groups.block.rawValue:
-            label.text = "ブロック紙"
-            break
-        case NewsPaper.groups.local.rawValue:
-            label.text = "地方紙(47NEWS)"
-        default:
-            break
+        if sortMode == SortMode.all{
+            switch section {
+            case NewsPaper.groups.nationWide.rawValue:
+                label.text = "全国紙"
+                break
+            case NewsPaper.groups.block.rawValue:
+                label.text = "ブロック紙"
+                break
+            case NewsPaper.groups.local.rawValue:
+                label.text = "地方紙(47NEWS)"
+            default:
+                break
+            }
+        }else if sortMode == SortMode.favorite{
+            label.text = "お気に入り"
         }
+        
         return header
     }
     
@@ -76,16 +126,7 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case NewsPaper.groups.nationWide.rawValue:
-            return nationWideNewsPapers.count
-        case NewsPaper.groups.block.rawValue:
-            return blockNewsPapers.count
-        case NewsPaper.groups.local.rawValue:
-            return localNewsPapers.count
-        default:
-            return 0
-        }
+        return arrayList[section].count
         
     }
     
@@ -95,21 +136,10 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
         for subView in cell.contentView.subviews{
             subView.removeFromSuperview()
         }
+        // newsPaper取得
+        let newsPaper: NewsPaper = arrayList[indexPath.section][indexPath.row]
         
         let titleLabel: UILabel = UILabel(frame: CGRect(x: 30, y: 15, width: 120, height: 30))
-        
-        var newsPaper: NewsPaper
-        switch indexPath.section {
-        case NewsPaper.groups.nationWide.rawValue:
-            newsPaper = nationWideNewsPapers[indexPath.row]
-        case NewsPaper.groups.block.rawValue:
-            newsPaper = blockNewsPapers[indexPath.row]
-        case NewsPaper.groups.local.rawValue:
-            newsPaper = localNewsPapers[indexPath.row]
-        default:
-            newsPaper = NewsPaper(name: "", url: "", group: NewsPaper.groups.nationWide)
-        }
-        
         titleLabel.text = newsPaper.name
         cell.contentView.addSubview(titleLabel)
         return cell
@@ -125,17 +155,7 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
         let parentContoller = self.parent as! HomeViewController
         let webVC: WebViewController! = self.storyboard?.instantiateViewController(identifier: "webKitViewController")
         
-        var newsPaper: NewsPaper
-        switch indexPath.section {
-        case NewsPaper.groups.nationWide.rawValue:
-            newsPaper = nationWideNewsPapers[indexPath.row]
-        case NewsPaper.groups.block.rawValue:
-            newsPaper = blockNewsPapers[indexPath.row]
-        case NewsPaper.groups.local.rawValue:
-            newsPaper = localNewsPapers[indexPath.row]
-        default:
-            newsPaper = NewsPaper(name: "", url: "", group: NewsPaper.groups.nationWide)
-        }
+        let newsPaper: NewsPaper = arrayList[indexPath.section][indexPath.row]
         
         webVC!.newsPaper = newsPaper
         

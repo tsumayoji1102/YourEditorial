@@ -14,24 +14,22 @@ final class HomeViewController: UIViewController {
         case clips
     }
     
-    enum EditorialTabs: Int{
+    enum ClipTabs: Int{
         case all = 0
-        case favorite
+        case hoge
     }
     
-    @IBOutlet weak var homeNavi: UINavigationItem!
-    @IBOutlet weak var homeTab: UITabBar!
+    @IBOutlet weak var homeNavi:  UINavigationItem!
+    @IBOutlet weak var homeTab:   UITabBar!
     @IBOutlet weak var childView: UIView!
     
     // VC
     private var newsPaperEditorialVC: NewsPaperEditorialsViewController!
-    private var clipsVC: ClipsViewController!
-    private var favoriteEditorialVC: FavoriteEditorialViewController!
-    private var selectVC: SelectViewController!
+    private var clipsVC:              ClipsViewController!
+    private var selectVC:             SelectViewController!
     
     // selectedTab
     private var selectedTab: Tabs = Tabs.editorial
-    private var selectedEditorialTab: EditorialTabs = EditorialTabs.all
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,26 +40,11 @@ final class HomeViewController: UIViewController {
         
         clipsVC = self.storyboard?.instantiateViewController(identifier: "ClipsViewController") as? ClipsViewController
         
-        favoriteEditorialVC = self.storyboard?.instantiateViewController(identifier: "FavoriteEditorialViewController") as? FavoriteEditorialViewController
-        
         selectVC = self.storyboard?.instantiateViewController(identifier: "SelectViewController") as? SelectViewController
         selectVC.modalPresentationStyle = .custom
         selectVC.transitioningDelegate = self
-        selectVC.list = ["全て", "お気に入り"]
-        selectVC.closure = { index in
-            switch index{
-            case EditorialTabs.all.rawValue:
-                self.selectedEditorialTab = EditorialTabs.all
-                self.transitionControl(self.newsPaperEditorialVC)
-                break
-            case EditorialTabs.favorite.rawValue:
-                self.selectedEditorialTab = EditorialTabs.favorite
-                self.transitionControl(self.favoriteEditorialVC)
-                break
-            default:
-                break
-            }
-        }
+        
+        settingSelectView(selectedTab: selectedTab)
         
         // 初期はalarmVC
         self.addChild(newsPaperEditorialVC)
@@ -109,10 +92,11 @@ final class HomeViewController: UIViewController {
         
     }
     
+// MARK: - method
+    
     @objc func tapFavoriteButton(_ :UIBarButtonItem){
         present(selectVC!, animated: true)
     }
-    
     
     
     func transitionControl(_ to: UIViewController){
@@ -129,6 +113,21 @@ final class HomeViewController: UIViewController {
         to.view.frame = childView.bounds
         to.didMove(toParent: self)
     }
+    
+    func settingSelectView(selectedTab: Tabs){
+        
+        if selectedTab == Tabs.editorial {
+            selectVC.list = ["全て", "お気に入り"]
+            selectVC.closure = { index in
+                self.newsPaperEditorialVC.changeSortMode(index: index!)
+            }
+        // TODO: 設定
+        }else if selectedTab == Tabs.clips {
+            selectVC.list = ["全て", "お気に入り"]
+            selectVC.closure = { index in
+            }
+        }
+    }
 }
 
 // MARK: - UITabBarDelegate
@@ -141,36 +140,16 @@ extension HomeViewController: UITabBarDelegate{
         switch item.tag {
         case Tabs.editorial.rawValue:
             // VCをセット
-            switch selectedEditorialTab {
-            case EditorialTabs.all:
-                self.navigationItem.title = "社説一覧"
-                transitionControl(newsPaperEditorialVC)
-                break
-            case EditorialTabs.favorite:
-                self.navigationItem.title = "お気に入り社説一覧"
-                transitionControl(favoriteEditorialVC)
-                break
-            }
-            // selectViewController設定
-            selectVC.list = ["全て", "お気に入り"]
-            selectVC.closure = { index in
-                switch index{
-                case EditorialTabs.all.rawValue:
-                    self.selectedEditorialTab = EditorialTabs.all
-                    self.transitionControl(self.newsPaperEditorialVC)
-                    break
-                case EditorialTabs.favorite.rawValue:
-                    self.selectedEditorialTab = EditorialTabs.favorite
-                    self.transitionControl(self.favoriteEditorialVC)
-                    break
-                default:
-                    break
-                }
-            }
+            self.navigationItem.title = "社説一覧"
+            transitionControl(newsPaperEditorialVC)
+            settingSelectView(selectedTab: Tabs.editorial)
             break
+            
         case Tabs.clips.rawValue:
             self.navigationItem.title = "クリップ一覧"
             transitionControl(clipsVC)
+            // selectViewController設定
+            settingSelectView(selectedTab: Tabs.clips)
             break
         default:
             break
@@ -178,6 +157,7 @@ extension HomeViewController: UITabBarDelegate{
     }
 }
 
+// UITransitioningDelegate
 extension HomeViewController: UIViewControllerTransitioningDelegate{
     
     // 自動的にモーダル表示ができるように設計

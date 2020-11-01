@@ -22,4 +22,9 @@ class FavoriteNewsPaper: Object {
             return $0.name == self.newsPaperName
         }[0]
     }
+    
+    func fromDic(_ dic: Dictionary<String, Any?>){
+        self.favoriteNewsPaperId = dic["favoriteNewsPaperId"] as! String
+        self.newsPaperName = dic["newsPaperName"] as! String
+    }
 }
