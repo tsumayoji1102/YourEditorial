@@ -1,0 +1,4 @@
+
+github "pkluz/PKHUD" ~> 5.0
+
+github "realm/realm-cocoa" ~> 3.19.0
