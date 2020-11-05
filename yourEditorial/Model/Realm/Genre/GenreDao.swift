@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class GenreDao: NSObject, Dao {
+final class GenreDao: NSObject, Dao {
     
     var realm: Realm!
     

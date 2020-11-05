@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectViewController: UIViewController {
+final class SelectViewController: UIViewController {
     
     enum selectViewTag: Int {
         case someButton = 0,

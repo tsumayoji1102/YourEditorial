@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TransitionController: UIPresentationController {
+final class TransitionController: UIPresentationController {
 
     var overLay: UIView!
        

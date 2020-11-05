@@ -17,7 +17,7 @@ import UIKit
 
 import UIKit
 
-class Log: NSObject {
+final class Log: NSObject {
     
     // とりあえずログ
     static func getLog(

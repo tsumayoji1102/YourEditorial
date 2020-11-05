@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class FavoriteNewsPaperDao: NSObject, Dao {
+final class FavoriteNewsPaperDao: NSObject, Dao {
     
     var realm: Realm!
     

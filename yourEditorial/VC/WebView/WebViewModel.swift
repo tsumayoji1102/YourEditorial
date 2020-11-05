@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class WebViewModel: NSObject {
+final class WebViewModel: NSObject {
     
     final private var clipDao: ClipDao!
     

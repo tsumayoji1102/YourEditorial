@@ -10,6 +10,11 @@ import RealmSwift
 
 final class ClipsViewController: UIViewController {
     
+    enum ClipTabs: Int{
+        case all = 0
+        case hoge
+    }
+    
     @IBOutlet weak var clipsView: UITableView!
     
     private var appDelegate: AppDelegate!

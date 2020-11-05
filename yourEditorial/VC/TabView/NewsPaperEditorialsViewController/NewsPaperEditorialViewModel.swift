@@ -8,12 +8,16 @@
 import UIKit
 import RealmSwift
 
-class NewsPaperEditorialViewModel: NSObject {
+final class NewsPaperEditorialViewModel: NSObject {
     
     private var favoriteNewsPaperDao: FavoriteNewsPaperDao!
     
     init(favoriteNewsPaperDao: FavoriteNewsPaperDao){
         self.favoriteNewsPaperDao = favoriteNewsPaperDao
+    }
+    
+    func setFavorite(newspaper: NewsPaper){
+        //favoriteNewsPaperDao.create(dic: )
     }
     
     func getFavoriteNewsPapers() -> Array<NewsPaper>{

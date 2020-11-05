@@ -8,7 +8,8 @@
 import UIKit
 import PKHUD
 
-final class NewsPaperEditorialsViewController: UIViewController {
+
+final class NewsPaperEditorialsViewController: UIViewController{
     
     enum SortMode: Int{
         case all = 0
@@ -21,6 +22,7 @@ final class NewsPaperEditorialsViewController: UIViewController {
     private var viewModel:   NewsPaperEditorialViewModel!
     private var sortMode:    SortMode = SortMode.all
     private var arrayList:   Array<Array<NewsPaper>> = []
+    private var imagesDic: Dictionary<String, UIImage> = [:]
     
     
     override func viewDidLoad() {
@@ -30,10 +32,16 @@ final class NewsPaperEditorialsViewController: UIViewController {
         let favoriteNewsPaperDao: FavoriteNewsPaperDao = appDelegate.daoFactory.getDao(daoRoute: DaoRoutes.favoriteNewsPaper) as! FavoriteNewsPaperDao
         viewModel = NewsPaperEditorialViewModel(favoriteNewsPaperDao: favoriteNewsPaperDao)
         
+        for newsPaper in Constraints.newsPapers{
+            let image = UIImage(named: newsPaper.image)?.resize(size: CGSize(width: 40, height: 40))
+            imagesDic[newsPaper.image] = image
+        }
+        
         self.sort()
         editorialView.delegate = self
         editorialView.dataSource = self
         editorialView.tableFooterView = UIView()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,19 +72,21 @@ final class NewsPaperEditorialsViewController: UIViewController {
     }
     
     // HomeViewから入れる
+    // TODO: protocol化
     func changeSortMode(index: Int){
         switch index{
         case SortMode.all.rawValue:
             sortMode = SortMode.all
-            self.sort()
+            editorialView.isEditing = false
             break
         case SortMode.favorite.rawValue:
             sortMode = SortMode.favorite
-            self.sort()
+            editorialView.isEditing = true
             break
         default:
             break
         }
+        self.sort()
         editorialView.reloadData()
     }
 }
@@ -132,16 +142,14 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "newsPaperEditorialCell",for: indexPath)
-        for subView in cell.contentView.subviews{
-            subView.removeFromSuperview()
-        }
+        let cell: NewsPaperCell = tableView.dequeueReusableCell(withIdentifier: "newsPaperEditorialCell",for: indexPath) as! NewsPaperCell
+        
         // newsPaper取得
         let newsPaper: NewsPaper = arrayList[indexPath.section][indexPath.row]
         
-        let titleLabel: UILabel = UILabel(frame: CGRect(x: 30, y: 15, width: 120, height: 30))
-        titleLabel.text = newsPaper.name
-        cell.contentView.addSubview(titleLabel)
+        cell.icon.image = imagesDic[newsPaper.image]
+        cell.name.text = newsPaper.name
+        
         return cell
     }
     
@@ -166,6 +174,34 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
         
     }
     
+    /*
+    // スワイプ用
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let action = UISwipeActionsConfiguration(actions: [])
+    }
     
+    private func setfavoriteNewsPaper(indexPath: IndexPath!) -> UIContextualAction? {
+        let contextualAction = UIContextualAction(
+            style: .normal,
+            title: "favorite",
+            handler: {_,_, handler in
+            
+            handler(true)
+        })
+    }
+    */
+}
+
+class NewsPaperCell: UITableViewCell{
+    
+    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        icon.frame = CGRect(x: 15, y: 10, width: 40, height: 40)
+        name.frame = CGRect(x: icon.frame.maxX + 20, y: 15, width: 120, height: 30)
+    }
     
 }

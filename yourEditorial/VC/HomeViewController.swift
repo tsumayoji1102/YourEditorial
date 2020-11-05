@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SortDelegate{
+    func changeSortMode(index: Int)
+}
+
 final class HomeViewController: UIViewController {
     
     enum Tabs: Int{
@@ -14,14 +18,10 @@ final class HomeViewController: UIViewController {
         case clips
     }
     
-    enum ClipTabs: Int{
-        case all = 0
-        case hoge
-    }
-    
     @IBOutlet weak var homeNavi:  UINavigationItem!
     @IBOutlet weak var homeTab:   UITabBar!
     @IBOutlet weak var childView: UIView!
+    
     
     // VC
     private var newsPaperEditorialVC: NewsPaperEditorialsViewController!
@@ -94,12 +94,12 @@ final class HomeViewController: UIViewController {
     
 // MARK: - method
     
-    @objc func tapFavoriteButton(_ :UIBarButtonItem){
+    @objc private func tapFavoriteButton(_ :UIBarButtonItem){
         present(selectVC!, animated: true)
     }
     
     
-    func transitionControl(_ to: UIViewController){
+    private func transitionControl(_ to: UIViewController){
         
         // はがす作業
         for vc in self.children{
@@ -114,7 +114,7 @@ final class HomeViewController: UIViewController {
         to.didMove(toParent: self)
     }
     
-    func settingSelectView(selectedTab: Tabs){
+    private func settingSelectView(selectedTab: Tabs){
         
         if selectedTab == Tabs.editorial {
             selectVC.list = ["全て", "お気に入り"]
@@ -123,10 +123,12 @@ final class HomeViewController: UIViewController {
             }
         // TODO: 設定
         }else if selectedTab == Tabs.clips {
-            selectVC.list = ["全て", "お気に入り"]
+            selectVC.list = ["日付", "新聞社"]
             selectVC.closure = { index in
+                
             }
         }
+        
     }
 }
 
