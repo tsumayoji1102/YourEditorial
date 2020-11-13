@@ -10,9 +10,10 @@ import RealmSwift
 
 class Clip: Object {
     
-    @objc dynamic var clipId   : String = ""
+    @objc dynamic var clipId   :  String = ""
     @objc dynamic var name     :  String = ""
     @objc dynamic var url      :  String = ""
+    @objc dynamic var newsPaper:  String = ""
     @objc dynamic var createdAt:  Date?  = Date()
     @objc dynamic var updatedAt:  Date?  = Date()
     @objc dynamic var genreId   : String = ""

@@ -19,6 +19,8 @@ final class NewsPaperEditorialsViewController: UIViewController{
     @IBOutlet weak var editorialView: UITableView!
     
     private var appDelegate: AppDelegate!
+    private var webVC:       WebViewController!
+    private var homeVC:      HomeViewController!
     private var viewModel:   NewsPaperEditorialViewModel!
     private var sortMode:    SortMode = SortMode.all
     private var arrayList:   Array<Array<NewsPaper>> = []
@@ -28,9 +30,14 @@ final class NewsPaperEditorialsViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // AppDelegate取得
         appDelegate = UIApplication.shared.delegate as? AppDelegate
         let favoriteNewsPaperDao: FavoriteNewsPaperDao = appDelegate.daoFactory.getDao(daoRoute: DaoRoutes.favoriteNewsPaper) as! FavoriteNewsPaperDao
         viewModel = NewsPaperEditorialViewModel(favoriteNewsPaperDao: favoriteNewsPaperDao)
+        
+        // VC生成
+        homeVC = self.parent as? HomeViewController
+        webVC = self.storyboard?.instantiateViewController(identifier: "webKitViewController") as? WebViewController
         
         for newsPaper in Constraints.newsPapers{
             let image = UIImage(named: newsPaper.image)?.resize(size: CGSize(width: 40, height: 40))
@@ -160,14 +167,11 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let parentContoller = self.parent as! HomeViewController
-        let webVC: WebViewController! = self.storyboard?.instantiateViewController(identifier: "webKitViewController")
-        
         let newsPaper: NewsPaper = arrayList[indexPath.section][indexPath.row]
         
-        webVC!.newsPaper = newsPaper
+        webVC.newsPaper = newsPaper
         
-        parentContoller.show(webVC!, sender: nil)
+        homeVC.show(webVC, sender: nil)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

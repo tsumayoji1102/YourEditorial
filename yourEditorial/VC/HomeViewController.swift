@@ -88,7 +88,7 @@ final class HomeViewController: UIViewController {
         newsPaperEditorialVC.view.frame = childView.bounds
         
         // ちょっとめんどくさい
-        homeTab.frame = CGRect(x: 0, y: self.view.frame.height - homeTabHeight, width: self.view.frame.width, height: homeTabHeight)
+        homeTab.frame = CGRect(x: 0, y: childView.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - childView.frame.maxY)
         
     }
     

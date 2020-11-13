@@ -41,6 +41,7 @@
 		E77C5E5C2548657F00F65677 /* GenreDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E5B2548657F00F65677 /* GenreDao.swift */; };
 		E79E89A6253DE53400A14E75 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E89A5253DE53400A14E75 /* WebViewController.swift */; };
 		E7E896C92545E41700E3078B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E719F0AE253DC11300E54D1E /* Main.storyboard */; };
+		E7EC457325559CCA0015BB09 /* ClipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EC457225559CCA0015BB09 /* ClipingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		E77C5E58254862F900F65677 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		E77C5E5B2548657F00F65677 /* GenreDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreDao.swift; sourceTree = "<group>"; };
 		E79E89A5253DE53400A14E75 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		E7EC457225559CCA0015BB09 /* ClipingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,8 +342,17 @@
 			children = (
 				E79E89A5253DE53400A14E75 /* WebViewController.swift */,
 				E77C5E55254861AC00F65677 /* WebViewModel.swift */,
+				E7EC457125559C9F0015BB09 /* ClipingViewController */,
 			);
 			path = WebView;
+			sourceTree = "<group>";
+		};
+		E7EC457125559C9F0015BB09 /* ClipingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E7EC457225559CCA0015BB09 /* ClipingViewController.swift */,
+			);
+			path = ClipingViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -571,6 +582,7 @@
 				E72E54F1254E6A9800402151 /* SelectViewController.swift in Sources */,
 				E719F0A9253DC11300E54D1E /* AppDelegate.swift in Sources */,
 				E719F0B3253DC11300E54D1E /* yourEditorial.xcdatamodeld in Sources */,
+				E7EC457325559CCA0015BB09 /* ClipingViewController.swift in Sources */,
 				E758B9F32545D5B100EED590 /* Log.swift in Sources */,
 				E77C5E56254861AC00F65677 /* WebViewModel.swift in Sources */,
 				E77C5E5C2548657F00F65677 /* GenreDao.swift in Sources */,
