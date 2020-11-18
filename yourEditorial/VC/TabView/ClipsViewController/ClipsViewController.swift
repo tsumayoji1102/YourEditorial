@@ -42,6 +42,8 @@ final class ClipsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool){
         super.viewWillAppear(true)
+        genreList = viewModel.getGenres()
+        sort()
         
     }
     
@@ -91,7 +93,7 @@ extension ClipsViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header: UIView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
+        let header: UIView = UIView()
         header.backgroundColor = UIColor.gray
         
         let label: UILabel = UILabel(frame: CGRect(x: 20, y: 5, width: 200, height: 30))
@@ -99,13 +101,13 @@ extension ClipsViewController: UITableViewDelegate, UITableViewDataSource{
         label.textColor = UIColor.white
         header.addSubview(label)
         
-        switch section{
-        case SortMode.genre.rawValue:
+        switch sortMode{
+        case SortMode.genre:
             label.text = genreList[section].name
             break
-        case SortMode.newsPaper.rawValue:
+        case SortMode.newsPaper:
             break
-        case SortMode.date.rawValue:
+        case SortMode.date:
             break
         default:
             break
@@ -124,13 +126,13 @@ extension ClipsViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "clipsViewCell",for: indexPath)
-        for subView in cell.subviews{
+        for subView in cell.contentView.subviews{
             subView.removeFromSuperview()
         }
         
         let titleLabel = UILabel(frame: CGRect(x: 10, y: 10, width: self.view.frame.width - 40, height: 60))
         titleLabel.text = clipList[indexPath.section][indexPath.row].name
-        cell.addSubview(titleLabel)
+        cell.contentView.addSubview(titleLabel)
         
         return cell
     }

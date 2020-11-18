@@ -164,6 +164,7 @@ final class ClipingViewController: UIViewController {
             genreField.text = ""
             selectedGenre = viewModel.getGenres().last
             genreButton.setTitle(selectedGenre.name, for: .normal)
+            clipDic["genreId"] = selectedGenre.genreId
             changeGenreState()
             HUD.hide()
         }
