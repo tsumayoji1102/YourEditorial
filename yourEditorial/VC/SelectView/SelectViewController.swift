@@ -31,7 +31,7 @@ final class SelectViewController: UIViewController {
     private var decideButton: UIButton!
     
     // 値
-    var list:             Array<String>!
+    var list:             Array<String> = []
     var selectedIndex:    Int = 0
     var closure:          ((Int?) ->Void)!
     
@@ -88,8 +88,8 @@ final class SelectViewController: UIViewController {
         decideButton.backgroundColor = UIColor.getThemeColor()
         
         // ダークモード設定
-        picker.tintColor           = UIColor.getDarkModeColor(area: "fontColor")
-        picker.backgroundColor     = UIColor.getDarkModeColor(area: "cell")
+        picker.tintColor       = UIColor.getDarkModeColor(area: "fontColor")
+        picker.backgroundColor = UIColor.getDarkModeColor(area: "cell")
         picker.setValue(UIColor.getDarkModeColor(area: "fontColor"), forKey: "textColor")
         selectView.reloadData()
     }

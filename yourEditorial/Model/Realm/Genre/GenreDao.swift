@@ -21,8 +21,22 @@ final class GenreDao: NSObject, Dao {
         self.realm = realm
     }
     
+    // 採番
+    func getGenreNo() -> Int{
+        
+        let result = realm.objects(Genre.self).sorted(byKeyPath: "genreId", ascending: false).first
+        
+        if (result == nil){
+            return 0
+        }else{
+            return result!.genreId + 1
+        }
+    }
+    
     func create(dic: Dictionary<String, Any?>){
+        var newDic = dic
         let genre = Genre()
+        newDic["genreId"] = getGenreNo()
         genre.fromDic(dic)
         try! realm.write {
             realm.add(genre)

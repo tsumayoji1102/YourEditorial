@@ -62,5 +62,12 @@
 	</array>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+      <key>NSAllowsArbitraryLoadsInWebContent</key>
+      <true/>
+    </dict>
 </dict>
 </plist>

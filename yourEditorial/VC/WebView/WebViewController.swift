@@ -28,6 +28,8 @@ final class WebViewController: UIViewController {
         viewModel = WebViewModel(clipDao: clipDao)
         
         clipingVC = self.storyboard?.instantiateViewController(identifier: "ClipingViewController") as? ClipingViewController
+        clipingVC.modalPresentationStyle = .custom
+        clipingVC.transitioningDelegate = self
         
         webKitView = WKWebView();
         webKitView.navigationDelegate = self
@@ -104,5 +106,15 @@ extension WebViewController: WKNavigationDelegate{
     
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
         
+    }
+}
+
+// MARK: - UITransitioningDelegate
+extension WebViewController: UIViewControllerTransitioningDelegate{
+    
+    // 自動的にモーダル表示ができるように設計
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        
+        return TransitionController(presentedViewController: presented, presenting: presenting)
     }
 }

@@ -21,8 +21,21 @@ final class ClipDao: NSObject, Dao {
         self.realm = realm
     }
     
+    // 採番
+    func getClipNo() -> Int{
+        
+        let result = realm.objects(Clip.self).sorted(byKeyPath: "clipId", ascending: false).first
+        
+        if (result == nil){
+            return 0
+        }else{
+            return result!.clipId + 1
+        }
+    }
+    
     func create(dic: Dictionary<String, Any?>){
         let clip = Clip()
+        clip.clipId = getClipNo()
         clip.fromDic(dic)
         try! realm.write {
             realm.add(clip)

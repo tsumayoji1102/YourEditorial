@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -39,6 +39,7 @@
 		E77C5E56254861AC00F65677 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E55254861AC00F65677 /* WebViewModel.swift */; };
 		E77C5E59254862F900F65677 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E58254862F900F65677 /* Genre.swift */; };
 		E77C5E5C2548657F00F65677 /* GenreDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E5B2548657F00F65677 /* GenreDao.swift */; };
+		E799F4592560C03200316434 /* ClipingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E799F4582560C03200316434 /* ClipingViewModel.swift */; };
 		E79E89A6253DE53400A14E75 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E89A5253DE53400A14E75 /* WebViewController.swift */; };
 		E7E896C92545E41700E3078B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E719F0AE253DC11300E54D1E /* Main.storyboard */; };
 		E7EC457325559CCA0015BB09 /* ClipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EC457225559CCA0015BB09 /* ClipingViewController.swift */; };
@@ -107,6 +108,7 @@
 		E77C5E55254861AC00F65677 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		E77C5E58254862F900F65677 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		E77C5E5B2548657F00F65677 /* GenreDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreDao.swift; sourceTree = "<group>"; };
+		E799F4582560C03200316434 /* ClipingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipingViewModel.swift; sourceTree = "<group>"; };
 		E79E89A5253DE53400A14E75 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		E7EC457225559CCA0015BB09 /* ClipingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -351,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				E7EC457225559CCA0015BB09 /* ClipingViewController.swift */,
+				E799F4582560C03200316434 /* ClipingViewModel.swift */,
 			);
 			path = ClipingViewController;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				E719F0A2253DC11300E54D1E /* Frameworks */,
 				E719F0A3253DC11300E54D1E /* Resources */,
 				E741B3AD2541D1310084BAC1 /* /usr/local/bin/carthage copy-frameworks */,
+				85CE8A680DC32A051EE1B48D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -404,6 +408,7 @@
 				E719F0C5253DC11300E54D1E /* Sources */,
 				E719F0C6253DC11300E54D1E /* Frameworks */,
 				E719F0C7253DC11300E54D1E /* Resources */,
+				8AC8523182AD96C2EE3952AE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -529,6 +534,40 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		85CE8A680DC32A051EE1B48D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-yourEditorial/Pods-yourEditorial-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-yourEditorial/Pods-yourEditorial-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yourEditorial/Pods-yourEditorial-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8AC8523182AD96C2EE3952AE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-yourEditorial-yourEditorialUITests/Pods-yourEditorial-yourEditorialUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-yourEditorial-yourEditorialUITests/Pods-yourEditorial-yourEditorialUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yourEditorial-yourEditorialUITests/Pods-yourEditorial-yourEditorialUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E6A6AC14CAC10538873C1D1C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -579,6 +618,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E799F4592560C03200316434 /* ClipingViewModel.swift in Sources */,
 				E72E54F1254E6A9800402151 /* SelectViewController.swift in Sources */,
 				E719F0A9253DC11300E54D1E /* AppDelegate.swift in Sources */,
 				E719F0B3253DC11300E54D1E /* yourEditorial.xcdatamodeld in Sources */,

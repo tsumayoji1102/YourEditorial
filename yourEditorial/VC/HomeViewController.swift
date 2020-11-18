@@ -115,7 +115,6 @@ final class HomeViewController: UIViewController {
     }
     
     private func settingSelectView(selectedTab: Tabs){
-        
         if selectedTab == Tabs.editorial {
             selectVC.list = ["全て", "お気に入り"]
             selectVC.closure = { index in
@@ -128,9 +127,9 @@ final class HomeViewController: UIViewController {
                 
             }
         }
-        
     }
 }
+
 
 // MARK: - UITabBarDelegate
 

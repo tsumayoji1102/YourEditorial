@@ -6,6 +6,7 @@ target 'yourEditorial' do
   use_frameworks!
 
   # Pods for yourEditorial
+  pod 'TPKeyboardAvoiding'
 
   target 'yourEditorialTests' do
     inherit! :search_paths

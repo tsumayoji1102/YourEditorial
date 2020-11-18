@@ -119,3 +119,25 @@ extension UIColor{
     }
 }
 
+
+// MARK: - UITextField
+extension UITextField {
+    
+    /*下線を追加する
+     *
+     * @param height: line height
+     * @param color:  line color
+     *
+     */
+    func addBottomBorder(height: CGFloat, color: UIColor){
+        
+        let border = CALayer()
+        
+        border.frame = CGRect(x: 0, y: self.frame.height - height, width: self.frame.width, height:height)
+        border.backgroundColor = color.cgColor
+        self.layer.addSublayer(border)
+        
+    }
+    
+   
+}
