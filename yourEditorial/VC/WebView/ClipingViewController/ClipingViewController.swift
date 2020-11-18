@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import PKHUD
 //import TPKeyboardAvoiding
 
-class ClipingViewController: UIViewController {
+final class ClipingViewController: UIViewController {
     
     enum ClipingViewCell: Int{
         case cancel = 0
@@ -35,14 +36,17 @@ class ClipingViewController: UIViewController {
     private var genreButtonImage: Dictionary<String, UIImage>!
     private var viewModel: ClipingViewModel!
     private var appDelegate: AppDelegate!
-    var clip: Clip!
+    private var selectedGenre: Genre!
+    var clipDic: Dictionary<String, Any?>!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         appDelegate = UIApplication.shared.delegate as? AppDelegate
-        viewModel = ClipingViewModel(genreDao: appDelegate.daoFactory.getDao(daoRoute: DaoRoutes.genre) as! GenreDao)
+        let genreDao: GenreDao = appDelegate.daoFactory.getDao(daoRoute: DaoRoutes.genre) as! GenreDao
+        let clipDao: ClipDao = appDelegate.daoFactory.getDao(daoRoute: DaoRoutes.clip) as! ClipDao
+        viewModel = ClipingViewModel(genreDao: genreDao, clipDao: clipDao)
         
         // Viewを透明に
         self.view.backgroundColor = UIColor.clear
@@ -101,12 +105,13 @@ class ClipingViewController: UIViewController {
         decideButton.layer.cornerRadius = 10
         decideButton.backgroundColor = UIColor.blue
         decideButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        decideButton.addTarget(self, action: #selector(setClip(_:)), for: .touchDown)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        titleField.text = clip.name
+        titleField.text = clipDic["name"] as? String
     }
     
     override func viewWillLayoutSubviews() {
@@ -114,25 +119,67 @@ class ClipingViewController: UIViewController {
         clipingView.frame = CGRect(x: 0, y: self.view.frame.height / 2, width: self.view.frame.width, height: self.view.frame.height / 2)
     }
     
-    @objc func close(_ :UIButton){
+    @objc private func close(_ :UIButton){
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func selectGenre(_ : UIButton){
+    @objc private func selectGenre(_ : UIButton){
         let genres: Array<Genre> = viewModel.getGenres()
+        if genres.isEmpty {
+            let alert = UIAlertController(title: "ジャンルなし", message: "新しくジャンルを追加してください。", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true)
+            return
+        }
         let selectVC = self.storyboard?.instantiateViewController(identifier: "SelectViewController") as? SelectViewController
         selectVC?.modalPresentationStyle = .custom
         selectVC?.transitioningDelegate = self
         selectVC?.list = genres.map{ return $0.name }
         selectVC?.closure = { index in
-            let genre = genres[index!]
-            self.clip.genreId = genre.genreId
-            self.genreButton.setTitle(genre.name, for: .normal)
+            self.selectedGenre = genres[index!]
+            self.clipDic["genreId"] = self.selectedGenre.genreId
+            self.genreButton.setTitle(self.selectedGenre.name, for: .normal)
         }
         self.present(selectVC!, animated: true)
     }
     
     @objc func addGenre(_ :UIButton){
+        changeGenreState()
+    }
+    
+    @objc private func setGenre(_ : UIButton){
+        if genreField.text!.isEmpty {
+            let alert = UIAlertController(title: "未入力", message: "ジャンルを入力してください。", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true)
+            return
+        }else{
+            HUD.flash(.progress, delay: 0.0)
+            let date = Date()
+            viewModel.setGenre(dic: [
+                "name": genreField.text,
+                "createdAt": date,
+                "updatedAt": date
+            ])
+            genreField.text = ""
+            selectedGenre = viewModel.getGenres().last
+            genreButton.setTitle(selectedGenre.name, for: .normal)
+            changeGenreState()
+            HUD.hide()
+        }
+    }
+    
+    @objc private func setClip(_ :UIButton){
+        HUD.flash(.progress, delay: 0.0)
+        if clipDic["genreId"] == nil {
+            clipDic["genreId"] = 0
+        }
+        viewModel.setClip(dic: clipDic)
+        HUD.hide()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func changeGenreState(){
         let change = !isAddGenre
         isAddGenre = change
         genreButton.isHidden = isAddGenre
@@ -144,10 +191,6 @@ class ClipingViewController: UIViewController {
         }else{
             addGenreButton.setImage(genreButtonImage["plus.square"], for: .normal)
         }
-    }
-    
-    @objc func setGenre(_ : UIButton){
-        
     }
 }
 

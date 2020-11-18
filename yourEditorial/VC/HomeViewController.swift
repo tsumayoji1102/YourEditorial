@@ -124,7 +124,7 @@ final class HomeViewController: UIViewController {
         }else if selectedTab == Tabs.clips {
             selectVC.list = ["日付", "新聞社"]
             selectVC.closure = { index in
-                
+                self.clipsVC.changeSortMode(index: index!)
             }
         }
     }

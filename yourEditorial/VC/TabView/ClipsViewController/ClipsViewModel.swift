@@ -11,14 +11,20 @@ import RealmSwift
 final class ClipsViewModel: NSObject {
     
     final private var clipDao: ClipDao!
+    final private var genreDao: GenreDao!
     
-    init(clipDao: ClipDao){
+    init(clipDao: ClipDao, genreDao: GenreDao){
         super.init()
         self.clipDao = clipDao
+        self.genreDao = genreDao
     }
     
     func getClips() -> Array<Clip>{
         let clips: Array<Clip> = clipDao.getClips(filter: nil)
         return clips
+    }
+    
+    func getGenres() -> Array<Genre>{
+        return genreDao.getGenres(filter: nil)
     }
 }

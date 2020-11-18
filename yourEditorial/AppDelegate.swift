@@ -39,7 +39,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Realmファイルを開こうとしたときスキーマバージョンが異なれば、
         // 自動的にマイグレーションが実行されます
-        _ = try! Realm()
+        let realm = try! Realm()
+        
+        let userDefaults = UserDefaults.standard
+        if !userDefaults.bool(forKey: "firstLaunch") {
+            userDefaults.set(true, forKey: "firstLaunch")
+            let standardGenre = Genre()
+            let date = Date()
+            standardGenre.fromDic([
+                "genreId": 0,
+                "name":"お気に入り",
+                "updatedAt":date,
+                "createdAt":date
+            ])
+            try! realm.write {
+                realm.add(standardGenre)
+            }
+        }
         return true
     }
 

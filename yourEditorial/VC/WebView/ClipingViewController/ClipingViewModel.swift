@@ -7,13 +7,15 @@
 
 import UIKit
 
-class ClipingViewModel: NSObject {
+final class ClipingViewModel: NSObject {
     
     var genreDao: GenreDao!
+    var clipDao:  ClipDao!
     
-    init(genreDao: GenreDao){
+    init(genreDao: GenreDao, clipDao: ClipDao){
         super.init()
         self.genreDao = genreDao
+        self.clipDao = clipDao
     }
     
     func getGenres() -> Array<Genre>{
@@ -21,9 +23,12 @@ class ClipingViewModel: NSObject {
         return genres
     }
     
-    
     func setGenre(dic: Dictionary<String, Any?>){
         genreDao.create(dic: dic)
+    }
+    
+    func setClip(dic: Dictionary<String, Any?>){
+        clipDao.create(dic: dic)
     }
 
 }

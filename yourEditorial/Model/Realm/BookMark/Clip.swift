@@ -23,8 +23,9 @@ class Clip: Object {
     }
     
     func fromDic(_ dic: Dictionary<String, Any?>){
-        self.clipId     = dic["bookMarkId"] as! Int
+        self.clipId     = dic["clipId"]     as! Int
         self.name       = dic["name"]       as! String
+        self.newsPaper  = dic["newsPaper"]  as! String
         self.url        = dic["url"]        as! String
         self.createdAt  = dic["createdAt"]  as? Date
         self.updatedAt  = dic["updatedAt"]  as? Date

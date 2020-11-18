@@ -37,7 +37,7 @@ final class GenreDao: NSObject, Dao {
         var newDic = dic
         let genre = Genre()
         newDic["genreId"] = getGenreNo()
-        genre.fromDic(dic)
+        genre.fromDic(newDic)
         try! realm.write {
             realm.add(genre)
         }

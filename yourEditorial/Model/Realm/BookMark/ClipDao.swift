@@ -34,9 +34,10 @@ final class ClipDao: NSObject, Dao {
     }
     
     func create(dic: Dictionary<String, Any?>){
+        var newDic = dic
         let clip = Clip()
-        clip.clipId = getClipNo()
-        clip.fromDic(dic)
+        newDic["clipId"] = getClipNo()
+        clip.fromDic(newDic)
         try! realm.write {
             realm.add(clip)
         }

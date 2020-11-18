@@ -74,14 +74,14 @@ final class WebViewController: UIViewController {
     @objc func setClip(_: UIBarButtonItem){
         webKitView.evaluateJavaScript("document.title", completionHandler: {
             value, error in
-            let clip: Clip = Clip()
+            var clipDic: Dictionary<String, Any?> = [:]
             let date: Date = Date()
-            clip.name = value as! String
-            clip.url = try! String(contentsOf: self.webKitView.url!)
-            clip.newsPaper = self.newsPaper.name
-            clip.createdAt = date
-            clip.updatedAt = date
-            self.clipingVC?.clip = clip
+            clipDic["name"] = value as! String
+            clipDic["url"] = try! String(contentsOf: self.webKitView.url!)
+            clipDic["newsPaper"] = self.newsPaper.name
+            clipDic["createdAt"] = date
+            clipDic["updatedAt"] = date
+            self.clipingVC?.clipDic = clipDic
             self.present(self.clipingVC, animated: true, completion: nil)
         })
     }

@@ -35,6 +35,12 @@ final class Constraints: NSObject {
         group: NewsPaper.groups.nationWide
     ),
     NewsPaper(
+        name: "日本経済新聞",
+        url: "https://www.nikkei.com/opinion/editorial/",
+        image: "nikkei.png",
+        group: NewsPaper.groups.nationWide
+    ),
+    NewsPaper(
         name: "北海道新聞",
         url: "https://www.hokkaido-np.co.jp/column/c_editorial",
         image: "hokkaido.jpg",
@@ -90,7 +96,7 @@ final class Constraints: NSObject {
         ),
     NewsPaper(
         name: "信濃毎日新聞",
-        url: "https://www.shinmai.co.jp/news/nagano/web_shasetsu_list.html",
+        url: "https://www.shinmai.co.jp/news/list/4/97",
         image: "shinanoMainichi.jpg",
         group: NewsPaper.groups.local
     ),
@@ -137,9 +143,9 @@ final class Constraints: NSObject {
         group: NewsPaper.groups.local
     ),
     NewsPaper(
-        name: "山陰中央新聞",
+        name: "山陰中央新報",
         url: "https://www.sanin-chuo.co.jp/www/genre/1000100000058/index.html",
-        image: "", // なし
+        image: "sanin_chuo",
         group: NewsPaper.groups.local
     ),
     NewsPaper(
