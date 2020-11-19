@@ -27,6 +27,7 @@ final class HomeViewController: UIViewController {
     private var newsPaperEditorialVC: NewsPaperEditorialsViewController!
     private var clipsVC:              ClipsViewController!
     private var selectVC:             SelectViewController!
+    private var webVC:                WebViewController!
     
     // selectedTab
     private var selectedTab: Tabs = Tabs.editorial
@@ -39,6 +40,8 @@ final class HomeViewController: UIViewController {
           as? NewsPaperEditorialsViewController
         
         clipsVC = self.storyboard?.instantiateViewController(identifier: "ClipsViewController") as? ClipsViewController
+        
+        webVC = self.storyboard?.instantiateViewController(identifier: "webKitViewController") as? WebViewController
         
         selectVC = self.storyboard?.instantiateViewController(identifier: "SelectViewController") as? SelectViewController
         selectVC.modalPresentationStyle = .custom
@@ -122,11 +125,19 @@ final class HomeViewController: UIViewController {
             }
         // TODO: 設定
         }else if selectedTab == Tabs.clips {
-            selectVC.list = ["ジャンル", "日付", "新聞社"]
+            selectVC.list = ["ジャンル","新聞社","日付"]
             selectVC.closure = { index in
                 self.clipsVC.changeSortMode(index: index!)
             }
         }
+    }
+    
+    // 外部からおこなう
+    func getSite(newsPaperName: String, url: String){
+        webVC.newsPaperName = newsPaperName
+        webVC.newsPaperUrl = url
+        
+        self.show(webVC, sender: nil)
     }
 }
 

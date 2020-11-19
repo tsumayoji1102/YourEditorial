@@ -18,7 +18,8 @@ final class WebViewController: UIViewController {
     private var viewModel:    WebViewModel!
     private var appDelegate:  AppDelegate!
     
-    var newsPaper: NewsPaper!
+    var newsPaperName: String!
+    var newsPaperUrl:  String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,7 @@ final class WebViewController: UIViewController {
         super.viewWillAppear(true)
         
         HUD.flash(.progress, delay: 0.0)
-        self.navigationItem.title = newsPaper.name
+        self.navigationItem.title = newsPaperName
     
         loadUrl()
     }
@@ -66,7 +67,7 @@ final class WebViewController: UIViewController {
     }
     
     private func loadUrl(){
-        let url: URL! = URL(string: newsPaper.url)
+        let url: URL! = URL(string: newsPaperUrl)
         let urlRequest: URLRequest! = URLRequest(url: url!)
         webKitView.load(urlRequest)
     }
@@ -77,8 +78,8 @@ final class WebViewController: UIViewController {
             var clipDic: Dictionary<String, Any?> = [:]
             let date: Date = Date()
             clipDic["name"] = value as! String
-            clipDic["url"] = try! String(contentsOf: self.webKitView.url!)
-            clipDic["newsPaper"] = self.newsPaper.name
+            clipDic["url"] = self.webKitView.url?.absoluteString
+            clipDic["newsPaper"] = self.newsPaperName
             clipDic["createdAt"] = date
             clipDic["updatedAt"] = date
             self.clipingVC?.clipDic = clipDic

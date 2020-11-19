@@ -111,28 +111,22 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header: UIView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
-        header.backgroundColor = UIColor.gray
-        
-        let label: UILabel = UILabel(frame: CGRect(x: 20, y: 5, width: 200, height: 30))
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = UIColor.white
-        header.addSubview(label)
+        let header: UIView = UIView()
         if sortMode == SortMode.all{
             switch section {
             case NewsPaper.groups.nationWide.rawValue:
-                label.text = "全国紙"
+                header.makeHeader(title: "全国紙")
                 break
             case NewsPaper.groups.block.rawValue:
-                label.text = "ブロック紙"
+                header.makeHeader(title: "ブロック紙")
                 break
             case NewsPaper.groups.local.rawValue:
-                label.text = "地方紙(47NEWS)"
+                header.makeHeader(title: "地方紙(47NEWS)")
             default:
                 break
             }
         }else if sortMode == SortMode.favorite{
-            label.text = "お気に入り"
+            header.makeHeader(title: "お気に入り")
         }
         
         return header
@@ -153,9 +147,7 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
         
         // newsPaper取得
         let newsPaper: NewsPaper = arrayList[indexPath.section][indexPath.row]
-        
-        cell.icon.image = imagesDic[newsPaper.image]
-        cell.name.text = newsPaper.name
+        cell.setNewsPaper(icon: imagesDic[newsPaper.image]!, name: newsPaper.name)
         
         return cell
     }
@@ -169,9 +161,7 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
         
         let newsPaper: NewsPaper = arrayList[indexPath.section][indexPath.row]
         
-        webVC.newsPaper = newsPaper
-        
-        homeVC.show(webVC, sender: nil)
+        homeVC.getSite(newsPaperName: newsPaper.name, url: newsPaper.url)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -206,6 +196,11 @@ class NewsPaperCell: UITableViewCell{
         super.awakeFromNib()
         icon.frame = CGRect(x: 15, y: 10, width: 40, height: 40)
         name.frame = CGRect(x: icon.frame.maxX + 20, y: 15, width: 120, height: 30)
+    }
+    
+    func setNewsPaper(icon: UIImage, name: String){
+        self.icon.image = icon
+        self.name.text = name
     }
     
 }

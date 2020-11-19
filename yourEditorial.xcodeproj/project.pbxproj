@@ -10,6 +10,8 @@
 		82F492642E9E953A8C5B239D /* Pods_yourEditorialTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB871D4DBB05C4FE158DBD9E /* Pods_yourEditorialTests.framework */; };
 		85D2C0A74D5B6349D1E60DEA /* Pods_yourEditorial_yourEditorialUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279814A9CB327E8459A13DB9 /* Pods_yourEditorial_yourEditorialUITests.framework */; };
 		AD85D82A19CFFC2E84595F5F /* Pods_yourEditorial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DB236849B8350268C566596 /* Pods_yourEditorial.framework */; };
+		E70B65792566979A009AED98 /* ClipsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70B65782566979A009AED98 /* ClipsViewCell.swift */; };
+		E70B657B256698CC009AED98 /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70B657A256698CC009AED98 /* DateFormat.swift */; };
 		E719F0A9253DC11300E54D1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719F0A8253DC11300E54D1E /* AppDelegate.swift */; };
 		E719F0AB253DC11300E54D1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719F0AA253DC11300E54D1E /* SceneDelegate.swift */; };
 		E719F0B3253DC11300E54D1E /* yourEditorial.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E719F0B1253DC11300E54D1E /* yourEditorial.xcdatamodeld */; };
@@ -72,6 +74,8 @@
 		69742A9D19734D9566F100A1 /* Pods-yourEditorial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorial.release.xcconfig"; path = "Target Support Files/Pods-yourEditorial/Pods-yourEditorial.release.xcconfig"; sourceTree = "<group>"; };
 		6E92D24918DD160B965702FD /* Pods-yourEditorial-yourEditorialUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorial-yourEditorialUITests.debug.xcconfig"; path = "Target Support Files/Pods-yourEditorial-yourEditorialUITests/Pods-yourEditorial-yourEditorialUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AB871D4DBB05C4FE158DBD9E /* Pods_yourEditorialTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yourEditorialTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E70B65782566979A009AED98 /* ClipsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipsViewCell.swift; sourceTree = "<group>"; };
+		E70B657A256698CC009AED98 /* DateFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateFormat.swift; path = ../../../usefulAlarm/usefulAlerm/Useful/DateFormat.swift; sourceTree = "<group>"; };
 		E719F0A5253DC11300E54D1E /* yourEditorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yourEditorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E719F0A8253DC11300E54D1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E719F0AA253DC11300E54D1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -243,6 +247,7 @@
 			children = (
 				E719F0F9253DDB2C00E54D1E /* Constraints.swift */,
 				E758B9F22545D5B100EED590 /* Log.swift */,
+				E70B657A256698CC009AED98 /* DateFormat.swift */,
 				E77C5E462546AAC700F65677 /* extension.swift */,
 			);
 			path = util;
@@ -309,6 +314,7 @@
 			children = (
 				E77C5E4B25470E4000F65677 /* ClipsViewController.swift */,
 				E77C5E50254710B300F65677 /* ClipsViewModel.swift */,
+				E70B65782566979A009AED98 /* ClipsViewCell.swift */,
 			);
 			path = ClipsViewController;
 			sourceTree = "<group>";
@@ -634,6 +640,7 @@
 				E79E89A6253DE53400A14E75 /* WebViewController.swift in Sources */,
 				E719F0FA253DDB2C00E54D1E /* Constraints.swift in Sources */,
 				E77C5E59254862F900F65677 /* Genre.swift in Sources */,
+				E70B65792566979A009AED98 /* ClipsViewCell.swift in Sources */,
 				E719F0F3253DD46E00E54D1E /* NewsPaperEditorialsViewController.swift in Sources */,
 				E758B9F12545C7AB00EED590 /* DaoFactory.swift in Sources */,
 				E77C5E4C25470E4000F65677 /* ClipsViewController.swift in Sources */,
@@ -643,6 +650,7 @@
 				E758B9EF2545C72300EED590 /* ClipDao.swift in Sources */,
 				E77C5E472546AAC700F65677 /* extension.swift in Sources */,
 				E77C5E542548534400F65677 /* NewsPaper.swift in Sources */,
+				E70B657B256698CC009AED98 /* DateFormat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
