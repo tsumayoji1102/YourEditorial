@@ -31,6 +31,10 @@ final class HomeViewController: UIViewController {
     
     // selectedTab
     private var selectedTab: Tabs = Tabs.editorial
+    
+    // sort
+    private var editrialSort: Int = 0
+    private var clipsSort:    Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,13 +126,17 @@ final class HomeViewController: UIViewController {
             selectVC.list = ["全て", "お気に入り"]
             selectVC.closure = { index in
                 self.newsPaperEditorialVC.changeSortMode(index: index!)
+                self.editrialSort = index!
             }
+            selectVC.selectedIndex = self.editrialSort
         // TODO: 設定
         }else if selectedTab == Tabs.clips {
             selectVC.list = ["ジャンル","新聞社","日付"]
             selectVC.closure = { index in
                 self.clipsVC.changeSortMode(index: index!)
+                self.clipsSort = index!
             }
+            selectVC.selectedIndex = self.clipsSort
         }
     }
     

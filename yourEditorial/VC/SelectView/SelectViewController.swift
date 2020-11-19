@@ -118,6 +118,7 @@ final class SelectViewController: UIViewController {
         switch sender.tag {
         case buttonTag.decide.rawValue:
             closure(picker.selectedRow(inComponent: 0))
+            selectedIndex = picker.selectedRow(inComponent: 0)
             self.dismiss(animated: true, completion: nil)
             break
         case buttonTag.close.rawValue:
