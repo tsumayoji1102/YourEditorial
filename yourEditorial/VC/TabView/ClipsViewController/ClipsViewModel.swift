@@ -27,4 +27,8 @@ final class ClipsViewModel: NSObject {
     func getGenres() -> Array<Genre>{
         return genreDao.getGenres(filter: nil)
     }
+    
+    func deleteClip(clip: Clip){
+        clipDao.delete(clip: clip)
+    }
 }

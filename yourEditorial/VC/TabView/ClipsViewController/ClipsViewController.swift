@@ -17,6 +17,7 @@ final class ClipsViewController: UIViewController {
     }
     
     @IBOutlet weak var clipsView: UITableView!
+    private var noClipLabel: UILabel!
     
     private var appDelegate:   AppDelegate!
     private var viewModel:     ClipsViewModel!
@@ -30,8 +31,15 @@ final class ClipsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        noClipLabel = UILabel()
+        noClipLabel.text = "クリップがありません。\n登録してみましょう！"
+        noClipLabel.numberOfLines = 2
+        noClipLabel.font = UIFont.boldSystemFont(ofSize: 23)
+        noClipLabel.textColor = UIColor.lightGray
+        self.view.addSubview(noClipLabel)
+        
         appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let clipDao: ClipDao   = appDelegate.daoFactory.getDao(daoRoute: DaoRoutes.clip)  as! ClipDao
+        let clipDao:  ClipDao  = appDelegate.daoFactory.getDao(daoRoute: DaoRoutes.clip)  as! ClipDao
         let genreDao: GenreDao = appDelegate.daoFactory.getDao(daoRoute: DaoRoutes.genre) as! GenreDao
         viewModel = ClipsViewModel(clipDao: clipDao, genreDao: genreDao)
         
@@ -40,7 +48,7 @@ final class ClipsViewController: UIViewController {
         genreList = viewModel.getGenres()
         sort()
         
-        clipsView.delegate = self
+        clipsView.delegate   = self
         clipsView.dataSource = self
         clipsView.tableFooterView = UIView()
     }
@@ -55,6 +63,7 @@ final class ClipsViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         clipsView.frame = self.view.bounds
+        noClipLabel.frame = CGRect(x: self.view.frame.width / 2 - 120, y: self.view.frame.height / 2 - 25, width: 240, height: 70)
     }
     
     private func sort(){
@@ -67,7 +76,8 @@ final class ClipsViewController: UIViewController {
             let orderedSet = NSOrderedSet(array: datesMap)
             dateList = orderedSet.array as! [String]
             for date in dateList{
-                let filter = clips.filter{ return DateFormat.getDateyyyyMMddToString(date: $0.createdAt!) == date}
+                var filter = clips.filter{ return DateFormat.getDateyyyyMMddToString(date: $0.createdAt!) == date}
+                filter.sort{ return $0.createdAt! < $1.createdAt! }
                 clipList.append(filter)
             }
             break
@@ -76,23 +86,28 @@ final class ClipsViewController: UIViewController {
             let orderedSet = NSOrderedSet(array: newsPaperMap)
             newsPaperList = orderedSet.array as! [String]
             for newsPaper in newsPaperList{
-                let filter = clips.filter{ return $0.newsPaper == newsPaper }
+                var filter = clips.filter{ return $0.newsPaper == newsPaper }
+                filter.sort{ return $0.createdAt! < $1.createdAt! }
                 clipList.append(filter)
             }
             break
         case SortMode.genre:
             var genres: Array<Genre> = []
             for genre in genreList{
-                let clipsMap = clips.filter{ return $0.genreId == genre.genreId }
-                if(!clipsMap.isEmpty){
+                var filter = clips.filter{ return $0.genreId == genre.genreId }
+                if(!filter.isEmpty){
                     genres.append(genre)
                 }
-                clipList.append(clipsMap)
+                filter.sort{ return $0.createdAt! < $1.createdAt! }
+                clipList.append(filter)
             }
             genreList = genres
             break
         }
         clipsView.reloadData()
+        
+        noClipLabel.isHidden = clipList.count == 1 && clipList[0].isEmpty ? false: true
+        
     }
     
     func changeSortMode(index: Int){
@@ -123,28 +138,33 @@ extension ClipsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header: UIView = UIView()
         
+        var title = ""
         switch sortMode{
         case SortMode.genre:
             if(!genreList.isEmpty){
-                header.makeHeader(title: genreList[section].name)
+                title = genreList[section].name
             }
             break
         case SortMode.newsPaper:
             if(!newsPaperList.isEmpty){
-                header.makeHeader(title: newsPaperList[section])
+                title = newsPaperList[section]
             }
             break
         case SortMode.date:
             if(!dateList.isEmpty){
-                header.makeHeader(title: dateList[section])
+                title = dateList[section]
             }
             break
         }
+        header.makeHeader(title: title)
         
         return header
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if clipList.count == 1 && clipList[0].isEmpty {
+            return 0
+        }
         return 40
     }
     
@@ -170,6 +190,18 @@ extension ClipsViewController: UITableViewDelegate, UITableViewDataSource{
         let clip = clipList[indexPath.section][indexPath.row]
         
         homeVC.getSite(newsPaperName: clip.newsPaper, url: clip.url)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let clip = clipList[indexPath.section][indexPath.row]
+            clipList[indexPath.section].remove(at: indexPath.row)
+            viewModel.deleteClip(clip: clip)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.sort()
+            })
+        }
     }
     
     

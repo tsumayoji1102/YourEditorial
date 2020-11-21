@@ -62,4 +62,10 @@ final class ClipDao: NSObject, Dao {
             clip?.fromDic(dic)
         }
     }
+    
+    func delete(clip: Clip){
+        try! realm.write{
+            realm.delete(clip)
+        }
+    }
 }

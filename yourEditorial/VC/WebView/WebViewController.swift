@@ -38,8 +38,7 @@ final class WebViewController: UIViewController {
         self.view.addSubview(webKitView)
         
         progressView = UIProgressView(progressViewStyle: .bar)
-        progressView.frame = CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)!, width: self.view.frame.width, height: 0.0)
-        self.navigationController?.navigationBar.addSubview(progressView)
+        self.view.addSubview(progressView)
         
         webKitView.addObserver(self, forKeyPath: "isLoading", options: .new, context: nil)
         webKitView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
@@ -61,7 +60,7 @@ final class WebViewController: UIViewController {
         
         let safeArea = self.view.safeAreaInsets
         webKitView.frame = CGRect(x: 0, y: safeArea.top, width: self.view.frame.width, height: self.view.frame.height - safeArea.top)
-        
+        progressView.frame = CGRect(x: 0, y: safeArea.top, width: self.view.frame.width, height: 0.0)
     }
     
     override func viewDidAppear(_ animated: Bool) {

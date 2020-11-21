@@ -200,16 +200,17 @@ extension ClipingViewController: SelectViewDelegate{
     }
     
     func setStartIndex() -> Int? {
-        let index = genreList.firstIndex(of: selectedGenre)
-        return index
+        if selectedGenre != nil{
+            let index = genreList.firstIndex(of: selectedGenre)
+            return index
+        }
+        return 0
     }
     
-    func setClosure() -> ((Int?) -> Void)! {
-        return { index in
-            self.selectedGenre = self.genreList[index!]
-            self.clipDic["genreId"] = self.selectedGenre.genreId
-            self.genreButton.setTitle(self.selectedGenre.name, for: .normal)
-        }
+    func setClosure(index: Int!){
+        self.selectedGenre = self.genreList[index!]
+        self.clipDic["genreId"] = self.selectedGenre.genreId
+        self.genreButton.setTitle(self.selectedGenre.name, for: .normal)
     }
 }
 

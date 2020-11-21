@@ -155,18 +155,14 @@ extension HomeViewController: SelectViewDelegate{
         }
     }
     
-    func setClosure() -> ((Int?) -> Void)! {
+    func setClosure(index: Int!){
         switch selectedTab {
         case Tabs.editorial:
-            return { index in
-                self.newsPaperEditorialVC.changeSortMode(index: index!)
-                self.editrialSort = index!
-            }
+            self.newsPaperEditorialVC.changeSortMode(index: index!)
+            self.editrialSort = index!
         case Tabs.clips:
-            return { index in
-                self.clipsVC.changeSortMode(index: index!)
-                self.clipsSort = index!
-            }
+            self.clipsVC.changeSortMode(index: index!)
+            self.clipsSort = index!
         }
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 protocol SelectViewDelegate: AnyObject{
     func setSelectArray() -> Array<String>?
     func setStartIndex() -> Int?
-    func setClosure() -> ((Int?) -> Void)!
+    func setClosure(index: Int!)
 }
 
 final class SelectViewController: UIViewController {
@@ -41,7 +41,6 @@ final class SelectViewController: UIViewController {
     // 値
     var list:             Array<String>! = []
     var selectedIndex:    Int! = 0
-    var closure:          ((Int?) ->Void)!
     
 // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -126,7 +125,7 @@ final class SelectViewController: UIViewController {
         
         switch sender.tag {
         case buttonTag.decide.rawValue:
-            closure(picker.selectedRow(inComponent: 0))
+            delegate!.setClosure(index: picker.selectedRow(inComponent: 0))
             selectedIndex = picker.selectedRow(inComponent: 0)
             self.dismiss(animated: true, completion: nil)
             break
@@ -141,7 +140,6 @@ final class SelectViewController: UIViewController {
     // @delegate method
     func reloadSelectView(){
         list = delegate?.setSelectArray()
-        closure = delegate?.setClosure()
         selectedIndex = delegate?.setStartIndex()
     }
 }
