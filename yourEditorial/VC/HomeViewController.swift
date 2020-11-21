@@ -50,8 +50,8 @@ final class HomeViewController: UIViewController {
         selectVC = self.storyboard?.instantiateViewController(identifier: "SelectViewController") as? SelectViewController
         selectVC.modalPresentationStyle = .custom
         selectVC.transitioningDelegate = self
-        
-        settingSelectView(selectedTab: selectedTab)
+        selectVC.delegate = self
+        selectVC.reloadSelectView()
         
         // 初期はalarmVC
         self.addChild(newsPaperEditorialVC)
@@ -121,23 +121,8 @@ final class HomeViewController: UIViewController {
         to.didMove(toParent: self)
     }
     
-    private func settingSelectView(selectedTab: Tabs){
-        if selectedTab == Tabs.editorial {
-            selectVC.list = ["全て", "お気に入り"]
-            selectVC.closure = { index in
-                self.newsPaperEditorialVC.changeSortMode(index: index!)
-                self.editrialSort = index!
-            }
-            selectVC.selectedIndex = self.editrialSort
-        // TODO: 設定
-        }else if selectedTab == Tabs.clips {
-            selectVC.list = ["ジャンル","新聞社","日付"]
-            selectVC.closure = { index in
-                self.clipsVC.changeSortMode(index: index!)
-                self.clipsSort = index!
-            }
-            selectVC.selectedIndex = self.clipsSort
-        }
+    private func settingSelectView(){
+        
     }
     
     // 外部からおこなう
@@ -150,30 +135,66 @@ final class HomeViewController: UIViewController {
 }
 
 
+// MARK: - SelectViewDelegate
+extension HomeViewController: SelectViewDelegate{
+    func setSelectArray() -> Array<String>? {
+        switch selectedTab {
+        case Tabs.editorial:
+            return ["全て", "お気に入り"]
+        case Tabs.clips:
+            return ["ジャンル","新聞社","日付"]
+        }
+    }
+    
+    func setStartIndex() -> Int? {
+        switch selectedTab {
+        case Tabs.editorial:
+            return editrialSort
+        case Tabs.clips:
+            return clipsSort
+        }
+    }
+    
+    func setClosure() -> ((Int?) -> Void)! {
+        switch selectedTab {
+        case Tabs.editorial:
+            return { index in
+                self.newsPaperEditorialVC.changeSortMode(index: index!)
+                self.editrialSort = index!
+            }
+        case Tabs.clips:
+            return { index in
+                self.clipsVC.changeSortMode(index: index!)
+                self.clipsSort = index!
+            }
+        }
+    }
+}
+
+
 // MARK: - UITabBarDelegate
 
 extension HomeViewController: UITabBarDelegate{
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        
         // 分岐
         switch item.tag {
         case Tabs.editorial.rawValue:
             // VCをセット
             self.navigationItem.title = "社説一覧"
             transitionControl(newsPaperEditorialVC)
-            settingSelectView(selectedTab: Tabs.editorial)
+            selectedTab = Tabs.editorial
             break
             
         case Tabs.clips.rawValue:
             self.navigationItem.title = "クリップ一覧"
             transitionControl(clipsVC)
-            // selectViewController設定
-            settingSelectView(selectedTab: Tabs.clips)
+            selectedTab = Tabs.clips
             break
         default:
             break
         }
+        selectVC.reloadSelectView()
     }
 }
 

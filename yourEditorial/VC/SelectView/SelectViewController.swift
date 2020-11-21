@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol SelectViewDelegate: AnyObject{
+    func setSelectArray() -> Array<String>?
+    func setStartIndex() -> Int?
+    func setClosure() -> ((Int?) -> Void)!
+}
+
 final class SelectViewController: UIViewController {
     
     enum selectViewTag: Int {
@@ -25,14 +31,16 @@ final class SelectViewController: UIViewController {
     @IBOutlet weak var selectView:      UITableView!
     @IBOutlet weak var closeViewLayer:  UIButton!
     
+    weak var delegate: SelectViewDelegate?
+    
     // パーツ
     private var cancelButton: UIButton!
     private var picker:       UIPickerView!
     private var decideButton: UIButton!
     
     // 値
-    var list:             Array<String> = []
-    var selectedIndex:    Int = 0
+    var list:             Array<String>! = []
+    var selectedIndex:    Int! = 0
     var closure:          ((Int?) ->Void)!
     
 // MARK: - LifeCycle
@@ -42,6 +50,7 @@ final class SelectViewController: UIViewController {
         
         // Viewを透明に
         self.view.backgroundColor = UIColor.clear
+        self.modalPresentationStyle = .custom
 
         // tableViewの設定
         selectView.delegate   = self
@@ -127,6 +136,13 @@ final class SelectViewController: UIViewController {
         default:
             break
         }
+    }
+    
+    // @delegate method
+    func reloadSelectView(){
+        list = delegate?.setSelectArray()
+        closure = delegate?.setClosure()
+        selectedIndex = delegate?.setStartIndex()
     }
 }
 

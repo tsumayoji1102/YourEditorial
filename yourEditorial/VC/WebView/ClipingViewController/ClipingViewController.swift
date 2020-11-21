@@ -34,9 +34,11 @@ final class ClipingViewController: UIViewController {
     // 状態
     private var isAddGenre: Bool = false
     private var genreButtonImage: Dictionary<String, UIImage>!
+    private var selectVC:  SelectViewController!
     private var viewModel: ClipingViewModel!
     private var appDelegate: AppDelegate!
     private var selectedGenre: Genre!
+    private var genreList:   Array<Genre>!
     var clipDic: Dictionary<String, Any?>!
     
     
@@ -107,6 +109,11 @@ final class ClipingViewController: UIViewController {
         decideButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         decideButton.addTarget(self, action: #selector(setClip(_:)), for: .touchDown)
         
+        selectVC = self.storyboard?.instantiateViewController(identifier: "SelectViewController") as? SelectViewController
+        selectVC.modalPresentationStyle = .custom
+        selectVC.transitioningDelegate = self
+        selectVC.delegate = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -124,22 +131,14 @@ final class ClipingViewController: UIViewController {
     }
     
     @objc private func selectGenre(_ : UIButton){
-        let genres: Array<Genre> = viewModel.getGenres()
-        if genres.isEmpty {
+        genreList = viewModel.getGenres()
+        if genreList.isEmpty {
             let alert = UIAlertController(title: "ジャンルなし", message: "新しくジャンルを追加してください。", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true)
             return
         }
-        let selectVC = self.storyboard?.instantiateViewController(identifier: "SelectViewController") as? SelectViewController
-        selectVC?.modalPresentationStyle = .custom
-        selectVC?.transitioningDelegate = self
-        selectVC?.list = genres.map{ return $0.name }
-        selectVC?.closure = { index in
-            self.selectedGenre = genres[index!]
-            self.clipDic["genreId"] = self.selectedGenre.genreId
-            self.genreButton.setTitle(self.selectedGenre.name, for: .normal)
-        }
+        selectVC.reloadSelectView()
         self.present(selectVC!, animated: true)
     }
     
@@ -191,6 +190,25 @@ final class ClipingViewController: UIViewController {
             addGenreButton.setImage(genreButtonImage["clear"], for: .normal)
         }else{
             addGenreButton.setImage(genreButtonImage["plus.square"], for: .normal)
+        }
+    }
+}
+
+extension ClipingViewController: SelectViewDelegate{
+    func setSelectArray() -> Array<String>? {
+        return genreList.map{ return $0.name }
+    }
+    
+    func setStartIndex() -> Int? {
+        let index = genreList.firstIndex(of: selectedGenre)
+        return index
+    }
+    
+    func setClosure() -> ((Int?) -> Void)! {
+        return { index in
+            self.selectedGenre = self.genreList[index!]
+            self.clipDic["genreId"] = self.selectedGenre.genreId
+            self.genreButton.setTitle(self.selectedGenre.name, for: .normal)
         }
     }
 }
