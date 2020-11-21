@@ -14,6 +14,7 @@ final class WebViewController: UIViewController {
     
     // view parts
     private var webKitView:   WKWebView!
+    private var progressView: UIProgressView!
     private var clipingVC:    ClipingViewController!
     private var viewModel:    WebViewModel!
     private var appDelegate:  AppDelegate!
@@ -36,12 +37,19 @@ final class WebViewController: UIViewController {
         webKitView.navigationDelegate = self
         self.view.addSubview(webKitView)
         
+        progressView = UIProgressView(progressViewStyle: .bar)
+        progressView.frame = CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)!, width: self.view.frame.width, height: 0.0)
+        self.navigationController?.navigationBar.addSubview(progressView)
+        
+        webKitView.addObserver(self, forKeyPath: "isLoading", options: .new, context: nil)
+        webKitView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "clip.png")?.resize(size: CGSize(width: 25, height: 25)), style: .plain, target: self, action: #selector(setClip(_:)))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+        progressView.alpha = 1.0
         HUD.flash(.progress, delay: 0.0)
         self.navigationItem.title = newsPaperName
     
@@ -53,6 +61,7 @@ final class WebViewController: UIViewController {
         
         let safeArea = self.view.safeAreaInsets
         webKitView.frame = CGRect(x: 0, y: safeArea.top, width: self.view.frame.width, height: self.view.frame.height - safeArea.top)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,6 +73,43 @@ final class WebViewController: UIViewController {
         webKitView.isHidden = true
         super.viewDidDisappear(true)
         
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        switch keyPath {
+        case "isLoading":
+            if(webKitView.isLoading){
+                self.progressView.setProgress(0.1, animated: true)
+            }else{
+                progressView.isHidden = true
+                /*
+                self.progressView.setProgress(0.0, animated: false)
+                self.progressView.setProgress(1.0, animated: false)
+                */
+            }
+            break
+        case "estimatedProgress":
+            progressView.setProgress(Float(webKitView.estimatedProgress), animated: true)
+            if (self.webKitView.estimatedProgress >= 1.0) {
+                UIView.animate(withDuration: 0.2,
+                               delay: 0.2,
+                               options: [.curveEaseOut],
+                               animations: { [weak self] in
+                                self?.progressView.alpha = 0.0
+                    }, completion: {
+                        (finished : Bool) in
+                        self.progressView.setProgress(0.0, animated: false)
+                })
+            }
+            break
+        default:
+            break
+        }
+    }
+    
+    deinit {
+        self.webKitView.removeObserver(self, forKeyPath: "estimatedProgress")
+        self.webKitView.removeObserver(self, forKeyPath: "isLoading")
     }
     
     private func loadUrl(){
