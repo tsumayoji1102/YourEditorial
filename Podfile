@@ -7,6 +7,8 @@ target 'yourEditorial' do
 
   # Pods for yourEditorial
   pod 'TPKeyboardAvoiding'
+  pod 'Firebase/Analytics'
+  pod 'Google-Mobile-Ads-SDK'
 
   target 'yourEditorialTests' do
     inherit! :search_paths

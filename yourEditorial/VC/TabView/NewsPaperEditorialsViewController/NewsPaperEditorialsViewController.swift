@@ -7,7 +7,7 @@
 
 import UIKit
 import PKHUD
-
+import GoogleMobileAds
 
 final class NewsPaperEditorialsViewController: UIViewController{
     
@@ -18,8 +18,8 @@ final class NewsPaperEditorialsViewController: UIViewController{
 
     @IBOutlet weak var editorialView: UITableView!
     
+    private var bannerView:  GADBannerView!
     private var appDelegate: AppDelegate!
-    private var webVC:       WebViewController!
     private var homeVC:      HomeViewController!
     private var viewModel:   NewsPaperEditorialViewModel!
     private var sortMode:    SortMode = SortMode.all
@@ -37,7 +37,6 @@ final class NewsPaperEditorialsViewController: UIViewController{
         
         // VC生成
         homeVC = self.parent as? HomeViewController
-        webVC = self.storyboard?.instantiateViewController(identifier: "webKitViewController") as? WebViewController
         
         for newsPaper in Constraints.newsPapers{
             let image = UIImage(named: newsPaper.image)?.resize(size: CGSize(width: 40, height: 40))
@@ -49,15 +48,27 @@ final class NewsPaperEditorialsViewController: UIViewController{
         editorialView.dataSource = self
         editorialView.tableFooterView = UIView()
         
+        // バナー初期化
+        let bannerId = UserDefaults.standard.dictionary(forKey: "admobKey")!["test"] as! String
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        // TODO: テスト用
+        bannerView.adUnitID = bannerId
+        bannerView.rootViewController = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        // バナー読み込み
+        bannerView.load(GADRequest())
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         editorialView.frame = self.view.bounds
+        // バナーサイズ決定
+        bannerView.frame = CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 50)
+        self.view.addSubview(bannerView)
     }
     
     private func sort(){
