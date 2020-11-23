@@ -50,6 +50,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userDefaults = UserDefaults.standard
         if !userDefaults.bool(forKey: "firstLaunch") {
             userDefaults.set(true, forKey: "firstLaunch")
+            userDefaults.set(
+                ["test":"ca-app-pub-3940256099942544/2934735716",
+                 "web": "ca-app-pub-7222703792959850/1845824747",
+                 "editrial": "ca-app-pub-7222703792959850/7098151422"],
+            forKey: "admobKey")
             let standardGenre = Genre()
             let date = Date()
             standardGenre.fromDic([

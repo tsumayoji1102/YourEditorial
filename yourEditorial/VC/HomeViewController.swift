@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 protocol SortDelegate{
     func changeSortMode(index: Int)
@@ -22,6 +23,7 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var homeTab:   UITabBar!
     @IBOutlet weak var childView: UIView!
     
+    private var bannerView:  GADBannerView!
     
     // VC
     private var newsPaperEditorialVC: NewsPaperEditorialsViewController!
@@ -77,10 +79,19 @@ final class HomeViewController: UIViewController {
         homeTab.delegate = self
         
         self.navigationItem.title = "社説一覧"
+        
+        // バナー初期化
+        let bannerId = UserDefaults.standard.dictionary(forKey: "admobKey")!["test"] as! String
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        // TODO: テスト用
+        bannerView.adUnitID = bannerId
+        bannerView.rootViewController = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        // バナー読み込み
+        bannerView.load(GADRequest())
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash")?.resize(size: CGSize(width: 25, height: 25)), style: .plain, target: self, action: #selector(tapFavoriteButton(_:)))
     }
@@ -96,6 +107,10 @@ final class HomeViewController: UIViewController {
         
         // ちょっとめんどくさい
         homeTab.frame = CGRect(x: 0, y: childView.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - childView.frame.maxY)
+        
+        // バナーサイズ決定
+        bannerView.frame = CGRect(x: 0, y: homeTab.frame.minY - 50, width: self.view.frame.width, height: 50)
+        self.view.addSubview(bannerView)
         
     }
     

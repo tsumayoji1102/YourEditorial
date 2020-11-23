@@ -62,12 +62,16 @@
 	</array>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-      <key>NSAllowsArbitraryLoads</key>
-      <true/>
-      <key>NSAllowsArbitraryLoadsInWebContent</key>
-      <true/>
-    </dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<true/>
+	</dict>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-7222703792959850~6937357560</string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
 </dict>
 </plist>
