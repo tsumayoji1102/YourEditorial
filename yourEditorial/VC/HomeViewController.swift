@@ -8,10 +8,6 @@
 import UIKit
 import GoogleMobileAds
 
-protocol SortDelegate{
-    func changeSortMode(index: Int)
-}
-
 final class HomeViewController: UIViewController {
     
     enum Tabs: Int{

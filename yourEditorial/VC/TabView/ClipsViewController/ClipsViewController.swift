@@ -106,7 +106,7 @@ final class ClipsViewController: UIViewController {
         }
         clipsView.reloadData()
         
-        noClipLabel.isHidden = clipList.count == 1 && clipList[0].isEmpty ? false: true
+        noClipLabel.isHidden = clips.isEmpty ? false: true
         
     }
     

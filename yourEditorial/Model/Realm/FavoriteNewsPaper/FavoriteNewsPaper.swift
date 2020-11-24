@@ -10,7 +10,7 @@ import RealmSwift
 
 class FavoriteNewsPaper: Object {
     
-    @objc dynamic var favoriteNewsPaperId: String = ""
+    @objc dynamic var favoriteNewsPaperId: Int = 0
     @objc dynamic var newsPaperName: String = ""
     
     override static func primaryKey() -> String?{
@@ -24,7 +24,6 @@ class FavoriteNewsPaper: Object {
     }
     
     func fromDic(_ dic: Dictionary<String, Any?>){
-        self.favoriteNewsPaperId = dic["favoriteNewsPaperId"] as! String
-        self.newsPaperName = dic["newsPaperName"] as! String
+        self.newsPaperName = dic["name"] as! String
     }
 }

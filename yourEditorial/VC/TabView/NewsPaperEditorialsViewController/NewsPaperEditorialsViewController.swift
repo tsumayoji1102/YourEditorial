@@ -47,7 +47,6 @@ final class NewsPaperEditorialsViewController: UIViewController{
         editorialView.dataSource = self
         editorialView.tableFooterView = UIView()
         
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +74,7 @@ final class NewsPaperEditorialsViewController: UIViewController{
             arrayList.append(favoriteNewsPapers)
             break
         }
+        editorialView.reloadData()
     }
     
     // HomeViewから入れる
@@ -83,17 +83,14 @@ final class NewsPaperEditorialsViewController: UIViewController{
         switch index{
         case SortMode.all.rawValue:
             sortMode = SortMode.all
-            editorialView.isEditing = false
             break
         case SortMode.favorite.rawValue:
             sortMode = SortMode.favorite
-            editorialView.isEditing = true
             break
         default:
             break
         }
         self.sort()
-        editorialView.reloadData()
     }
 }
 
@@ -132,7 +129,7 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 30
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -167,11 +164,21 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
         
     }
     
-    /*
     // スワイプ用
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let action = UISwipeActionsConfiguration(actions: [])
+        var action: UIContextualAction
+        switch sortMode{
+        case SortMode.all:
+            action = setfavoriteNewsPaper(indexPath: indexPath)!
+            break
+        case SortMode.favorite:
+            action = deletefavoriteNewsPaper(indexPath: indexPath)!
+            break
+        }
+           
+        let configration = UISwipeActionsConfiguration(actions: [action])
+        return configration
     }
     
     private func setfavoriteNewsPaper(indexPath: IndexPath!) -> UIContextualAction? {
@@ -179,11 +186,45 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
             style: .normal,
             title: "favorite",
             handler: {_,_, handler in
-            
+                let result = self.viewModel.setFavorite(newspaper: self.arrayList[indexPath.section][indexPath.row])
+                
+                var title: String
+                var message: String
+                
+                if result {
+                    title = "完了"
+                    message = "お気に入り登録しました。"
+                }else{
+                    title = "登録済み"
+                    message = "この社説は既にお気に入りに登録されています。"
+                }
+                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             handler(true)
         })
+        return contextualAction
     }
-    */
+    
+    private func deletefavoriteNewsPaper(indexPath: IndexPath!) -> UIContextualAction? {
+        let contextualAction = UIContextualAction(
+            style: .normal,
+            title: "delete",
+            handler: {_,_, handler in
+                self.editorialView.beginUpdates()
+                self.editorialView.deleteRows(at: [indexPath], with: .fade)
+                self.editorialView.endUpdates()
+            let newsPaper = self.arrayList[indexPath.section][indexPath.row]
+                self.arrayList[indexPath.section].remove(at: indexPath.row)
+                self.viewModel.deleteFavoriteNewsPaper(newspaper: newsPaper)
+                DispatchQueue.main.async {
+                    self.sort()
+                }
+            handler(true)
+        })
+        return contextualAction
+    }
+    
 }
 
 class NewsPaperCell: UITableViewCell{

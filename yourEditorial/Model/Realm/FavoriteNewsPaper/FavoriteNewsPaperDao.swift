@@ -21,8 +21,21 @@ final class FavoriteNewsPaperDao: NSObject, Dao {
         self.realm = realm
     }
     
+    // 採番
+    private func getFavoriteNewsPaperNo() -> Int{
+        
+        let result = realm.objects(FavoriteNewsPaper.self).sorted(byKeyPath: "favoriteNewsPaperId", ascending: false).first
+        
+        if (result == nil){
+            return 0
+        }else{
+            return result!.favoriteNewsPaperId + 1
+        }
+    }
+    
     func create(dic: Dictionary<String, Any?>){
         let favoriteNewsPaper = FavoriteNewsPaper()
+        favoriteNewsPaper.favoriteNewsPaperId = getFavoriteNewsPaperNo()
         favoriteNewsPaper.fromDic(dic)
         try! realm.write {
             realm.add(favoriteNewsPaper)
@@ -42,8 +55,8 @@ final class FavoriteNewsPaperDao: NSObject, Dao {
         return favoriteNewsPapers
     }
     
-    func delete(favoriteNewsPaperId: String){
-        let favoriteNewsPaper = getFavoriteNewsPapers(filter: NSPredicate(format: "favoriteNewsPaperId = %@", argumentArray: [favoriteNewsPaperId])).first
+    func delete(favoriteNewsPaperName: String){
+        let favoriteNewsPaper = getFavoriteNewsPapers(filter: NSPredicate(format: "newsPaperName = %@", argumentArray: [favoriteNewsPaperName])).first
         try! realm.write {
             realm.delete(favoriteNewsPaper!)
         }
