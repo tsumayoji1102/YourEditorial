@@ -9,6 +9,7 @@ import UIKit
 import WebKit
 import RealmSwift
 import PKHUD
+import GoogleMobileAds
 
 final class WebViewController: UIViewController {
     
@@ -18,6 +19,7 @@ final class WebViewController: UIViewController {
     private var clipingVC:    ClipingViewController!
     private var viewModel:    WebViewModel!
     private var appDelegate:  AppDelegate!
+    private var bannerView:   GADBannerView!
     
     var newsPaperName: String!
     var newsPaperUrl:  String!
@@ -44,10 +46,20 @@ final class WebViewController: UIViewController {
         webKitView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "clip.png")?.resize(size: CGSize(width: 25, height: 25)), style: .plain, target: self, action: #selector(setClip(_:)))
+        
+        // バナー初期化
+        let bannerId = UserDefaults.standard.dictionary(forKey: "admobKey")!["test"] as! String
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        // TODO: テスト用
+        bannerView.adUnitID = bannerId
+        bannerView.rootViewController = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        // バナー読み込み
+        bannerView.load(GADRequest())
+        
         progressView.alpha = 1.0
         HUD.flash(.progress, delay: 0.0)
         self.navigationItem.title = newsPaperName
@@ -59,8 +71,11 @@ final class WebViewController: UIViewController {
         super.viewWillLayoutSubviews()
         
         let safeArea = self.view.safeAreaInsets
-        webKitView.frame = CGRect(x: 0, y: safeArea.top, width: self.view.frame.width, height: self.view.frame.height - safeArea.top)
+        webKitView.frame = CGRect(x: 0, y: safeArea.top, width: self.view.frame.width, height: self.view.frame.height - safeArea.top - 50)
         progressView.frame = CGRect(x: 0, y: safeArea.top, width: self.view.frame.width, height: 0.0)
+        // バナーサイズ決定
+        bannerView.frame = CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 50)
+        self.view.addSubview(bannerView)
     }
     
     override func viewDidAppear(_ animated: Bool) {
