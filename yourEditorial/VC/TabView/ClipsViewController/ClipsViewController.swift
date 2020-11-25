@@ -165,7 +165,7 @@ extension ClipsViewController: UITableViewDelegate, UITableViewDataSource{
         if clipList.count == 1 && clipList[0].isEmpty {
             return 0
         }
-        return 40
+        return 35
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

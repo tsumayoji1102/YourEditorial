@@ -194,13 +194,16 @@ final class ClipingViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: {
-            let userDefault = UserDefaults.standard
-            let count = userDefault.value(forKey: "clipCount")
-                as! Int
-            let review = userDefault.value(forKey: "reviewed") as! Bool
-            if count % 5 == 0 && !review {
-                SKStoreReviewController.requestReview()
-            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+                let userDefault = UserDefaults.standard
+                let count = userDefault.value(forKey: "clipCount") as! Int
+                let newCount = count + 1
+                userDefault.set(newCount, forKey: "clipCount")
+                let review = userDefault.value(forKey: "reviewed") as! Bool
+                if newCount % 5 == 0 && !review {
+                    SKStoreReviewController.requestReview()
+                }
+            })
         })
     }
     
@@ -222,7 +225,7 @@ final class ClipingViewController: UIViewController {
             if self.view.frame.origin.y != 0 {
                 self.view.frame.origin.y = 0
             }
-        })  
+        })
     }
     
     private func changeGenreState(){
