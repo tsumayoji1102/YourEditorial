@@ -98,15 +98,17 @@ final class HomeViewController: UIViewController {
         let safeArea = self.view.safeAreaInsets
         
         let homeTabHeight = homeTab.frame.height
-        childView.frame = CGRect(x: 0, y: safeArea.top, width: self.view.frame.width, height: self.view.frame.height - safeArea.top - homeTabHeight - safeArea.bottom)
+        childView.frame = CGRect(x: 0, y: safeArea.top, width: self.view.frame.width, height: self.view.frame.height - safeArea.top - homeTabHeight - safeArea.bottom - 50) // バナー分
         newsPaperEditorialVC.view.frame = childView.bounds
         
-        // ちょっとめんどくさい
-        homeTab.frame = CGRect(x: 0, y: childView.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - childView.frame.maxY)
-        
         // バナーサイズ決定
-        bannerView.frame = CGRect(x: 0, y: homeTab.frame.minY - 50, width: self.view.frame.width, height: 50)
+        bannerView.frame = CGRect(x: 0, y: childView.frame.maxY , width: self.view.frame.width, height: 50)
         self.view.addSubview(bannerView)
+        
+        // ちょっとめんどくさい
+        homeTab.frame = CGRect(x: 0, y: bannerView.frame.maxY, width: self.view.frame.width, height:homeTabHeight)
+        
+        
         
     }
     

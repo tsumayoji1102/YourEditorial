@@ -55,6 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                  "web": "ca-app-pub-7222703792959850/1845824747",
                  "editrial": "ca-app-pub-7222703792959850/7098151422"],
             forKey: "admobKey")
+            userDefaults.set(0, forKey: "clipCount")
+            userDefaults.set(false, forKey: "reviewed")
             let standardGenre = Genre()
             let date = Date()
             standardGenre.fromDic([

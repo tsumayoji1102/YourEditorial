@@ -13,8 +13,8 @@ extension UIView{
     func makeHeader(title: String){
         self.backgroundColor = UIColor.gray
         
-        let label: UILabel = UILabel(frame: CGRect(x: 20, y: 5, width: 200, height: 30))
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        let label: UILabel = UILabel(frame: CGRect(x: 20, y: 0, width: 200, height: 35))
+        label.font = UIFont.boldSystemFont(ofSize: 19)
         label.textColor = UIColor.white
         label.text = title
         self.addSubview(label)

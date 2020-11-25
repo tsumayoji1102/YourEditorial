@@ -17,6 +17,7 @@ final class NewsPaperEditorialsViewController: UIViewController{
     }
 
     @IBOutlet weak var editorialView: UITableView!
+    private var noClipLabel: UILabel!
     
     private var appDelegate: AppDelegate!
     private var homeVC:      HomeViewController!
@@ -42,11 +43,17 @@ final class NewsPaperEditorialsViewController: UIViewController{
             imagesDic[newsPaper.image] = image
         }
         
+        noClipLabel = UILabel()
+        noClipLabel.text = "お気に入りがありません。\n登録してみましょう！"
+        noClipLabel.numberOfLines = 2
+        noClipLabel.font = UIFont.boldSystemFont(ofSize: 23)
+        noClipLabel.textColor = UIColor.lightGray
+        self.view.addSubview(noClipLabel)
+        
         self.sort()
         editorialView.delegate = self
         editorialView.dataSource = self
         editorialView.tableFooterView = UIView()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +63,7 @@ final class NewsPaperEditorialsViewController: UIViewController{
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         editorialView.frame = self.view.bounds
+        noClipLabel.frame = CGRect(x: self.view.frame.width / 2 - 130, y: self.view.frame.height / 2 - 25, width: 260, height: 70)
     }
     
     private func sort(){
@@ -68,10 +76,14 @@ final class NewsPaperEditorialsViewController: UIViewController{
                 }
                 arrayList.append(fillterArray)
             }
+            noClipLabel.isHidden = true
             break
         case SortMode.favorite:
             let favoriteNewsPapers = viewModel.getFavoriteNewsPapers()
             arrayList.append(favoriteNewsPapers)
+            if favoriteNewsPapers.isEmpty {
+                noClipLabel.isHidden = false
+            }
             break
         }
         editorialView.reloadData()
@@ -129,7 +141,7 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return 35
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -181,7 +193,7 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
         return configration
     }
     
-    private func setfavoriteNewsPaper(indexPath: IndexPath!) -> UIContextualAction? {
+    private func setfavoriteNewsPaper(indexPath: IndexPath) -> UIContextualAction? {
         let contextualAction = UIContextualAction(
             style: .normal,
             title: "favorite",
@@ -203,25 +215,29 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
                 self.present(alert, animated: true, completion: nil)
             handler(true)
         })
+        contextualAction.image = UIImage(systemName: "star.fill")
+        contextualAction.backgroundColor = UIColor.systemYellow
         return contextualAction
     }
     
-    private func deletefavoriteNewsPaper(indexPath: IndexPath!) -> UIContextualAction? {
+    private func deletefavoriteNewsPaper(indexPath: IndexPath) -> UIContextualAction? {
         let contextualAction = UIContextualAction(
             style: .normal,
             title: "delete",
             handler: {_,_, handler in
-                self.editorialView.beginUpdates()
-                self.editorialView.deleteRows(at: [indexPath], with: .fade)
-                self.editorialView.endUpdates()
-            let newsPaper = self.arrayList[indexPath.section][indexPath.row]
+                let newsPaper = self.arrayList[indexPath.section][indexPath.row]
                 self.arrayList[indexPath.section].remove(at: indexPath.row)
                 self.viewModel.deleteFavoriteNewsPaper(newspaper: newsPaper)
                 DispatchQueue.main.async {
+                    // リストの削除が先（注意)
+                    self.editorialView.beginUpdates()
+                    self.editorialView.deleteRows(at: [indexPath], with: .automatic)
+                    self.editorialView.endUpdates()
                     self.sort()
                 }
             handler(true)
         })
+        contextualAction.backgroundColor = UIColor.systemRed
         return contextualAction
     }
     

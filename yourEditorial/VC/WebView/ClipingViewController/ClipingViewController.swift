@@ -7,6 +7,7 @@
 
 import UIKit
 import PKHUD
+import StoreKit
 //import TPKeyboardAvoiding
 
 final class ClipingViewController: UIViewController {
@@ -22,6 +23,7 @@ final class ClipingViewController: UIViewController {
     @IBOutlet weak var clipingView: UITableView!
     //@IBOutlet weak var clearScrollView: TPKeyboardAvoidingCollectionView!
     @IBOutlet weak var clearScreen: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     private var cancelButton:         UIButton!
     private var titleField:           UITextField!
@@ -119,11 +121,22 @@ final class ClipingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         titleField.text = clipDic["name"] as? String
+        
+        // テキストビューの対策(高さ)
+        let notification = NotificationCenter.default
+        notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         clipingView.frame = CGRect(x: 0, y: self.view.frame.height / 2, width: self.view.frame.width, height: self.view.frame.height / 2)
+    }
+    
+    deinit {
+        let notification = NotificationCenter.default
+        notification.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        notification.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     @objc private func close(_ :UIButton){
@@ -176,7 +189,40 @@ final class ClipingViewController: UIViewController {
         }
         viewModel.setClip(dic: clipDic)
         HUD.hide()
-        self.dismiss(animated: true, completion: nil)
+        let alert = UIAlertController(title: "クリップ完了", message: "記事をクリップしました。", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: {
+            let userDefault = UserDefaults.standard
+            let count = userDefault.value(forKey: "clipCount")
+                as! Int
+            let review = userDefault.value(forKey: "reviewed") as! Bool
+            if count % 5 == 0 && !review {
+                SKStoreReviewController.requestReview()
+            }
+        })
+    }
+    
+    // キーボードが出現する時
+    @objc func keyboardWillShow(notification: Notification?){
+        if let keyboardSize = (notification?.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            } else {
+                let suggestionHeight = self.view.frame.origin.y + keyboardSize.height
+                self.view.frame.origin.y -= suggestionHeight
+            }
+        }
+    }
+    
+    // キーボードが隠れるとき
+    @objc func keyboardWillHide(notification: Notification?){
+        UIView.animate(withDuration: 0.1, animations: {
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
+        })  
     }
     
     private func changeGenreState(){
