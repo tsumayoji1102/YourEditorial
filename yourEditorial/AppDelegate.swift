@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userDefaults.set(
                 ["test":"ca-app-pub-3940256099942544/2934735716",
                  "web": "ca-app-pub-7222703792959850/1845824747",
-                 "editrial": "ca-app-pub-7222703792959850/7098151422"],
+                 "editorial": "ca-app-pub-7222703792959850/7098151422"],
             forKey: "admobKey")
             userDefaults.set(0, forKey: "clipCount")
             userDefaults.set(false, forKey: "reviewed")

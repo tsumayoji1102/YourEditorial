@@ -97,9 +97,9 @@ final class ClipsViewController: UIViewController {
                 var filter = clips.filter{ return $0.genreId == genre.genreId }
                 if(!filter.isEmpty){
                     genres.append(genre)
+                    filter.sort{ return $0.createdAt! < $1.createdAt! }
+                    clipList.append(filter)
                 }
-                filter.sort{ return $0.createdAt! < $1.createdAt! }
-                clipList.append(filter)
             }
             genreList = genres
             break
@@ -132,7 +132,14 @@ final class ClipsViewController: UIViewController {
 extension ClipsViewController: UITableViewDelegate, UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return clipList.count
+        switch sortMode{
+        case SortMode.genre:
+            return genreList.count
+        case SortMode.newsPaper:
+            return newsPaperList.count
+        case SortMode.date:
+            return dateList.count
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

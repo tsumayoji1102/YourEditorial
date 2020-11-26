@@ -48,7 +48,7 @@ final class WebViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "clip.png")?.resize(size: CGSize(width: 25, height: 25)), style: .plain, target: self, action: #selector(setClip(_:)))
         
         // バナー初期化
-        let bannerId = UserDefaults.standard.dictionary(forKey: "admobKey")!["test"] as! String
+        let bannerId = UserDefaults.standard.dictionary(forKey: "admobKey")!["web"] as! String
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         // TODO: テスト用
         bannerView.adUnitID = bannerId

@@ -77,7 +77,7 @@ final class HomeViewController: UIViewController {
         self.navigationItem.title = "社説一覧"
         
         // バナー初期化
-        let bannerId = UserDefaults.standard.dictionary(forKey: "admobKey")!["test"] as! String
+        let bannerId = UserDefaults.standard.dictionary(forKey: "admobKey")!["editorial"] as! String
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         // TODO: テスト用
         bannerView.adUnitID = bannerId
