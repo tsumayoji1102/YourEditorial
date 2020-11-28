@@ -19,11 +19,15 @@ final class ClipingViewController: UIViewController {
         case decide
         case cellCount
     }
+    
+    enum TextFieldTag: Int{
+        case title = 0
+        case genre
+    }
 
     @IBOutlet weak var clipingView: UITableView!
-    //@IBOutlet weak var clearScrollView: TPKeyboardAvoidingCollectionView!
+    @IBOutlet weak var clearScrollView: UIScrollView!
     @IBOutlet weak var clearScreen: UIButton!
-    @IBOutlet weak var scrollView: UIScrollView!
     
     private var cancelButton:         UIButton!
     private var titleField:           UITextField!
@@ -41,7 +45,9 @@ final class ClipingViewController: UIViewController {
     private var appDelegate: AppDelegate!
     private var selectedGenre: Genre!
     private var genreList:   Array<Genre>!
+    private var selectedTFFieldTag: Int!
     var clipDic: Dictionary<String, Any?>!
+    
     
     
     override func viewDidLoad() {
@@ -72,6 +78,7 @@ final class ClipingViewController: UIViewController {
         
         titleField = UITextField()
         titleField.delegate = self
+        titleField.tag = TextFieldTag.title.rawValue
         
         genreButton = UIButton()
         genreButton.setTitle("ジャンルを選択", for: .normal)
@@ -102,6 +109,7 @@ final class ClipingViewController: UIViewController {
         genreField = UITextField()
         genreField.delegate = self
         genreField.isHidden = true
+        genreField.tag = TextFieldTag.genre.rawValue
         
         decideButton = UIButton()
         decideButton.setTitle("OK", for: .normal)
@@ -208,23 +216,34 @@ final class ClipingViewController: UIViewController {
     }
     
     // キーボードが出現する時
-    @objc func keyboardWillShow(notification: Notification?){
-        if let keyboardSize = (notification?.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
-            } else {
-                let suggestionHeight = self.view.frame.origin.y + keyboardSize.height
-                self.view.frame.origin.y -= suggestionHeight
-            }
+    @objc private func keyboardWillShow(notification: Notification?){
+        let rect = (notification?.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+        let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+        
+        // textFieldごとに判定
+        var textFieldOffset: CGFloat = 0
+        switch selectedTFFieldTag {
+        case TextFieldTag.title.rawValue:
+            textFieldOffset = titleField.frame.maxY
+            break
+        case TextFieldTag.genre.rawValue:
+            textFieldOffset = genreField.frame.maxY
+            break
+        default:
+            break
         }
+        
+        UIView.animate(withDuration: duration!, delay: 0.0, options: .curveEaseIn, animations: {
+            () in
+            self.clearScrollView.transform = CGAffineTransform(translationX: 0, y: -((rect?.size.height)! - textFieldOffset))
+        }, completion: nil)
+        
     }
     
     // キーボードが隠れるとき
-    @objc func keyboardWillHide(notification: Notification?){
-        UIView.animate(withDuration: 0.1, animations: {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y = 0
-            }
+    @objc private func keyboardWillHide(notification: Notification?){
+        UIView.animate(withDuration: 0.05, delay: 0.0, options: .curveEaseInOut, animations: {
+            self.clearScrollView.transform = CGAffineTransform.identity
         })
     }
     
@@ -340,6 +359,11 @@ extension ClipingViewController: UITableViewDelegate, UITableViewDataSource{
 // MARK: - UITextFieldDelegate
 
 extension ClipingViewController: UITextFieldDelegate{
+    
+    // キーボードタップ時
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.selectedTFFieldTag = textField.tag
+    }
     
     // エンター押下時
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
