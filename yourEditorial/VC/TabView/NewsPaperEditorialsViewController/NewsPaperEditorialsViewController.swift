@@ -228,13 +228,15 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
                 let newsPaper = self.arrayList[indexPath.section][indexPath.row]
                 self.arrayList[indexPath.section].remove(at: indexPath.row)
                 self.viewModel.deleteFavoriteNewsPaper(newspaper: newsPaper)
+                // リストの削除が先（注意)
+                self.editorialView.beginUpdates()
+                self.editorialView.deleteRows(at: [indexPath], with: .top)
+                self.editorialView.endUpdates()
+                /*
                 DispatchQueue.main.async {
-                    // リストの削除が先（注意)
-                    self.editorialView.beginUpdates()
-                    self.editorialView.deleteRows(at: [indexPath], with: .automatic)
-                    self.editorialView.endUpdates()
                     self.sort()
                 }
+ */
             handler(true)
         })
         contextualAction.backgroundColor = UIColor.systemRed

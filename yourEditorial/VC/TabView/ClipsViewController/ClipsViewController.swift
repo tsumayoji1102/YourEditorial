@@ -201,10 +201,12 @@ extension ClipsViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            tableView.beginUpdates()
             let clip = clipList[indexPath.section][indexPath.row]
             clipList[indexPath.section].remove(at: indexPath.row)
             viewModel.deleteClip(clip: clip)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.deleteRows(at: [indexPath], with: .top)
+            tableView.endUpdates()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                 self.sort()
             })
