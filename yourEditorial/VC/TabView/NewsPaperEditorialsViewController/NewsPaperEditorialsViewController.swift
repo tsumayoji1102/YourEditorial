@@ -236,7 +236,7 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
                 DispatchQueue.main.async {
                     self.sort()
                 }
- */
+ */ 
             handler(true)
         })
         contextualAction.backgroundColor = UIColor.systemRed
