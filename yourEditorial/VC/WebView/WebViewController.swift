@@ -11,16 +11,30 @@ import RealmSwift
 import PKHUD
 import GoogleMobileAds
 
-final class WebViewController: UIViewController {
+final class WebViewController: UIViewController{
+    
+    enum TabBarItems: Int{
+        case returnUrl = 0
+        case proceedUrl
+        case safari
+    }
     
     // view parts
     private var webKitView:   WKWebView!
     private var progressView: UIProgressView!
-    private var clipingVC:    ClipingViewController!
-    private var viewModel:    WebViewModel!
-    private var appDelegate:  AppDelegate!
     private var bannerView:   GADBannerView!
     
+    // about tabBar
+    private var tabBar:        UITabBar!
+    private var returnButton:  UIButton!
+    private var forwardButton: UIButton!
+    private var safariButton:  UIButton!
+    private var shareButton:   UIButton!
+    
+     // object
+    private var clipingVC:    ClipingViewController!
+    private var appDelegate:  AppDelegate!
+    private var viewModel:    WebViewModel!
     var newsPaperName: String!
     var newsPaperUrl:  String!
     
@@ -36,14 +50,8 @@ final class WebViewController: UIViewController {
         clipingVC.transitioningDelegate = self
         
         webKitView = WKWebView();
-        webKitView.navigationDelegate = self
-        self.view.addSubview(webKitView)
         
         progressView = UIProgressView(progressViewStyle: .bar)
-        self.view.addSubview(progressView)
-        
-        webKitView.addObserver(self, forKeyPath: "isLoading", options: .new, context: nil)
-        webKitView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "clip.png")?.resize(size: CGSize(width: 25, height: 25)), style: .plain, target: self, action: #selector(setClip(_:)))
         
@@ -53,6 +61,33 @@ final class WebViewController: UIViewController {
         // TODO: テスト用
         bannerView.adUnitID = bannerId
         bannerView.rootViewController = self
+        
+        returnButton = UIButton()
+        let returnImage = UIImage(systemName: "lessthan")?.resize(size: CGSize(width: 25, height: 25))!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        returnButton.setImage(returnImage, for: .normal)
+        returnButton.tintColor = UIColor.systemBlue
+        returnButton.tag = TabBarItems.returnUrl.rawValue
+        returnButton.addTarget(self, action: #selector(goBack(_:)), for: .touchDown)
+        
+        forwardButton = UIButton()
+        let forwardImage = UIImage(systemName: "greaterthan")?.resize(size: CGSize(width: 25, height: 25))!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        forwardButton.setImage(forwardImage, for: .normal)
+        forwardButton.tintColor = UIColor.systemBlue
+        forwardButton.tag = TabBarItems.proceedUrl.rawValue
+        forwardButton.addTarget(self, action: #selector(goFoward(_:)), for: .touchDown)
+        
+        safariButton = UIButton()
+        let safari = UIImage(systemName: "safari")?.resize(size: CGSize(width: 25, height: 25))!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        safariButton.setImage(safari, for: .normal)
+        safariButton.tintColor = UIColor.systemBlue
+        safariButton.tag = TabBarItems.safari.rawValue
+        
+        tabBar = UITabBar()
+        tabBar.tintColor = UIColor.systemGray
+        tabBar.addSubview(returnButton)
+        tabBar.addSubview(forwardButton)
+        tabBar.addSubview(safariButton)
+        self.view.addSubview(tabBar)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,10 +95,18 @@ final class WebViewController: UIViewController {
         // バナー読み込み
         bannerView.load(GADRequest())
         
+        self.view.addSubview(webKitView)
+        self.view.addSubview(progressView)
+        webKitView.navigationDelegate = self
+        webKitView.addObserver(self, forKeyPath: "isLoading", options: .new, context: nil)
+        webKitView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
+        
         progressView.alpha = 1.0
         HUD.flash(.progress, delay: 0.0)
         self.navigationItem.title = newsPaperName
     
+        self.returnButton.isEnabled = self.webKitView.canGoBack
+        self.forwardButton.isEnabled = self.webKitView.canGoForward
         loadUrl()
     }
     
@@ -73,9 +116,18 @@ final class WebViewController: UIViewController {
         let safeArea = self.view.safeAreaInsets
         webKitView.frame = CGRect(x: 0, y: safeArea.top, width: self.view.frame.width, height: self.view.frame.height - safeArea.top - 50)
         progressView.frame = CGRect(x: 0, y: safeArea.top, width: self.view.frame.width, height: 0.0)
+        
+        tabBar.frame = CGRect(x: 0, y: self.view.frame.height - 40 - safeArea.bottom, width: self.view.frame.width, height: 40 + safeArea.bottom)
         // バナーサイズ決定
-        bannerView.frame = CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 50)
+        bannerView.frame = CGRect(x: 0, y: tabBar.frame.minY - 50, width: self.view.frame.width, height: 50)
         self.view.addSubview(bannerView)
+        
+        let tabBarHeight: CGFloat = 40 + safeArea.bottom
+        let tabBarButtonWidth: CGFloat = tabBar.frame.width / 3
+        
+        returnButton.frame = CGRect(x: 0, y: 0, width: tabBarButtonWidth, height: tabBarHeight)
+        forwardButton.frame = CGRect(x: tabBarButtonWidth, y: 0, width: tabBarButtonWidth, height: tabBarHeight)
+        safariButton.frame = CGRect(x: tabBarButtonWidth * 2, y: 0, width: tabBarButtonWidth, height: tabBarHeight)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -84,7 +136,11 @@ final class WebViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        webKitView.isHidden = true
+        self.webKitView.removeObserver(self, forKeyPath: "estimatedProgress")
+        self.webKitView.removeObserver(self, forKeyPath: "isLoading")
+        progressView.removeFromSuperview()
+        webKitView.removeFromSuperview()
+        webKitView = WKWebView()
         super.viewDidDisappear(true)
         
     }
@@ -152,6 +208,24 @@ final class WebViewController: UIViewController {
 
 extension WebViewController: WKNavigationDelegate{
     
+    @objc func goBack(_ : UIButton){
+        if webKitView.canGoBack{
+            webKitView.goBack()
+            DispatchQueue.main.async {
+                self.returnButton.isEnabled = self.webKitView.canGoBack
+            }
+        }
+    }
+    
+    @objc func goFoward(_ : UIButton){
+        if webKitView.canGoForward{
+            webKitView.goForward()
+            DispatchQueue.main.async {
+                self.forwardButton.isEnabled = self.webKitView.canGoForward
+            }
+        }
+    }
+    
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         let alert = UIAlertController(title: "エラー", message: "読み込みに失敗しました。", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
@@ -159,14 +233,14 @@ extension WebViewController: WKNavigationDelegate{
         }))
     }
     
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        returnButton.isEnabled  = webView.canGoBack
+        forwardButton.isEnabled = webView.canGoForward
+    }
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         webKitView.isHidden = false
         print("読み込み完了")
-        
-    }
-    
-    func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
-        
     }
 }
 

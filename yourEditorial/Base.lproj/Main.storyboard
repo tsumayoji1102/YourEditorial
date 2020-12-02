@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Home Navigation Controller-->
         <scene sceneID="r31-si-NFl">
             <objects>
-                <navigationController id="NXI-pI-ubn" sceneMemberID="viewController">
+                <navigationController id="NXI-pI-ubn" customClass="HomeNavigationController" customModule="yourEditorial" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="p8g-Cf-XaM">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
