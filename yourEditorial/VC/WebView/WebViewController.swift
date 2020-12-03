@@ -6,9 +6,9 @@
 //
 
 import UIKit
+import PKHUD
 import WebKit
 import RealmSwift
-import PKHUD
 import GoogleMobileAds
 
 final class WebViewController: UIViewController{
@@ -16,13 +16,14 @@ final class WebViewController: UIViewController{
     enum TabBarItems: Int{
         case returnUrl = 0
         case proceedUrl
+        case share
         case safari
     }
     
     // view parts
-    private var webKitView:   WKWebView!
-    private var progressView: UIProgressView!
-    private var bannerView:   GADBannerView!
+    private var webKitView:    WKWebView!
+    private var progressView:  UIProgressView!
+    private var bannerView:    GADBannerView!
     
     // about tabBar
     private var tabBar:        UITabBar!
@@ -31,12 +32,13 @@ final class WebViewController: UIViewController{
     private var safariButton:  UIButton!
     private var shareButton:   UIButton!
     
-     // object
-    private var clipingVC:    ClipingViewController!
-    private var appDelegate:  AppDelegate!
-    private var viewModel:    WebViewModel!
-    var newsPaperName: String!
-    var newsPaperUrl:  String!
+    // object
+    private var clipingVC:     ClipingViewController!
+    private var appDelegate:   AppDelegate!
+    private var viewModel:     WebViewModel!
+    var newsPaperName:         String!
+    var newsPaperUrl:          String!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,26 +69,34 @@ final class WebViewController: UIViewController{
         returnButton.setImage(returnImage, for: .normal)
         returnButton.tintColor = UIColor.systemBlue
         returnButton.tag = TabBarItems.returnUrl.rawValue
-        returnButton.addTarget(self, action: #selector(goBack(_:)), for: .touchDown)
+        returnButton.addTarget(self, action: #selector(tapButton(button:)), for: .touchDown)
         
         forwardButton = UIButton()
         let forwardImage = UIImage(systemName: "greaterthan")?.resize(size: CGSize(width: 25, height: 25))!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         forwardButton.setImage(forwardImage, for: .normal)
         forwardButton.tintColor = UIColor.systemBlue
         forwardButton.tag = TabBarItems.proceedUrl.rawValue
-        forwardButton.addTarget(self, action: #selector(goFoward(_:)), for: .touchDown)
+        forwardButton.addTarget(self, action: #selector(tapButton(button:)), for: .touchDown)
+        
+        shareButton = UIButton()
+        let shareImage = UIImage(systemName: "paperplane.fill")?.resize(size: CGSize(width: 25, height: 25))!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        shareButton.setImage(shareImage, for: .normal)
+        shareButton.tintColor = UIColor.systemBlue
+        shareButton.tag = TabBarItems.share.rawValue
+        shareButton.addTarget(self, action: #selector(tapButton(button:)), for: .touchDown)
         
         safariButton = UIButton()
         let safari = UIImage(systemName: "safari")?.resize(size: CGSize(width: 25, height: 25))!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         safariButton.setImage(safari, for: .normal)
         safariButton.tintColor = UIColor.systemBlue
         safariButton.tag = TabBarItems.safari.rawValue
-        safariButton.addTarget(self, action: #selector(openInSafari(_:)), for: .touchDown)
+        safariButton.addTarget(self, action: #selector(tapButton(button:)), for: .touchDown)
         
         tabBar = UITabBar()
         tabBar.tintColor = UIColor.systemGray
         tabBar.addSubview(returnButton)
         tabBar.addSubview(forwardButton)
+        tabBar.addSubview(shareButton)
         tabBar.addSubview(safariButton)
         self.view.addSubview(tabBar)
     }
@@ -124,11 +134,12 @@ final class WebViewController: UIViewController{
         self.view.addSubview(bannerView)
         
         let tabBarHeight: CGFloat = 40 + safeArea.bottom
-        let tabBarButtonWidth: CGFloat = tabBar.frame.width / 3
+        let tabBarButtonWidth: CGFloat = tabBar.frame.width / 4
         
         returnButton.frame = CGRect(x: 0, y: 0, width: tabBarButtonWidth, height: tabBarHeight)
         forwardButton.frame = CGRect(x: tabBarButtonWidth, y: 0, width: tabBarButtonWidth, height: tabBarHeight)
-        safariButton.frame = CGRect(x: tabBarButtonWidth * 2, y: 0, width: tabBarButtonWidth, height: tabBarHeight)
+        shareButton.frame = CGRect(x: tabBarButtonWidth * 2, y: 0, width: tabBarButtonWidth, height: tabBarHeight)
+        safariButton.frame = CGRect(x: tabBarButtonWidth * 3, y: 0, width: tabBarButtonWidth, height: tabBarHeight)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -209,21 +220,43 @@ final class WebViewController: UIViewController{
 
 extension WebViewController: WKNavigationDelegate{
     
-    @objc func goBack(_ : UIButton){
-        if webKitView.canGoBack{
-            webKitView.goBack()
-            DispatchQueue.main.async {
-                self.returnButton.isEnabled = self.webKitView.canGoBack
+    @objc func tapButton(button : UIButton){
+        switch button.tag {
+        case TabBarItems.returnUrl.rawValue:
+            if webKitView.canGoBack{
+                webKitView.goBack()
+                DispatchQueue.main.async {
+                    self.returnButton.isEnabled = self.webKitView.canGoBack
+                }
             }
-        }
-    }
-    
-    @objc func goFoward(_ : UIButton){
-        if webKitView.canGoForward{
-            webKitView.goForward()
-            DispatchQueue.main.async {
-                self.forwardButton.isEnabled = self.webKitView.canGoForward
+            break
+        case TabBarItems.proceedUrl.rawValue:
+            if webKitView.canGoForward{
+                webKitView.goForward()
+                DispatchQueue.main.async {
+                    self.forwardButton.isEnabled = self.webKitView.canGoForward
+                }
             }
+        case TabBarItems.safari.rawValue:
+            let url = self.webKitView.url
+            if UIApplication.shared.canOpenURL(url!){
+                UIApplication.shared.open(url!)
+            }
+            break
+        case TabBarItems.share.rawValue:
+            webKitView.evaluateJavaScript("document.title", completionHandler: {
+                value, error in
+                var clipDic: Dictionary<String, Any?> = [:]
+                clipDic["name"] = value as! String
+                clipDic["url"] = self.webKitView.url?.absoluteString
+                clipDic["newsPaper"] = self.newsPaperName
+                let image = UIImage(named: "yourEditorial")
+                let alertVC = UIActivityViewController(activityItems: [image!, "【\(clipDic["newsPaper"] as! String)】 \(clipDic["name"] as! String)\n\(clipDic["url"] as! String)"], applicationActivities: nil)
+                self.present(alertVC, animated: true, completion: nil)
+            })
+            break
+        default:
+            break
         }
     }
     
@@ -264,13 +297,6 @@ extension WebViewController: WKNavigationDelegate{
         }
     }
  */
-    
-    @objc func openInSafari(_ : UIButton){
-        let url = self.webKitView.url
-        if UIApplication.shared.canOpenURL(url!){
-            UIApplication.shared.open(url!)
-        }
-    }
 }
 
 // MARK: - UITransitioningDelegate
