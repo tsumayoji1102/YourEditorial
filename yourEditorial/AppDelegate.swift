@@ -23,8 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // admob設定
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         
-        daoFactory = DaoFactory()
-        
         let config = Realm.Configuration(
           // 新しいスキーマバージョンを設定します。以前のバージョンより大きくなければなりません。
           schemaVersion: 1,
@@ -46,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Realmファイルを開こうとしたときスキーマバージョンが異なれば、
         // 自動的にマイグレーションが実行されます
         let realm = try! Realm()
+        daoFactory = DaoFactory()
         
         let userDefaults = UserDefaults.standard
         if !userDefaults.bool(forKey: "firstLaunch") {
