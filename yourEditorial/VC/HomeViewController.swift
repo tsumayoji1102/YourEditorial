@@ -45,8 +45,7 @@ final class HomeViewController: UIViewController {
         
         webVC = self.storyboard?.instantiateViewController(identifier: "webKitViewController") as? WebViewController
         
-        selectVC = self.storyboard?.instantiateViewController(identifier: "SelectViewController") as? SelectViewController
-        selectVC.modalPresentationStyle = .custom
+        selectVC = SelectViewController.getSelectView()
         selectVC.transitioningDelegate = self
         selectVC.delegate = self
         selectVC.reloadSelectView()

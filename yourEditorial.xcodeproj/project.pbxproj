@@ -22,6 +22,7 @@
 		E719F0EE253DC66800E54D1E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719F0ED253DC66800E54D1E /* HomeViewController.swift */; };
 		E719F0F3253DD46E00E54D1E /* NewsPaperEditorialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719F0F2253DD46E00E54D1E /* NewsPaperEditorialsViewController.swift */; };
 		E719F0FA253DDB2C00E54D1E /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719F0F9253DDB2C00E54D1E /* Constraints.swift */; };
+		E72B5D5C2578E09800E5084A /* SelectViewStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E72B5D5B2578E09800E5084A /* SelectViewStoryBoard.storyboard */; };
 		E72E54F1254E6A9800402151 /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72E54F0254E6A9800402151 /* SelectViewController.swift */; };
 		E72E54F3254E6FF000402151 /* FavoriteNewsPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72E54F2254E6FF000402151 /* FavoriteNewsPaper.swift */; };
 		E72E54F6254E821600402151 /* TransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72E54F5254E821600402151 /* TransitionController.swift */; };
@@ -97,6 +98,7 @@
 		E719F0ED253DC66800E54D1E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E719F0F2253DD46E00E54D1E /* NewsPaperEditorialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPaperEditorialsViewController.swift; sourceTree = "<group>"; };
 		E719F0F9253DDB2C00E54D1E /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
+		E72B5D5B2578E09800E5084A /* SelectViewStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectViewStoryBoard.storyboard; sourceTree = "<group>"; };
 		E72E54F0254E6A9800402151 /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
 		E72E54F2254E6FF000402151 /* FavoriteNewsPaper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNewsPaper.swift; sourceTree = "<group>"; };
 		E72E54F5254E821600402151 /* TransitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionController.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			children = (
 				E72E54F0254E6A9800402151 /* SelectViewController.swift */,
 				E72E54F5254E821600402151 /* TransitionController.swift */,
+				E72B5D5B2578E09800E5084A /* SelectViewStoryBoard.storyboard */,
 			);
 			path = SelectView;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				E7E896C92545E41700E3078B /* Main.storyboard in Resources */,
 				E761EEB7256A92F00059D1AA /* GoogleService-Info.plist in Resources */,
 				E719F0B8253DC11300E54D1E /* LaunchScreen.storyboard in Resources */,
+				E72B5D5C2578E09800E5084A /* SelectViewStoryBoard.storyboard in Resources */,
 				E719F0B5253DC11300E54D1E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

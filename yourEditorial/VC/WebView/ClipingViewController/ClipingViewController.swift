@@ -119,8 +119,7 @@ final class ClipingViewController: UIViewController {
         decideButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         decideButton.addTarget(self, action: #selector(setClip(_:)), for: .touchDown)
         
-        selectVC = self.storyboard?.instantiateViewController(identifier: "SelectViewController") as? SelectViewController
-        selectVC.modalPresentationStyle = .custom
+        selectVC = SelectViewController.getSelectView()
         selectVC.transitioningDelegate = self
         selectVC.delegate = self
         

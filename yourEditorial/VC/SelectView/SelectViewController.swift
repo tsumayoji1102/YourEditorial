@@ -41,6 +41,14 @@ final class SelectViewController: UIViewController {
     // 値
     var list:             Array<String>! = []
     var selectedIndex:    Int! = 0
+
+// MARK: - MakeSelectView
+    
+    static func getSelectView() -> SelectViewController?{
+        let selectVC = UIStoryboard(name: "SelectViewStoryBoard", bundle: nil).instantiateViewController(identifier: "SelectViewController") as? SelectViewController
+        selectVC!.modalPresentationStyle = .custom
+        return selectVC;
+    }
     
 // MARK: - LifeCycle
     override func viewDidLoad() {
