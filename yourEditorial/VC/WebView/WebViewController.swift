@@ -81,6 +81,7 @@ final class WebViewController: UIViewController{
         safariButton.setImage(safari, for: .normal)
         safariButton.tintColor = UIColor.systemBlue
         safariButton.tag = TabBarItems.safari.rawValue
+        safariButton.addTarget(self, action: #selector(openInSafari(_:)), for: .touchDown)
         
         tabBar = UITabBar()
         tabBar.tintColor = UIColor.systemGray
@@ -241,6 +242,34 @@ extension WebViewController: WKNavigationDelegate{
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         webKitView.isHidden = false
         print("読み込み完了")
+    }
+    
+    /*
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .linkActivated  {
+            if let url = navigationAction.request.url,
+                let host = url.host, !host.hasPrefix("www.google.com"),
+                UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+                print(url)
+                print("Redirected to browser. No need to open it locally")
+                decisionHandler(.cancel)
+            } else {
+                print("Open it locally")
+                decisionHandler(.allow)
+            }
+        } else {
+            print("not a user click")
+            decisionHandler(.allow)
+        }
+    }
+ */
+    
+    @objc func openInSafari(_ : UIButton){
+        let url = self.webKitView.url
+        if UIApplication.shared.canOpenURL(url!){
+            UIApplication.shared.open(url!)
+        }
     }
 }
 
