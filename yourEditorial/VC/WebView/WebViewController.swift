@@ -125,13 +125,14 @@ final class WebViewController: UIViewController{
         super.viewWillLayoutSubviews()
         
         let safeArea = self.view.safeAreaInsets
-        webKitView.frame = CGRect(x: 0, y: safeArea.top, width: self.view.frame.width, height: self.view.frame.height - safeArea.top - 50)
+        webKitView.frame = CGRect(x: 0, y: safeArea.top, width: self.view.frame.width, height: self.view.frame.height - safeArea.top - 40 - safeArea.bottom)
         progressView.frame = CGRect(x: 0, y: safeArea.top, width: self.view.frame.width, height: 0.0)
         
-        tabBar.frame = CGRect(x: 0, y: self.view.frame.height - 40 - safeArea.bottom, width: self.view.frame.width, height: 40 + safeArea.bottom)
         // バナーサイズ決定
         bannerView.frame = CGRect(x: 0, y: tabBar.frame.minY - 50, width: self.view.frame.width, height: 50)
         self.view.addSubview(bannerView)
+        
+        tabBar.frame = CGRect(x: 0, y: self.view.frame.height - 40 - safeArea.bottom, width: self.view.frame.width, height: 40 + safeArea.bottom)
         
         let tabBarHeight: CGFloat = 40 + safeArea.bottom
         let tabBarButtonWidth: CGFloat = tabBar.frame.width / 4

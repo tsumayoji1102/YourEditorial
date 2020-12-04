@@ -16,12 +16,13 @@ class ClipsViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        titleLabel.frame = CGRect(x: 15, y: 15, width: self.contentView.frame.width - 60, height: 20)
+        let size = self.contentView.frame
+        titleLabel.frame = CGRect(x: 15, y: 15, width: size.width - 60, height: 20)
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         
         newsPaperLabel.frame = CGRect(x: 20, y: self.contentView.frame.height - 40, width: 100, height: 15)
         newsPaperLabel.font = UIFont.systemFont(ofSize: 15)
-        dateLabel.frame = CGRect(x: self.contentView.frame.width - 160, y: self.contentView.frame.height - 40, width: 130, height: 15)
+        dateLabel.frame = CGRect(x: size.width - 130, y: size.height - 40, width: 130, height: 15)
         dateLabel.textColor = UIColor.lightGray
         dateLabel.font = UIFont.systemFont(ofSize: 15)
     }

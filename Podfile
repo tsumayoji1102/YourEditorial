@@ -9,6 +9,9 @@ target 'yourEditorial' do
   pod 'TPKeyboardAvoiding'
   pod 'Firebase/Analytics'
   pod 'Google-Mobile-Ads-SDK'
+  pod 'RealmSwift' , '~> 3.19.0'
+  pod 'PKHUD', '~> 5.0'
+  
 
   target 'yourEditorialTests' do
     inherit! :search_paths
