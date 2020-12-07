@@ -88,6 +88,8 @@ final class HomeViewController: UIViewController {
         // バナー読み込み
         bannerView.load(GADRequest())
         
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear")?.resize(size: CGSize(width: 25, height: 25)), style: .plain, target: self, action: #selector(tapSettingButton(_:)))
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash")?.resize(size: CGSize(width: 25, height: 25)), style: .plain, target: self, action: #selector(tapFavoriteButton(_:)))
     }
     
@@ -115,6 +117,12 @@ final class HomeViewController: UIViewController {
     
     @objc private func tapFavoriteButton(_ :UIBarButtonItem){
         present(selectVC!, animated: true)
+    }
+    
+    @objc private func tapSettingButton(_: UIBarButtonItem){
+        let settingVC = UIStoryboard(name: "SettingView", bundle: nil).instantiateViewController(identifier: "SettingNavigationController")
+        settingVC.modalPresentationStyle = .fullScreen
+        present(settingVC, animated: true, completion: nil)
     }
     
     
