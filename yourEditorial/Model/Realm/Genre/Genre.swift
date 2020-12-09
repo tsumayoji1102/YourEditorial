@@ -20,9 +20,8 @@ class Genre: Object {
     }
     
     func fromDic(_ dic: Dictionary<String, Any?>){
-        self.genreId    = dic["genreId"]   as! Int
-        self.name       = dic["name"]      as! String
-        self.createdAt  = dic["createdAt"] as? Date
-        self.updatedAt  = dic["updatedAt"] as? Date
+        self.name       = dic["name"]      != nil ? dic["name"]      as! String : self.name
+        self.createdAt  = dic["createdAt"] != nil ? dic["createdAt"] as? Date : self.createdAt
+        self.updatedAt  = dic["updatedAt"] != nil ? dic["updatedAt"] as? Date : self.updatedAt
     }
 }

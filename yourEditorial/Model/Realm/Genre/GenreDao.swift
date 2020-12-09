@@ -55,7 +55,7 @@ final class GenreDao: NSObject, Dao {
         return genres
     }
     
-    func update(genreId: String, dic: Dictionary<String, Any?>){
+    func update(genreId: Int, dic: Dictionary<String, Any?>){
         let genre = getGenres(filter: NSPredicate(format: "genreId = %@", argumentArray: [genreId])).first
         try! realm.write {
             genre?.fromDic(dic)

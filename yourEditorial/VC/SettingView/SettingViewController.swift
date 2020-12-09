@@ -32,6 +32,9 @@ class SettingViewController: UIViewController {
         settingView.clipsToBounds = true
         settingView.tableFooterView = UIView()
         settingView.backgroundColor = UIColor.systemGroupedBackground
+        
+        self.navigationItem.title = "設定"
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "戻る", style: .done, target: self, action: #selector(returnButton(_:)))
     }
     
     override func viewWillLayoutSubviews() {
@@ -39,6 +42,10 @@ class SettingViewController: UIViewController {
         
         let safeArea = self.view.safeAreaInsets
         settingView.frame = CGRect(x: 0, y: safeArea.top, width: self.view.frame.width, height: self.view.frame.height - safeArea.top - safeArea.bottom)
+    }
+    
+    @objc func returnButton(_ :UIBarButtonItem){
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -110,6 +117,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource{
         case Sections.main.rawValue:
             switch indexPath.row{
             case main.genre.rawValue:
+                let genreVC = self.storyboard?.instantiateViewController(identifier: "GenreViewController") as? GenreViewController
+                self.show(genreVC!, sender: nil)
                 break
             case main.aboutApp.rawValue:
                 break
