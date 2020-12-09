@@ -46,6 +46,7 @@
 		E79492D5257E7138006D79B9 /* SettingView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E79492D4257E7138006D79B9 /* SettingView.storyboard */; };
 		E79492D7257E7205006D79B9 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79492D6257E7205006D79B9 /* SettingViewController.swift */; };
 		E79492D9257E7962006D79B9 /* GenreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79492D8257E7962006D79B9 /* GenreViewController.swift */; };
+		E79492DB257FD70E006D79B9 /* GenreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79492DA257FD70E006D79B9 /* GenreViewModel.swift */; };
 		E799F4592560C03200316434 /* ClipingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E799F4582560C03200316434 /* ClipingViewModel.swift */; };
 		E79E89A6253DE53400A14E75 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E89A5253DE53400A14E75 /* WebViewController.swift */; };
 		E7E896C92545E41700E3078B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E719F0AE253DC11300E54D1E /* Main.storyboard */; };
@@ -129,6 +130,7 @@
 		E79492D4257E7138006D79B9 /* SettingView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingView.storyboard; sourceTree = "<group>"; };
 		E79492D6257E7205006D79B9 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		E79492D8257E7962006D79B9 /* GenreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreViewController.swift; sourceTree = "<group>"; };
+		E79492DA257FD70E006D79B9 /* GenreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreViewModel.swift; sourceTree = "<group>"; };
 		E799F4582560C03200316434 /* ClipingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipingViewModel.swift; sourceTree = "<group>"; };
 		E79E89A5253DE53400A14E75 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		E7EC457225559CCA0015BB09 /* ClipingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipingViewController.swift; sourceTree = "<group>"; };
@@ -316,19 +318,19 @@
 			children = (
 				E72E54F4254E6FF700402151 /* FavoriteNewsPaper */,
 				E77C5E57254862E700F65677 /* Genre */,
-				E758B9ED2545C66C00EED590 /* BookMark */,
+				E758B9ED2545C66C00EED590 /* Clip */,
 				E758B9F02545C7AB00EED590 /* DaoFactory.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
 		};
-		E758B9ED2545C66C00EED590 /* BookMark */ = {
+		E758B9ED2545C66C00EED590 /* Clip */ = {
 			isa = PBXGroup;
 			children = (
 				E758B9EB2545C4EB00EED590 /* Clip.swift */,
 				E758B9EE2545C72300EED590 /* ClipDao.swift */,
 			);
-			path = BookMark;
+			path = Clip;
 			sourceTree = "<group>";
 		};
 		E77C5E482546B17900F65677 /* TabView */ = {
@@ -402,6 +404,7 @@
 				E79492D4257E7138006D79B9 /* SettingView.storyboard */,
 				E79492D6257E7205006D79B9 /* SettingViewController.swift */,
 				E79492D8257E7962006D79B9 /* GenreViewController.swift */,
+				E79492DA257FD70E006D79B9 /* GenreViewModel.swift */,
 			);
 			path = SettingView;
 			sourceTree = "<group>";
@@ -696,6 +699,7 @@
 				E77C5E5C2548657F00F65677 /* GenreDao.swift in Sources */,
 				E72E54FA254EEF1C00402151 /* FavoriteNewsPaperDao.swift in Sources */,
 				E72E54F8254EEEC400402151 /* NewsPaperEditorialViewModel.swift in Sources */,
+				E79492DB257FD70E006D79B9 /* GenreViewModel.swift in Sources */,
 				E75FA8CE257387B7001BE0F6 /* HomeNavigationController.swift in Sources */,
 				E79492D9257E7962006D79B9 /* GenreViewController.swift in Sources */,
 				E719F0AB253DC11300E54D1E /* SceneDelegate.swift in Sources */,

@@ -19,7 +19,6 @@ final class NewsPaperEditorialsViewController: UIViewController{
     @IBOutlet weak var editorialView: UITableView!
     private var noClipLabel: UILabel!
     
-    private var appDelegate: AppDelegate!
     private var homeVC:      HomeViewController!
     private var viewModel:   NewsPaperEditorialViewModel!
     private var sortMode:    SortMode = SortMode.all
@@ -31,8 +30,8 @@ final class NewsPaperEditorialsViewController: UIViewController{
         super.viewDidLoad()
         
         // AppDelegate取得
-        appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let favoriteNewsPaperDao: FavoriteNewsPaperDao = appDelegate.daoFactory.getDao(daoRoute: DaoRoutes.favoriteNewsPaper) as! FavoriteNewsPaperDao
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let favoriteNewsPaperDao: FavoriteNewsPaperDao = appDelegate!.daoFactory.getDao(daoRoute: DaoRoutes.favoriteNewsPaper) as! FavoriteNewsPaperDao
         viewModel = NewsPaperEditorialViewModel(favoriteNewsPaperDao: favoriteNewsPaperDao)
         
         // VC生成

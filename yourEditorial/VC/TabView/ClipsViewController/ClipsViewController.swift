@@ -19,7 +19,6 @@ final class ClipsViewController: UIViewController {
     @IBOutlet weak var clipsView: UITableView!
     private var noClipLabel: UILabel!
     
-    private var appDelegate:   AppDelegate!
     private var viewModel:     ClipsViewModel!
     private var homeVC:        HomeViewController!
     private var clipList:      Array<Array<Clip>> = []
@@ -38,9 +37,9 @@ final class ClipsViewController: UIViewController {
         noClipLabel.textColor = UIColor.lightGray
         self.view.addSubview(noClipLabel)
         
-        appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let clipDao:  ClipDao  = appDelegate.daoFactory.getDao(daoRoute: DaoRoutes.clip)  as! ClipDao
-        let genreDao: GenreDao = appDelegate.daoFactory.getDao(daoRoute: DaoRoutes.genre) as! GenreDao
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let clipDao:  ClipDao  = appDelegate!.daoFactory.getDao(daoRoute: DaoRoutes.clip)  as! ClipDao
+        let genreDao: GenreDao = appDelegate!.daoFactory.getDao(daoRoute: DaoRoutes.genre) as! GenreDao
         viewModel = ClipsViewModel(clipDao: clipDao, genreDao: genreDao)
         
         homeVC = self.parent as? HomeViewController
@@ -62,7 +61,6 @@ final class ClipsViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        let size = self.clipsView.frame
         clipsView.frame = self.view.bounds
         noClipLabel.frame = CGRect(x: self.view.frame.width / 2 - 120, y: self.view.frame.height / 2 - 25, width: 240, height: 70)
     }

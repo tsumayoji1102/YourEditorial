@@ -62,5 +62,11 @@ final class GenreDao: NSObject, Dao {
         }
     }
     
+    func delete(genre: Genre){
+        try! realm.write {
+            realm.delete(genre)
+        }
+    }
+    
 
 }

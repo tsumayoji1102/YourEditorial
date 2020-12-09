@@ -12,7 +12,7 @@ class SettingNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.title =  "設定"
+        self.navigationItem.title = "設定"
     }
 
 }
