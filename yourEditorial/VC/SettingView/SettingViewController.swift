@@ -121,6 +121,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource{
                 self.show(genreVC!, sender: nil)
                 break
             case main.aboutApp.rawValue:
+                let aboutVC = self.storyboard?.instantiateViewController(identifier: "AboutThisAppViewController") as? AboutThisAppViewController
+                self.show(aboutVC!, sender: nil)
                 break
             default:
                 break

@@ -116,5 +116,20 @@
             </objects>
             <point key="canvasLocation" x="942.02898550724649" y="-271.20535714285711"/>
         </scene>
+        <!--About This App View Controller-->
+        <scene sceneID="UbO-8Z-hWq">
+            <objects>
+                <viewController storyboardIdentifier="AboutThisAppViewController" id="8Gg-aT-0G8" customClass="AboutThisAppViewController" customModule="yourEditorial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HUb-Tk-Nu0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="1ca-tZ-KrS"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p0B-sW-hBi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="607" y="374"/>
+        </scene>
     </scenes>
 </document>
