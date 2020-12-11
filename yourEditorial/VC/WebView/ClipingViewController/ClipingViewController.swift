@@ -140,15 +140,18 @@ final class ClipingViewController: UIViewController {
         clipingView.frame = CGRect(x: 0, y: self.view.frame.height / 2, width: self.view.frame.width, height: self.view.frame.height / 2)
     }
     
-    deinit {
+    override func viewDidDisappear(_ animated: Bool) {
         let notification = NotificationCenter.default
         notification.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         notification.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
+        super.viewDidDisappear(true)
     }
+    
     
     @objc private func close(_ :UIButton){
         self.dismiss(animated: true, completion: nil)
     }
+    
     
     @objc private func selectGenre(_ : UIButton){
         genreList = viewModel.getGenres()
@@ -223,10 +226,10 @@ final class ClipingViewController: UIViewController {
         var textFieldOffset: CGFloat = 0
         switch selectedTFFieldTag {
         case TextFieldTag.title.rawValue:
-            textFieldOffset = titleField.frame.maxY
+            textFieldOffset = titleField.frame.maxY + 120
             break
         case TextFieldTag.genre.rawValue:
-            textFieldOffset = genreField.frame.maxY
+            textFieldOffset = genreField.frame.maxY + 100
             break
         default:
             break
@@ -241,7 +244,7 @@ final class ClipingViewController: UIViewController {
     
     // キーボードが隠れるとき
     @objc private func keyboardWillHide(notification: Notification?){
-        UIView.animate(withDuration: 0.05, delay: 0.0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.28, delay: 0.0, options: .curveEaseInOut, animations: {
             self.clearScrollView.transform = CGAffineTransform.identity
         })
     }
