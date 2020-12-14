@@ -11,7 +11,7 @@ import UIKit
 extension UIView{
     
     func makeHeader(title: String){
-        self.backgroundColor = UIColor.systemGray
+        self.backgroundColor = UIColor.lightGray
         
         let label: UILabel = UILabel(frame: CGRect(x: 20, y: 0, width: 200, height: 35))
         label.font = UIFont.boldSystemFont(ofSize: 19)

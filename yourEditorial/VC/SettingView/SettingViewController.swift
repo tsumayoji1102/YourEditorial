@@ -66,7 +66,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 50
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,7 +87,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource{
             subView.removeFromSuperview()
         }
         
-        let label = UILabel(frame: CGRect(x: 30, y: 10, width: 150, height: 40))
+        let label = UILabel(frame: CGRect(x: 30, y: 5, width: 150, height: 40))
         
         switch indexPath.section {
         case Sections.main.rawValue:

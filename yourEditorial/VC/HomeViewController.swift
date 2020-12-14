@@ -81,6 +81,8 @@ final class HomeViewController: UIViewController {
         // TODO: テスト用
         bannerView.adUnitID = bannerId
         bannerView.rootViewController = self
+        
+        self.view.addSubview(bannerView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,7 +90,7 @@ final class HomeViewController: UIViewController {
         // バナー読み込み
         bannerView.load(GADRequest())
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear")?.resize(size: CGSize(width: 25, height: 25)), style: .plain, target: self, action: #selector(tapSettingButton(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "setting.png")?.resize(size: CGSize(width: 25, height: 25)), style: .plain, target: self, action: #selector(tapSettingButton(_:)))
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash")?.resize(size: CGSize(width: 25, height: 25)), style: .plain, target: self, action: #selector(tapFavoriteButton(_:)))
     }
@@ -104,7 +106,6 @@ final class HomeViewController: UIViewController {
         
         // バナーサイズ決定
         bannerView.frame = CGRect(x: 0, y: childView.frame.maxY , width: self.view.frame.width, height: 50)
-        self.view.addSubview(bannerView)
         
         // ちょっとめんどくさい
         homeTab.frame = CGRect(x: 0, y: bannerView.frame.maxY, width: self.view.frame.width, height:homeTabHeight)

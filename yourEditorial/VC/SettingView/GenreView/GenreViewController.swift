@@ -242,7 +242,6 @@ extension GenreViewController: UITextFieldDelegate{
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         selectedTFFieldTag = textField.tag
-        textFieldCGRect = textField.frame
         return true
     }
     

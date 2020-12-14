@@ -251,8 +251,7 @@ extension WebViewController: WKNavigationDelegate{
                 clipDic["name"] = value as! String
                 clipDic["url"] = self.webKitView.url?.absoluteString
                 clipDic["newsPaper"] = self.newsPaperName
-                let image = UIImage(named: "yourEditorial")
-                let alertVC = UIActivityViewController(activityItems: [image!, "【\(clipDic["newsPaper"] as! String)】 \(clipDic["name"] as! String)\n\(clipDic["url"] as! String)"], applicationActivities: nil)
+                let alertVC = UIActivityViewController(activityItems: ["【\(clipDic["newsPaper"] as! String)】 \(clipDic["name"] as! String) #社説クリップ \n\(clipDic["url"] as! String)"], applicationActivities: nil)
                 self.present(alertVC, animated: true, completion: nil)
             })
             break

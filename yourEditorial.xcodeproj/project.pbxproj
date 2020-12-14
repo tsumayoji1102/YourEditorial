@@ -399,15 +399,31 @@
 			path = ClipingViewController;
 			sourceTree = "<group>";
 		};
+		E7F901802587B5E300E314DB /* GenreView */ = {
+			isa = PBXGroup;
+			children = (
+				E79492D8257E7962006D79B9 /* GenreViewController.swift */,
+				E79492DA257FD70E006D79B9 /* GenreViewModel.swift */,
+			);
+			path = GenreView;
+			sourceTree = "<group>";
+		};
+		E7F901812587B5FE00E314DB /* AboutView */ = {
+			isa = PBXGroup;
+			children = (
+				E7F9017E2583E66700E314DB /* AboutThisAppViewController.swift */,
+			);
+			path = AboutView;
+			sourceTree = "<group>";
+		};
 		E7FDA3CA257D0F5E00DDBDD5 /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
+				E7F901812587B5FE00E314DB /* AboutView */,
+				E7F901802587B5E300E314DB /* GenreView */,
 				E7FDA3CB257D0F7A00DDBDD5 /* SettingNavigationController.swift */,
 				E79492D4257E7138006D79B9 /* SettingView.storyboard */,
 				E79492D6257E7205006D79B9 /* SettingViewController.swift */,
-				E79492D8257E7962006D79B9 /* GenreViewController.swift */,
-				E79492DA257FD70E006D79B9 /* GenreViewModel.swift */,
-				E7F9017E2583E66700E314DB /* AboutThisAppViewController.swift */,
 			);
 			path = SettingView;
 			sourceTree = "<group>";
