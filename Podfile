@@ -8,6 +8,7 @@ target 'yourEditorial' do
   # Pods for yourEditorial
   pod 'TPKeyboardAvoiding'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
   pod 'Google-Mobile-Ads-SDK'
   pod 'RealmSwift' , '~> 3.19.0'
   pod 'PKHUD', '~> 5.0'

@@ -45,6 +45,7 @@ final class NewsPaperEditorialsViewController: UIViewController{
         noClipLabel = UILabel()
         noClipLabel.text = "お気に入りがありません。\n登録してみましょう！"
         noClipLabel.numberOfLines = 2
+        noClipLabel.textAlignment = .center
         noClipLabel.font = UIFont.boldSystemFont(ofSize: 23)
         noClipLabel.textColor = UIColor.lightGray
         self.view.addSubview(noClipLabel)
@@ -231,7 +232,9 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
                 self.editorialView.beginUpdates()
                 self.editorialView.deleteRows(at: [indexPath], with: .top)
                 self.editorialView.endUpdates()
-                /*
+                if self.arrayList[indexPath.section].isEmpty {
+                    self.noClipLabel.isHidden = false
+                }                /*
                 DispatchQueue.main.async {
                     self.sort()
                 }

@@ -137,10 +137,14 @@ final class WebViewController: UIViewController{
         let tabBarHeight: CGFloat = 40 + safeArea.bottom
         let tabBarButtonWidth: CGFloat = tabBar.frame.width / 4
         
-        returnButton.frame = CGRect(x: 0, y: 0, width: tabBarButtonWidth, height: tabBarHeight)
-        forwardButton.frame = CGRect(x: tabBarButtonWidth, y: 0, width: tabBarButtonWidth, height: tabBarHeight)
-        shareButton.frame = CGRect(x: tabBarButtonWidth * 2, y: 0, width: tabBarButtonWidth, height: tabBarHeight)
-        safariButton.frame = CGRect(x: tabBarButtonWidth * 3, y: 0, width: tabBarButtonWidth, height: tabBarHeight)
+        returnButton.frame = CGRect(x: 0, y: 10, width: tabBarButtonWidth, height: tabBarHeight)
+        returnButton.contentVerticalAlignment = .top
+        forwardButton.frame = CGRect(x: tabBarButtonWidth, y: 10, width: tabBarButtonWidth, height: tabBarHeight)
+        forwardButton.contentVerticalAlignment = .top
+        shareButton.frame = CGRect(x: tabBarButtonWidth * 2, y: 10, width: tabBarButtonWidth, height: tabBarHeight)
+        shareButton.contentVerticalAlignment = .top
+        safariButton.frame = CGRect(x: tabBarButtonWidth * 3, y: 10, width: tabBarButtonWidth, height: tabBarHeight)
+        safariButton.contentVerticalAlignment = .top
     }
     
     override func viewDidAppear(_ animated: Bool) {

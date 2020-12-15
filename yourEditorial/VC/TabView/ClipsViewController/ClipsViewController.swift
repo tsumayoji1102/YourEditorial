@@ -33,6 +33,7 @@ final class ClipsViewController: UIViewController {
         noClipLabel = UILabel()
         noClipLabel.text = "クリップがありません。\n登録してみましょう！"
         noClipLabel.numberOfLines = 2
+        noClipLabel.textAlignment = .center
         noClipLabel.font = UIFont.boldSystemFont(ofSize: 23)
         noClipLabel.textColor = UIColor.lightGray
         self.view.addSubview(noClipLabel)

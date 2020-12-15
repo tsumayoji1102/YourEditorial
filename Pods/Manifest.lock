@@ -6,6 +6,9 @@ PODS:
     - FirebaseAnalytics (= 7.0.0)
   - Firebase/CoreOnly (7.0.0):
     - FirebaseCore (= 7.0.0)
+  - Firebase/Crashlytics (7.0.0):
+    - Firebase/CoreOnly
+    - FirebaseCrashlytics (~> 7.0.0)
   - FirebaseAnalytics (7.0.0):
     - FirebaseCore (~> 7.0)
     - FirebaseInstallations (~> 7.0)
@@ -24,6 +27,12 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/Logger (~> 7.0)
     - nanopb (~> 2.30906.0)
+  - FirebaseCrashlytics (7.0.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstallations (~> 7.0)
+    - GoogleDataTransport (~> 8.0)
+    - nanopb (~> 2.30906.0)
+    - PromisesObjC (~> 1.2)
   - FirebaseInstallations (7.0.0):
     - FirebaseCore (~> 7.0)
     - GoogleUtilities/Environment (~> 7.0)
@@ -76,6 +85,7 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Analytics
+  - Firebase/Crashlytics
   - Google-Mobile-Ads-SDK
   - PKHUD (~> 5.0)
   - RealmSwift (~> 3.19.0)
@@ -87,6 +97,7 @@ SPEC REPOS:
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseCoreDiagnostics
+    - FirebaseCrashlytics
     - FirebaseInstallations
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
@@ -105,6 +116,7 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: c1166b7990bae464c6436132510bb718c6680f80
   FirebaseCore: cf3122185fce1cf71cedbbc498ea84d2b3e7cb69
   FirebaseCoreDiagnostics: 5f4aa04fdb04923693cc704c7ef9158bdf41a48b
+  FirebaseCrashlytics: bd430b7323e8b49492a93e563e81899d0615f917
   FirebaseInstallations: c28d4bcbb5c6884d1a39afbc0bd7fc590e31e9b7
   Google-Mobile-Ads-SDK: 4c11bba9a823ed16c42f14d42feebc7678fbfd6a
   GoogleAppMeasurement: 7790ef975d1d463c8614cd949a847e612edf087a
@@ -118,6 +130,6 @@ SPEC CHECKSUMS:
   RealmSwift: 1302b0ab60f3105a2b214a735eeb0938607cf16b
   TPKeyboardAvoiding: d55b3ea7b362540af8fcf36aa3ed2e87bf210cc6
 
-PODFILE CHECKSUM: 0f9d1caf2308f165f6870cece9cb7ff2ee9fb3c6
+PODFILE CHECKSUM: d9484a2257c26ee2f3a4290258deb0d37f06ad88
 
 COCOAPODS: 1.9.3
