@@ -15,14 +15,15 @@ class GenreViewController: UIViewController {
         case sectionsNum
     }
 
-    @IBOutlet weak var genreView: UITableView!
-    private var addTextField: UITextField!
-    private var addButton:    UIButton!
+    @IBOutlet weak var genreView:    UITableView!
+    @IBOutlet weak var keyboardView: UIScrollView!
+    private var addTextField:        UITextField!
+    private var addButton:           UIButton!
     
-    private var genreList: Array<Genre> = []
-    private var viewModel: GenreViewModel!
-    private var selectedTFFieldTag: Int = 0
-    private var textFieldCGRect:    CGRect!
+    private var genreList:           Array<Genre> = []
+    private var viewModel:           GenreViewModel!
+    private var selectedTFFieldTag:  Int = 0
+    private var textFieldCGRect:     CGRect!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,7 @@ class GenreViewController: UIViewController {
         
         self.navigationItem.title = "ジャンルの整理"
         
+        keyboardView.backgroundColor = UIColor.systemGroupedBackground
         genreView.delegate = self
         genreView.dataSource = self
         genreView.allowsSelection = false
@@ -69,7 +71,8 @@ class GenreViewController: UIViewController {
         super.viewWillLayoutSubviews()
         
         let safeArea = self.view.safeAreaInsets
-        genreView.frame = CGRect(x: 0, y: safeArea.top, width: self.view.frame.width, height: self.view.frame.height - safeArea.top - safeArea.bottom)
+        self.keyboardView.frame = CGRect(x: 0, y: safeArea.top, width: self.view.frame.width, height: self.view.frame.height - safeArea.top)
+        genreView.frame = keyboardView.bounds
         
         addTextField.frame = CGRect(x: 20, y: 10, width: 200, height: 30)
         addTextField.addBottomBorder(height: 1, color: UIColor.systemGray)
@@ -118,18 +121,20 @@ class GenreViewController: UIViewController {
     
     // キーボードが出現する時
     @objc private func keyboardWillShow(notification: Notification?){
-        let rect = (notification?.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+        let rect = (notification?.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
         let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
         
         // textFieldごとに判定
-        let textFieldOffsetInt: Int = (selectedTFFieldTag + 1 + 1) * 50 + 40 * 2 - 10
-        let textFieldOffset: CGFloat = CGFloat(textFieldOffsetInt) + self.view.safeAreaInsets.top
+        let textFieldY: CGFloat = ((genreView.cellForRow(at: IndexPath(row: selectedTFFieldTag, section: Sections.list.rawValue))?.frame.origin.y)! + 80)
+        let keyboardY = self.view.frame.height - (rect?.size.height)!
         
-        UIView.animate(withDuration: duration!, delay: 0.0, options: .curveEaseIn, animations: {
-            () in
-            self.genreView.transform = CGAffineTransform(translationX: 0, y: ((rect?.size.height)! - textFieldOffset))
-        }, completion: nil)
-        
+        if textFieldY > keyboardY {
+            UIView.animate(withDuration: duration!, delay: 0.0, options: .curveEaseIn, animations: {
+                    () in
+                self.genreView.transform = CGAffineTransform(translationX: 0, y:  -(textFieldY - keyboardY + 80))
+            }, completion: nil)
+            
+        }
     }
     
     // キーボードが隠れるとき
@@ -191,7 +196,10 @@ extension GenreViewController: UITableViewDelegate, UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "GenreEditCell", for: indexPath) as? GenreEditCell
             let genre = genreList[indexPath.row]
             // セル初期化
-            cell?.setGenre(genre: genre, editFunc: { genre, name in
+            cell?.setGenre(
+                genre: genre,
+                tag: indexPath.row,
+                editFunc: { genre, name in
                 if name.isEmpty {
                     let alert = UIAlertController(title: "エラー", message: "アラート名を入力してください。", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -201,6 +209,8 @@ extension GenreViewController: UITableViewDelegate, UITableViewDataSource{
                 if genre.name != name {
                     self.viewModel.updateGenreName(genreId: genre.genreId, name: name)
                 }
+            }, tapTfFunc: { tag in
+                self.selectedTFFieldTag = tag
             })
             
             cell!.isEditing = true
@@ -236,14 +246,15 @@ extension GenreViewController: UITableViewDelegate, UITableViewDataSource{
             return false
         }
     }
+    
+    func setIndexPath(tag: Int) -> Bool {
+        return true
+    }
 }
 
 extension GenreViewController: UITextFieldDelegate{
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        selectedTFFieldTag = textField.tag
-        return true
-    }
+
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -268,6 +279,7 @@ class GenreEditCell: UITableViewCell{
     @IBOutlet weak var genreTextField: UITextField!
     private var genre: Genre!
     private var editFunc: ((Genre, String) -> Void)!
+    private var tapTfFunc: ((Int) -> Void)!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -276,14 +288,22 @@ class GenreEditCell: UITableViewCell{
         genreTextField.delegate = self
     }
     
-    func setGenre(genre: Genre, editFunc: @escaping ((Genre, String) -> Void)){
+    func setGenre(genre: Genre, tag: Int, editFunc: @escaping ((Genre, String) -> Void), tapTfFunc: @escaping ((Int) -> Void)){
         self.genre = genre
+        genreTextField.tag = tag
         genreTextField.text = genre.name
         self.editFunc = editFunc
+        self.tapTfFunc = tapTfFunc
     }
 }
 
 extension GenreEditCell: UITextFieldDelegate{
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+           tapTfFunc(textField.tag)
+           return true
+       }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         editFunc(genre, textField.text!)
