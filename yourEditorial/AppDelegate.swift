@@ -23,18 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // admob設定
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         
-        let config = Realm.Configuration(
-          // 新しいスキーマバージョンを設定します。以前のバージョンより大きくなければなりません。
+        let config = Realm.Configuration(   
           schemaVersion: 1,
-
-          // マイグレーション処理を記述します。古いスキーマバージョンのRealmを開こうとすると
           // 自動的にマイグレーションが実行されます。
           migrationBlock: { migration, oldSchemaVersion in
-            // 最初のマイグレーションの場合、`oldSchemaVersion`は0です
             if (oldSchemaVersion < 1) {
-              // 何もする必要はありません！
-              // Realmは自動的に新しく追加されたプロパティと、削除されたプロパティを認識します。
-              // そしてディスク上のスキーマを自動的にアップデートします。
             }
           })
 

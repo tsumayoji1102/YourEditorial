@@ -62,7 +62,11 @@ final class ClipsViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        clipsView.frame = self.view.bounds
+        if(self.view.frame.width >= 768){
+            clipsView.frame = CGRect(x: self.view.frame.width / 5, y: 0, width: self.view.frame.width * 3 / 5, height: self.view.frame.height)
+        }else{
+            clipsView.frame = self.view.bounds
+        }
         noClipLabel.frame = CGRect(x: self.view.frame.width / 2 - 120, y: self.view.frame.height / 2 - 25, width: 240, height: 70)
     }
     

@@ -62,7 +62,11 @@ final class NewsPaperEditorialsViewController: UIViewController{
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        editorialView.frame = self.view.bounds
+        if(self.view.frame.width >= 768){
+            editorialView.frame = CGRect(x: self.view.frame.width / 5, y: 0, width: self.view.frame.width * 3 / 5, height: self.view.frame.height)
+        }else{
+            editorialView.frame = self.view.bounds
+        }
         noClipLabel.frame = CGRect(x: self.view.frame.width / 2 - 130, y: self.view.frame.height / 2 - 25, width: 260, height: 70)
     }
     

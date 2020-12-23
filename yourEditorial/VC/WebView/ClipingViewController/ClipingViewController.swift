@@ -167,6 +167,7 @@ final class ClipingViewController: UIViewController {
     
     @objc func addGenre(_ :UIButton){
         changeGenreState()
+        genreField.becomeFirstResponder()
     }
     
     @objc private func setGenre(_ : UIButton){

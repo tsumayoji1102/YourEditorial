@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class GenreViewModel: NSObject {
+final class GenreViewModel: NSObject {
     
     private var genreDao: GenreDao!
     private var clipDao:  ClipDao!

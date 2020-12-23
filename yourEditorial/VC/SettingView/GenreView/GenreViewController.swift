@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GenreViewController: UIViewController {
+final class GenreViewController: UIViewController {
     
     enum Sections: Int {
         case add = 0

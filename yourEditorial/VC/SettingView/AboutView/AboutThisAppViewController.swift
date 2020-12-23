@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AboutThisAppViewController: UIViewController {
+final class AboutThisAppViewController: UIViewController {
     
     private var label: UILabel!
 

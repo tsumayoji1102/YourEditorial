@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ClipsViewCell: UITableViewCell {
+final class ClipsViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel:     UILabel!
     @IBOutlet weak var newsPaperLabel: UILabel!
@@ -17,7 +17,7 @@ class ClipsViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         let size = self.contentView.frame
-        titleLabel.frame = CGRect(x: 15, y: 15, width: size.width - 60, height: 20)
+        titleLabel.frame = CGRect(x: 15, y: 15, width: size.width - 30, height: 20)
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         
         newsPaperLabel.frame = CGRect(x: 20, y: self.contentView.frame.height - 40, width: 100, height: 15)

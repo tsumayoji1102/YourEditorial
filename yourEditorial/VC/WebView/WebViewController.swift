@@ -256,6 +256,8 @@ extension WebViewController: WKNavigationDelegate{
                 clipDic["url"] = self.webKitView.url?.absoluteString
                 clipDic["newsPaper"] = self.newsPaperName
                 let alertVC = UIActivityViewController(activityItems: ["【\(clipDic["newsPaper"] as! String)】 \(clipDic["name"] as! String) #社説クリップ \n\(clipDic["url"] as! String)"], applicationActivities: nil)
+                alertVC.popoverPresentationController?.sourceView = self.view
+                alertVC.popoverPresentationController?.sourceRect = CGRect(x: self.view.bounds.size.width / 2.0, y: self.view.bounds.size.height / 2.0, width:  1.0, height: 1.0);
                 self.present(alertVC, animated: true, completion: nil)
             })
             break
