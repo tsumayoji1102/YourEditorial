@@ -28,6 +28,7 @@
 		E72E54F6254E821600402151 /* TransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72E54F5254E821600402151 /* TransitionController.swift */; };
 		E72E54F8254EEEC400402151 /* NewsPaperEditorialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72E54F7254EEEC400402151 /* NewsPaperEditorialViewModel.swift */; };
 		E72E54FA254EEF1C00402151 /* FavoriteNewsPaperDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72E54F9254EEF1B00402151 /* FavoriteNewsPaperDao.swift */; };
+		E73CD8C5259F427700E90F2F /* AlertPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73CD8C4259F427700E90F2F /* AlertPush.swift */; };
 		E758B9EC2545C4EB00EED590 /* Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E758B9EB2545C4EB00EED590 /* Clip.swift */; };
 		E758B9EF2545C72300EED590 /* ClipDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E758B9EE2545C72300EED590 /* ClipDao.swift */; };
 		E758B9F12545C7AB00EED590 /* DaoFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E758B9F02545C7AB00EED590 /* DaoFactory.swift */; };
@@ -110,6 +111,7 @@
 		E72E54F5254E821600402151 /* TransitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionController.swift; sourceTree = "<group>"; };
 		E72E54F7254EEEC400402151 /* NewsPaperEditorialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPaperEditorialViewModel.swift; sourceTree = "<group>"; };
 		E72E54F9254EEF1B00402151 /* FavoriteNewsPaperDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNewsPaperDao.swift; sourceTree = "<group>"; };
+		E73CD8C4259F427700E90F2F /* AlertPush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPush.swift; sourceTree = "<group>"; };
 		E758B9DF2545C38100EED590 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		E758B9E32545C38E00EED590 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		E758B9E62545C44400EED590 /* PKHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PKHUD.framework; path = Carthage/Build/iOS/PKHUD.framework; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				E758B9F22545D5B100EED590 /* Log.swift */,
 				E70B657A256698CC009AED98 /* DateFormat.swift */,
 				E77C5E462546AAC700F65677 /* extension.swift */,
+				E73CD8C4259F427700E90F2F /* AlertPush.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -757,6 +760,7 @@
 				E758B9EF2545C72300EED590 /* ClipDao.swift in Sources */,
 				E77C5E472546AAC700F65677 /* extension.swift in Sources */,
 				E77C5E542548534400F65677 /* NewsPaper.swift in Sources */,
+				E73CD8C5259F427700E90F2F /* AlertPush.swift in Sources */,
 				E70B657B256698CC009AED98 /* DateFormat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

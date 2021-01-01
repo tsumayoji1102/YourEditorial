@@ -11,17 +11,25 @@ final class SettingViewController: UIViewController {
     
     enum Sections: Int{
         case main
+        case other
         case sectionsNum
     }
     
     enum main: Int{
         case genre
-        case aboutApp
+        case notification
         case mainNum
+    }
+    
+    enum other: Int{
+        case aboutApp
+        case otherNum
     }
     
     @IBOutlet weak var settingView: UITableView!
     @IBOutlet weak var naviBar: UINavigationItem!
+    
+    private var notificationSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +43,11 @@ final class SettingViewController: UIViewController {
         
         self.navigationItem.title = "設定"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "戻る", style: .done, target: self, action: #selector(returnButton(_:)))
+        
+        notificationSwitch = UISwitch()
+        let defaults = UserDefaults.standard
+        notificationSwitch.isOn = defaults.bool(forKey: "notification")
+        notificationSwitch.addTarget(self, action: #selector(setNotification(theSwitch:)), for: .valueChanged)
     }
     
     override func viewWillLayoutSubviews() {
@@ -46,6 +59,18 @@ final class SettingViewController: UIViewController {
     
     @objc func returnButton(_ :UIBarButtonItem){
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func setNotification(theSwitch : UISwitch){
+        let defaults = UserDefaults.standard
+        defaults.set(theSwitch.isOn, forKey: "notification")
+        
+        if theSwitch.isOn{
+            AlertPushNortification.checkAndPush()
+        }else{
+            AlertPushNortification.deleteLocalPush()
+        }
+        
     }
 }
 
@@ -73,6 +98,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource{
         switch section{
         case Sections.main.rawValue:
             return main.mainNum.rawValue
+        case Sections.other.rawValue:
+            return other.otherNum.rawValue
         default:
             break
         }
@@ -94,11 +121,23 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource{
             switch indexPath.row{
             case main.genre.rawValue:
                 label.text = "ジャンルの整理"
-                cell.addSubview(label)
+                cell.accessoryType = .disclosureIndicator
                 break
-            case main.aboutApp.rawValue:
+            case main.notification.rawValue:
+                label.text = "自動通知"
+                notificationSwitch.frame = CGRect(x: self.view.frame.width - 70, y: cell.frame.height / 2 - 15, width: 50, height: 30)
+                cell.contentView.addSubview(notificationSwitch)
+                cell.selectionStyle = .none
+                break
+            default:
+                break
+            }
+            break
+        case Sections.other.rawValue:
+            switch indexPath.row{
+                case other.aboutApp.rawValue:
                 label.text = "このアプリについて"
-                cell.addSubview(label)
+                cell.accessoryType = .disclosureIndicator
                 break
             default:
                 break
@@ -107,6 +146,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource{
         default:
             break
         }
+        
+        cell.contentView.addSubview(label)
         return cell
     }
     
@@ -120,7 +161,13 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource{
                 let genreVC = self.storyboard?.instantiateViewController(identifier: "GenreViewController") as? GenreViewController
                 self.show(genreVC!, sender: nil)
                 break
-            case main.aboutApp.rawValue:
+            default:
+                break
+            }
+            break
+        case Sections.other.rawValue:
+            switch indexPath.row{
+            case other.aboutApp.rawValue:
                 let aboutVC = self.storyboard?.instantiateViewController(identifier: "AboutThisAppViewController") as? AboutThisAppViewController
                 self.show(aboutVC!, sender: nil)
                 break

@@ -40,6 +40,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         daoFactory = DaoFactory()
         
         let userDefaults = UserDefaults.standard
+        
+        // 通知設定
+        if userDefaults.bool(forKey: "notification"){
+            AlertPushNortification.checkAndPush()
+        }
+        
+        // 初回起動時の設定
         if !userDefaults.bool(forKey: "firstLaunch") {
             userDefaults.set(true, forKey: "firstLaunch")
             userDefaults.set(
@@ -49,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             forKey: "admobKey")
             userDefaults.set(0, forKey: "clipCount")
             userDefaults.set(false, forKey: "reviewed")
+            userDefaults.set(true, forKey: "notification")
             let standardGenre = Genre()
             let date = Date()
             standardGenre.fromDic([
