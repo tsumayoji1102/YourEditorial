@@ -64,6 +64,7 @@ final class WebViewController: UIViewController{
         bannerView.adUnitID = bannerId
         bannerView.rootViewController = self
         
+        // 戻るボタン
         returnButton = UIButton()
         let returnImage = UIImage(systemName: "lessthan")?.resize(size: CGSize(width: 25, height: 25))!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         returnButton.setImage(returnImage, for: .normal)
@@ -71,6 +72,7 @@ final class WebViewController: UIViewController{
         returnButton.tag = TabBarItems.returnUrl.rawValue
         returnButton.addTarget(self, action: #selector(tapButton(button:)), for: .touchDown)
         
+        // 進むボタン
         forwardButton = UIButton()
         let forwardImage = UIImage(systemName: "greaterthan")?.resize(size: CGSize(width: 25, height: 25))!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         forwardButton.setImage(forwardImage, for: .normal)
@@ -78,6 +80,7 @@ final class WebViewController: UIViewController{
         forwardButton.tag = TabBarItems.proceedUrl.rawValue
         forwardButton.addTarget(self, action: #selector(tapButton(button:)), for: .touchDown)
         
+        // シェアボタン
         shareButton = UIButton()
         let shareImage = UIImage(systemName: "paperplane.fill")?.resize(size: CGSize(width: 25, height: 25))!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         shareButton.setImage(shareImage, for: .normal)
@@ -85,6 +88,7 @@ final class WebViewController: UIViewController{
         shareButton.tag = TabBarItems.share.rawValue
         shareButton.addTarget(self, action: #selector(tapButton(button:)), for: .touchDown)
         
+        // サファリボタン
         safariButton = UIButton()
         let safari = UIImage(systemName: "safari")?.resize(size: CGSize(width: 25, height: 25))!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         safariButton.setImage(safari, for: .normal)
@@ -92,6 +96,7 @@ final class WebViewController: UIViewController{
         safariButton.tag = TabBarItems.safari.rawValue
         safariButton.addTarget(self, action: #selector(tapButton(button:)), for: .touchDown)
         
+        // タブバー
         tabBar = UITabBar()
         tabBar.tintColor = UIColor.systemGray
         tabBar.addSubview(returnButton)
@@ -106,6 +111,11 @@ final class WebViewController: UIViewController{
         // バナー読み込み
         bannerView.load(GADRequest())
         
+        // バーの色
+        let naviVC = self.navigationController as? HomeNavigationController
+        naviVC?.changeNavigationColor(isBlue: false)
+        
+        // observer登録
         self.view.addSubview(webKitView)
         self.view.addSubview(progressView)
         webKitView.navigationDelegate = self
@@ -204,6 +214,7 @@ final class WebViewController: UIViewController{
         let urlRequest: URLRequest! = URLRequest(url: url!)
         webKitView.load(urlRequest)
     }
+    
     
     @objc func setClip(_: UIBarButtonItem){
         webKitView.evaluateJavaScript("document.title", completionHandler: {

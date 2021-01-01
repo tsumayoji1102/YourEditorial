@@ -90,6 +90,9 @@ final class HomeViewController: UIViewController {
         // バナー読み込み
         bannerView.load(GADRequest())
         
+        let naviVC = self.navigationController as? HomeNavigationController
+        naviVC?.changeNavigationColor(isBlue: true)
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "setting.png")?.resize(size: CGSize(width: 25, height: 25)), style: .plain, target: self, action: #selector(tapSettingButton(_:)))
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash")?.resize(size: CGSize(width: 25, height: 25)), style: .plain, target: self, action: #selector(tapFavoriteButton(_:)))
