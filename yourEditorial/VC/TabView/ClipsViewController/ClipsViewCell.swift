@@ -37,7 +37,7 @@ final class ClipsViewCell: UITableViewCell {
         self.titleLabel.text     = clip.name
         self.newsPaperLabel.text = clip.newsPaper
         
-        let createdAt = DateFormat.getDateyyyyMMddToString(date: clip.createdAt!)
+        let createdAt = DateFormat.dateToString(date: clip.createdAt!, format: "yyyy年MM月dd日")
         self.dateLabel.text = createdAt
     }
 

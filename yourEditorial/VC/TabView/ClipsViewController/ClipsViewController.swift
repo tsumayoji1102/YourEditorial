@@ -76,11 +76,11 @@ final class ClipsViewController: UIViewController {
         
         switch sortMode{
         case SortMode.date:
-            let datesMap = clips.map{ return DateFormat.getDateyyyyMMddToString(date: $0.createdAt!) }
+            let datesMap = clips.map{ return DateFormat.dateToString(date: $0.createdAt!, format: "yyyy年MM月dd日") }
             let orderedSet = NSOrderedSet(array: datesMap)
             dateList = orderedSet.array as! [String]
             for date in dateList{
-                var filter = clips.filter{ return DateFormat.getDateyyyyMMddToString(date: $0.createdAt!) == date}
+                var filter = clips.filter{ return DateFormat.dateToString(date: $0.createdAt!, format: "yyyy年MM月dd日") == date}
                 filter.sort{ return $0.createdAt! < $1.createdAt! }
                 clipList.append(filter)
             }

@@ -45,7 +45,7 @@ final class TransitionController: UIPresentationController {
 
        // 子のコンテナのサイズを返す
        override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
-           return CGSize(width: parentSize.width / 2, height: parentSize.height)
+           return CGSize(width: parentSize.width, height: parentSize.height)
        }
        
         

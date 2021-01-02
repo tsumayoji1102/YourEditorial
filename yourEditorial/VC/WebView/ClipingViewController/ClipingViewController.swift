@@ -42,7 +42,6 @@ final class ClipingViewController: UIViewController {
     private var genreButtonImage: Dictionary<String, UIImage>!
     private var selectVC:  SelectViewController!
     private var viewModel: ClipingViewModel!
-    private var appDelegate: AppDelegate!
     private var selectedGenre: Genre!
     private var genreList:   Array<Genre>!
     private var selectedTFFieldTag: Int!
@@ -53,9 +52,9 @@ final class ClipingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let genreDao: GenreDao = appDelegate.daoFactory.getDao(daoRoute: DaoRoutes.genre) as! GenreDao
-        let clipDao: ClipDao = appDelegate.daoFactory.getDao(daoRoute: DaoRoutes.clip) as! ClipDao
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let genreDao: GenreDao = appDelegate!.daoFactory.getDao(daoRoute: DaoRoutes.genre) as! GenreDao
+        let clipDao: ClipDao = appDelegate!.daoFactory.getDao(daoRoute: DaoRoutes.clip) as! ClipDao
         viewModel = ClipingViewModel(genreDao: genreDao, clipDao: clipDao)
         
         // Viewを透明に
@@ -137,7 +136,8 @@ final class ClipingViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        clipingView.frame = CGRect(x: 0, y: self.view.frame.height / 2, width: self.view.frame.width, height: self.view.frame.height / 2)
+        clipingView.frame = CGRect(x: 0, y: self.view.frame.height - 330, width: self.view.frame.width, height: 330)
+        clearScrollView.frame = self.view.bounds
     }
     
     override func viewDidDisappear(_ animated: Bool) {

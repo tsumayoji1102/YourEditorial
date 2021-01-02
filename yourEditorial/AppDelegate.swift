@@ -15,6 +15,8 @@ import GoogleMobileAds
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var daoFactory: DaoFactory!
+    // バックグラウンド用
+    var backGroundTaskId: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -38,6 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 自動的にマイグレーションが実行されます
         let realm = try! Realm()
         daoFactory = DaoFactory()
+        
+        // プッシュ通知設定
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {
+            (granted, _) in
+            if granted{
+                UNUserNotificationCenter.current().delegate = self
+            }
+        })
         
         let userDefaults = UserDefaults.standard
         
@@ -130,6 +140,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    // MARK: - AppDelegate Method
+        
+        
+        // バックグラウンドの直前に呼ばれる
+        func applicationWillResignActive(_ application: UIApplication) {
+            Log.getLog()
+            
+            self.backGroundTaskId = application.beginBackgroundTask(expirationHandler: {
+                [weak self] in
+                application.endBackgroundTask((self?.backGroundTaskId)!)
+                self?.backGroundTaskId = .invalid
+            })
+        }
+        
+        // アプリがアクティブになると呼ばれる
+        func applicationDidBecomeActive(_ application: UIApplication) {
+            Log.getLog()
+            
+            application.endBackgroundTask(self.backGroundTaskId)
+        }
+    }
 
+
+// 通知デリゲート
+extension AppDelegate: UNUserNotificationCenterDelegate{
+        
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+    }
+        
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        switch application.applicationState {
+        case .active:
+            break
+            // アプリフォアグラウンド時の処理
+        case .inactive:
+                
+            break
+            // アプリバッググラウンド時の処理
+        default:
+            break
+        }
+    }
 }
+
+
+
 

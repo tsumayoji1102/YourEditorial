@@ -12,7 +12,7 @@ import UserNotifications
 
 class AlertPushNortification {
     
-    private static let notificationTitle = "社説をチェック"
+    private static let notificationTitle = "社説をチェック！"
 
     // アラームのローカル通知を設定（単体)
     static func setLocalPush(_ center: UNUserNotificationCenter){
@@ -20,12 +20,12 @@ class AlertPushNortification {
         let content = UNMutableNotificationContent()
         content.title = notificationTitle
         content.body = "5時になりました！多くの新聞社が社説を更新する時間です。チェックしてみましょう！"
-        
-        let calendar = Calendar(identifier: .gregorian)
-        let date = calendar.date(from: DateComponents(hour: 5, minute: 0, second: 0))
+         
+        let date: Date = DateFormat.stringToDate(strDate: "05:00:00", format: "HH:mm:ss")
+        print(date)
         
         // リクエスト作成
-        let pushTime = Calendar.current.dateComponents([.hour, .minute, .second], from: date!)
+        let pushTime = Calendar.current.dateComponents([.hour, .minute, .second], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: pushTime, repeats: false)
         let identifier = NSUUID().uuidString
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
