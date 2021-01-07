@@ -224,29 +224,24 @@ final class ClipingViewController: UIViewController {
         let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
         
         // textFieldごとに判定
-        var textFieldOffset: CGFloat = 0
-        switch selectedTFFieldTag {
-        case TextFieldTag.title.rawValue:
-            textFieldOffset = titleField.frame.maxY + 120
-            break
-        case TextFieldTag.genre.rawValue:
-            textFieldOffset = genreField.frame.maxY + 100
-            break
-        default:
-            break
+        var textFieldY: CGFloat = (self.view.frame.height - self.clipingView.frame.height + (clipingView.cellForRow(at: IndexPath(row: selectedTFFieldTag, section: 0))?.frame.origin.y)! + 100)
+        if(selectedTFFieldTag == TextFieldTag.title.rawValue){
+            textFieldY += 20.0
         }
+        let keyboardY = self.view.frame.height - (rect?.size.height)!
         
-        UIView.animate(withDuration: duration!, delay: 0.0, options: .curveEaseIn, animations: {
-            () in
-            self.clearScrollView.transform = CGAffineTransform(translationX: 0, y: -((rect?.size.height)! - textFieldOffset))
-        }, completion: nil)
-        
+        if textFieldY > keyboardY {
+            UIView.animate(withDuration: duration!, delay: 0.0, options: .curveEaseIn, animations: {
+                () in
+                self.clipingView.transform = CGAffineTransform(translationX: 0, y: -(textFieldY - keyboardY + 80))
+            }, completion: nil)
+        }
     }
     
     // キーボードが隠れるとき
     @objc private func keyboardWillHide(notification: Notification?){
         UIView.animate(withDuration: 0.28, delay: 0.0, options: .curveEaseInOut, animations: {
-            self.clearScrollView.transform = CGAffineTransform.identity
+            self.clipingView.transform = CGAffineTransform.identity
         })
     }
     
