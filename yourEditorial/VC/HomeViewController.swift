@@ -82,7 +82,7 @@ final class HomeViewController: UIViewController {
         bannerView.adUnitID = bannerId
         bannerView.rootViewController = self
         
-        self.view.addSubview(bannerView)
+        //self.view.addSubview(bannerView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
