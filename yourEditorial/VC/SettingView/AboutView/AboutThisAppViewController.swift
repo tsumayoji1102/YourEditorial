@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import PKHUD
 
 final class AboutThisAppViewController: UIViewController {
     
@@ -32,6 +33,7 @@ final class AboutThisAppViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        HUD.flash(.progress, delay: 0.0)
         loadUrl()
     }
     
@@ -52,5 +54,7 @@ final class AboutThisAppViewController: UIViewController {
 }
 
 extension AboutThisAppViewController: WKNavigationDelegate{
-    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        HUD.hide()
+    }
 }
