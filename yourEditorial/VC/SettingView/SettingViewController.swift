@@ -99,7 +99,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource{
         case Sections.main.rawValue:
             return main.mainNum.rawValue
         case Sections.other.rawValue:
-            return 0//other.otherNum.rawValue
+            return other.otherNum.rawValue
         default:
             break
         }
