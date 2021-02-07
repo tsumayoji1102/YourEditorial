@@ -150,9 +150,10 @@ final class HomeViewController: UIViewController {
     }
     
     // 外部からおこなう
-    func getSite(newsPaperName: String, url: String){
+    func getSite(newsPaperName: String, url: String, clip: Clip!){
         webVC.newsPaperName = newsPaperName
         webVC.newsPaperUrl = url
+        webVC.clip = clip
         
         self.show(webVC, sender: nil)
     }

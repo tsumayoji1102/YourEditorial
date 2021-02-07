@@ -200,7 +200,7 @@ extension ClipsViewController: UITableViewDelegate, UITableViewDataSource{
         
         let clip = clipList[indexPath.section][indexPath.row]
         
-        homeVC.getSite(newsPaperName: clip.newsPaper, url: clip.url)
+        homeVC.getSite(newsPaperName: clip.newsPaper, url: clip.url, clip: clip)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

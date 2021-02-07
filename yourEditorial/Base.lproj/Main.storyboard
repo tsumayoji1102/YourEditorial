@@ -280,7 +280,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="opL-cQ-nEw"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
                         <outlet property="clearScreen" destination="o28-e7-jOo" id="unR-HW-K7f"/>

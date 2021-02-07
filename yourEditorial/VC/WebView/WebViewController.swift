@@ -16,11 +16,6 @@ enum WebViewMode: Int {
     case edit
 }
 
-protocol WebViewDelegate: AnyObject{
-    func setMode() -> WebViewMode!
-}
-
-
 final class WebViewController: UIViewController{
     
     enum TabBarItems: Int{
@@ -41,16 +36,16 @@ final class WebViewController: UIViewController{
     private var forwardButton: UIButton!
     private var safariButton:  UIButton!
     private var shareButton:   UIButton!
+    private var memoButton:    UIButton!
     
     // object
     private var clipingVC:     ClipingViewController!
+    private var memoVC:        MemoViewController!
     private var appDelegate:   AppDelegate!
     private var viewModel:     WebViewModel!
     var newsPaperName:         String!
     var newsPaperUrl:          String!
-    
-    // delegate
-    weak var delegate:         WebViewDelegate?
+    var clip:                  Clip!
     
     
     override func viewDidLoad() {
@@ -64,11 +59,10 @@ final class WebViewController: UIViewController{
         clipingVC.modalPresentationStyle = .custom
         clipingVC.transitioningDelegate = self
         
+        
         webKitView = WKWebView();
         
         progressView = UIProgressView(progressViewStyle: .bar)
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "clip.png")?.resize(size: CGSize(width: 25, height: 25)), style: .plain, target: self, action: #selector(setClip(_:)))
         
         // バナー初期化
         let bannerId = UserDefaults.standard.dictionary(forKey: "admobKey")!["web"] as! String
@@ -109,6 +103,12 @@ final class WebViewController: UIViewController{
         safariButton.tag = TabBarItems.safari.rawValue
         safariButton.addTarget(self, action: #selector(tapButton(button:)), for: .touchDown)
         
+        // メモボタン
+        memoButton = UIButton()
+        memoButton.layer.cornerRadius = 10
+        memoButton.backgroundColor = UIColor.blue
+        memoButton.addTarget(self, action: #selector(editClip(_:)), for: .touchDown)
+        
         // タブバー
         tabBar = UITabBar()
         tabBar.tintColor = UIColor.systemGray
@@ -121,6 +121,7 @@ final class WebViewController: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         // バナー読み込み
         bannerView.load(GADRequest())
         
@@ -134,6 +135,18 @@ final class WebViewController: UIViewController{
         webKitView.navigationDelegate = self
         webKitView.addObserver(self, forKeyPath: "isLoading", options: .new, context: nil)
         webKitView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
+        
+        if clip == nil {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "clip.png")?.resize(size: CGSize(width: 25, height: 25)), style: .plain, target: self, action: #selector(setClip(_:)))
+            memoButton.isHidden = true
+        }else{
+            memoVC = self.storyboard?.instantiateViewController(identifier: "MemoViewController") as? MemoViewController
+            memoVC.delegate = self
+            memoVC.modalPresentationStyle = .custom
+            memoVC.transitioningDelegate = self
+            memoButton.isHidden = false
+            self.view.addSubview(memoButton)
+        }
         
         progressView.alpha = 1.0
         HUD.flash(.progress, delay: 0.0)
@@ -168,6 +181,9 @@ final class WebViewController: UIViewController{
         shareButton.contentVerticalAlignment = .top
         safariButton.frame = CGRect(x: tabBarButtonWidth * 3, y: 10, width: tabBarButtonWidth, height: tabBarHeight)
         safariButton.contentVerticalAlignment = .top
+        
+        let memoButtonWidth: CGFloat = 60
+        memoButton.frame = CGRect(x: self.view.frame.width - memoButtonWidth - 10, y: bannerView.frame.minY - memoButtonWidth - 10, width: memoButtonWidth, height: memoButtonWidth)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -179,8 +195,10 @@ final class WebViewController: UIViewController{
         self.webKitView.removeObserver(self, forKeyPath: "estimatedProgress")
         self.webKitView.removeObserver(self, forKeyPath: "isLoading")
         progressView.removeFromSuperview()
+        memoButton.removeFromSuperview()
         webKitView.removeFromSuperview()
         webKitView = WKWebView()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem()
         super.viewDidDisappear(true)
         
     }
@@ -217,9 +235,8 @@ final class WebViewController: UIViewController{
         }
     }
     
-    deinit {
-        self.webKitView.removeObserver(self, forKeyPath: "estimatedProgress")
-        self.webKitView.removeObserver(self, forKeyPath: "isLoading")
+    @objc private func editClip(_ button: UIButton){
+        self.present(self.memoVC, animated: true, completion: nil)
     }
     
     private func loadUrl(){
@@ -229,7 +246,7 @@ final class WebViewController: UIViewController{
     }
     
     
-    @objc func setClip(_: UIBarButtonItem){
+    @objc private func setClip(_: UIBarButtonItem){
         webKitView.evaluateJavaScript("document.title", completionHandler: {
             value, error in
             var clipDic: Dictionary<String, Any?> = [:]
@@ -242,6 +259,12 @@ final class WebViewController: UIViewController{
             self.clipingVC?.clipDic = clipDic
             self.present(self.clipingVC, animated: true, completion: nil)
         })
+    }
+}
+
+extension WebViewController: MemoViewDelegate{
+    func getMemo(_ memo: String) {
+        
     }
 }
 

@@ -173,7 +173,7 @@ extension NewsPaperEditorialsViewController: UITableViewDelegate, UITableViewDat
         
         let newsPaper: NewsPaper = arrayList[indexPath.section][indexPath.row]
         
-        homeVC.getSite(newsPaperName: newsPaper.name, url: newsPaper.url)
+        homeVC.getSite(newsPaperName: newsPaper.name, url: newsPaper.url, clip: nil)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
