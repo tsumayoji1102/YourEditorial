@@ -37,6 +37,7 @@
 		E761EEAD256A8C7D0059D1AA /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E761EEAC256A8C7D0059D1AA /* nanopb.framework */; };
 		E761EEB1256A8CF30059D1AA /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E761EEB0256A8CF30059D1AA /* FirebaseCore.framework */; };
 		E761EEB7256A92F00059D1AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E761EEB6256A92F00059D1AA /* GoogleService-Info.plist */; };
+		E774F6F425CFF88100C3E9A7 /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774F6F325CFF88100C3E9A7 /* MemoViewController.swift */; };
 		E77C5E472546AAC700F65677 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E462546AAC700F65677 /* extension.swift */; };
 		E77C5E4C25470E4000F65677 /* ClipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E4B25470E4000F65677 /* ClipsViewController.swift */; };
 		E77C5E51254710B300F65677 /* ClipsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E50254710B300F65677 /* ClipsViewModel.swift */; };
@@ -123,6 +124,7 @@
 		E761EEAC256A8C7D0059D1AA /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E761EEB0256A8CF30059D1AA /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E761EEB6256A92F00059D1AA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E774F6F325CFF88100C3E9A7 /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		E77C5E462546AAC700F65677 /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 		E77C5E4B25470E4000F65677 /* ClipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipsViewController.swift; sourceTree = "<group>"; };
 		E77C5E50254710B300F65677 /* ClipsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipsViewModel.swift; sourceTree = "<group>"; };
@@ -338,6 +340,14 @@
 			path = Clip;
 			sourceTree = "<group>";
 		};
+		E774F6F225CFF86400C3E9A7 /* MemoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E774F6F325CFF88100C3E9A7 /* MemoViewController.swift */,
+			);
+			path = MemoViewController;
+			sourceTree = "<group>";
+		};
 		E77C5E482546B17900F65677 /* TabView */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,6 +396,7 @@
 		E77C5E5E2548670B00F65677 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
+				E774F6F225CFF86400C3E9A7 /* MemoViewController */,
 				E79E89A5253DE53400A14E75 /* WebViewController.swift */,
 				E77C5E55254861AC00F65677 /* WebViewModel.swift */,
 				E7EC457125559C9F0015BB09 /* ClipingViewController */,
@@ -760,6 +771,7 @@
 				E758B9EF2545C72300EED590 /* ClipDao.swift in Sources */,
 				E77C5E472546AAC700F65677 /* extension.swift in Sources */,
 				E77C5E542548534400F65677 /* NewsPaper.swift in Sources */,
+				E774F6F425CFF88100C3E9A7 /* MemoViewController.swift in Sources */,
 				E73CD8C5259F427700E90F2F /* AlertPush.swift in Sources */,
 				E70B657B256698CC009AED98 /* DateFormat.swift in Sources */,
 			);

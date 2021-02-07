@@ -11,6 +11,16 @@ import WebKit
 import RealmSwift
 import GoogleMobileAds
 
+enum WebViewMode: Int {
+    case new = 0
+    case edit
+}
+
+protocol WebViewDelegate: AnyObject{
+    func setMode() -> WebViewMode!
+}
+
+
 final class WebViewController: UIViewController{
     
     enum TabBarItems: Int{
@@ -38,6 +48,9 @@ final class WebViewController: UIViewController{
     private var viewModel:     WebViewModel!
     var newsPaperName:         String!
     var newsPaperUrl:          String!
+    
+    // delegate
+    weak var delegate:         WebViewDelegate?
     
     
     override func viewDidLoad() {
