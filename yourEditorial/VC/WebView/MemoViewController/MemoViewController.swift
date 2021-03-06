@@ -43,7 +43,12 @@ class MemoViewController: UIViewController {
         
         memoTextView = UITextView()
         memoTextView.font = UIFont.systemFont(ofSize: 20)
+        memoTextView.layer.cornerRadius = 10
+        memoTextView.layer.borderWidth = 0.5
+        memoTextView.layer.borderColor = UIColor.lightGray.cgColor
         memoTextView.delegate = self
+        
+        clearScreen.addTarget(self, action: #selector(returnScreen(_:)), for: .allTouchEvents)
         
         decideButton = UIButton()
         decideButton.setTitle("OK", for: .normal)
@@ -62,6 +67,10 @@ class MemoViewController: UIViewController {
     
     @objc func setMemo(_ button: UIButton){
         delegate?.getMemo(memoTextView.text)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func returnScreen(_ button: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -85,21 +94,21 @@ extension MemoViewController: UITableViewDelegate, UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "memoViewCell", for: indexPath)
         
-        let marginX:      CGFloat = 20
+        let marginX: CGFloat = 20
         
         switch indexPath.row{
         case memoViewCell.title.rawValue:
-            let label = UILabel(frame: CGRect(x: marginX, y: marginX / 2, width: 100, height: 20))
+            let label = UILabel(frame: CGRect(x: marginX, y: marginX * 2 / 3, width: 100, height: 20))
             label.font = UIFont.boldSystemFont(ofSize: 20)
             label.text = "メモ"
             cell.addSubview(label)
             break
         case memoViewCell.memo.rawValue:
-            memoTextView.frame = CGRect(x: marginX, y: marginX / 2, width: self.view.frame.width - marginX, height: 330 - marginX * 2)
+            memoTextView.frame = CGRect(x: marginX, y: marginX / 3, width: self.view.frame.width - marginX * 2, height: 300 - marginX * 2)
             cell.contentView.addSubview(memoTextView)
             break
         case memoViewCell.decide.rawValue:
-            decideButton.frame = CGRect(x: marginX, y: 10, width: self.view.frame.width - marginX * 2, height: 50)
+            decideButton.frame = CGRect(x: marginX, y: 20, width: self.view.frame.width - marginX * 2, height: 50)
             cell.contentView.addSubview(decideButton)
             break
         default:
@@ -114,9 +123,9 @@ extension MemoViewController: UITableViewDelegate, UITableViewDataSource{
         case memoViewCell.title.rawValue:
             return 40
         case memoViewCell.memo.rawValue:
-            return 290
+            return 270
         case memoViewCell.decide.rawValue:
-            return 70
+            return 90
         default:
             return 0
         }
