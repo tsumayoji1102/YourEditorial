@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PKHUD
 
 protocol MemoViewDelegate: AnyObject{
     func getMemo(_ memo: String)
@@ -66,7 +67,9 @@ class MemoViewController: UIViewController {
     }
     
     @objc func setMemo(_ button: UIButton){
+        HUD.flash(.progress, delay: 0.0)
         delegate?.getMemo(memoTextView.text)
+        HUD.hide()
         self.dismiss(animated: true, completion: nil)
     }
     

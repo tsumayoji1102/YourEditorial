@@ -26,4 +26,8 @@ final class WebViewModel: NSObject {
         ]
         clipDao.create(dic: dic)
     }
+    
+    func updateMemo(clipId: String, memo: String){
+        clipDao.update(clipId: clipId, dic: ["memo": memo])
+    }
 }
