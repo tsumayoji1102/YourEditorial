@@ -36,7 +36,6 @@ final class WebViewController: UIViewController{
     private var forwardButton: UIButton!
     private var safariButton:  UIButton!
     private var shareButton:   UIButton!
-    private var memoButton:    UIButton!
     
     // object
     private var clipingVC:     ClipingViewController!
@@ -103,12 +102,6 @@ final class WebViewController: UIViewController{
         safariButton.tag = TabBarItems.safari.rawValue
         safariButton.addTarget(self, action: #selector(tapButton(button:)), for: .touchDown)
         
-        // メモボタン
-        memoButton = UIButton()
-        memoButton.layer.cornerRadius = 10
-        memoButton.backgroundColor = UIColor.blue
-        memoButton.addTarget(self, action: #selector(editClip(_:)), for: .touchDown)
-        
         // タブバー
         tabBar = UITabBar()
         tabBar.tintColor = UIColor.systemGray
@@ -138,14 +131,13 @@ final class WebViewController: UIViewController{
         
         if clip == nil {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "clip.png")?.resize(size: CGSize(width: 25, height: 25)), style: .plain, target: self, action: #selector(setClip(_:)))
-            memoButton.isHidden = true
         }else{
             memoVC = self.storyboard?.instantiateViewController(identifier: "MemoViewController") as? MemoViewController
             memoVC.delegate = self
             memoVC.modalPresentationStyle = .custom
             memoVC.transitioningDelegate = self
-            memoButton.isHidden = false
-            self.view.addSubview(memoButton)
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "pen.png")?.resize(size: CGSize(width: 25, height: 25)), style: .plain, target: self, action: #selector(editMemo(_:)))
+            memoVC.title = clip.memo
         }
         
         progressView.alpha = 1.0
@@ -182,8 +174,6 @@ final class WebViewController: UIViewController{
         safariButton.frame = CGRect(x: tabBarButtonWidth * 3, y: 10, width: tabBarButtonWidth, height: tabBarHeight)
         safariButton.contentVerticalAlignment = .top
         
-        let memoButtonWidth: CGFloat = 60
-        memoButton.frame = CGRect(x: self.view.frame.width - memoButtonWidth - 10, y: bannerView.frame.minY - memoButtonWidth - 10, width: memoButtonWidth, height: memoButtonWidth)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -195,7 +185,6 @@ final class WebViewController: UIViewController{
         self.webKitView.removeObserver(self, forKeyPath: "estimatedProgress")
         self.webKitView.removeObserver(self, forKeyPath: "isLoading")
         progressView.removeFromSuperview()
-        memoButton.removeFromSuperview()
         webKitView.removeFromSuperview()
         webKitView = WKWebView()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem()
@@ -235,7 +224,7 @@ final class WebViewController: UIViewController{
         }
     }
     
-    @objc private func editClip(_ button: UIButton){
+    @objc private func editMemo(_ button: UIButton){
         self.present(self.memoVC, animated: true, completion: nil)
     }
     
@@ -264,7 +253,8 @@ final class WebViewController: UIViewController{
 
 extension WebViewController: MemoViewDelegate{
     func getMemo(_ memo: String) {
-        
+        Log.getLogWithMessage(message: "memo: \(memo)")
+        viewModel.updateMemo(clipId: clip.clipId, memo: memo)
     }
 }
 

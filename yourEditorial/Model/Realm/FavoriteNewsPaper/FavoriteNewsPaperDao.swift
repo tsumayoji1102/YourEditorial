@@ -8,34 +8,16 @@
 import UIKit
 import RealmSwift
 
-final class FavoriteNewsPaperDao: NSObject, Dao {
-    
-    var realm: Realm!
+final class FavoriteNewsPaperDao: Dao {
     
     init(realm: Realm){
         super.init()
         connect(realm: realm)
     }
     
-    func connect(realm: Realm) {
-        self.realm = realm
-    }
-    
-    // 採番
-    private func getFavoriteNewsPaperNo() -> Int{
-        
-        let result = realm.objects(FavoriteNewsPaper.self).sorted(byKeyPath: "favoriteNewsPaperId", ascending: false).first
-        
-        if (result == nil){
-            return 0
-        }else{
-            return result!.favoriteNewsPaperId + 1
-        }
-    }
-    
     func create(dic: Dictionary<String, Any?>){
         let favoriteNewsPaper = FavoriteNewsPaper()
-        favoriteNewsPaper.favoriteNewsPaperId = getFavoriteNewsPaperNo()
+        favoriteNewsPaper.favoriteNewsPaperId = getId()
         favoriteNewsPaper.fromDic(dic)
         try! realm.write {
             realm.add(favoriteNewsPaper)
@@ -56,7 +38,7 @@ final class FavoriteNewsPaperDao: NSObject, Dao {
     }
     
     func delete(favoriteNewsPaperName: String){
-        let favoriteNewsPaper = getFavoriteNewsPapers(filter: NSPredicate(format: "newsPaperName = %@", argumentArray: [favoriteNewsPaperName])).first
+        let favoriteNewsPaper = getFavoriteNewsPapers(filter: NSPredicate(format: "favoriteNewsPaperName = %@", argumentArray: [favoriteNewsPaperName])).first
         try! realm.write {
             realm.delete(favoriteNewsPaper!)
         }

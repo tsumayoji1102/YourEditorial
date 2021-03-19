@@ -10,7 +10,7 @@ import RealmSwift
 
 class FavoriteNewsPaper: Object {
     
-    @objc dynamic var favoriteNewsPaperId: Int = 0
+    @objc dynamic var favoriteNewsPaperId: String = ""
     @objc dynamic var newsPaperName: String = ""
     
     override static func primaryKey() -> String?{

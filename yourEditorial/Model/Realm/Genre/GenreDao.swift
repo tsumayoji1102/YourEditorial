@@ -8,35 +8,17 @@
 import UIKit
 import RealmSwift
 
-final class GenreDao: NSObject, Dao {
-    
-    var realm: Realm!
+final class GenreDao: Dao {
     
     init(realm: Realm){
         super.init()
         connect(realm: realm)
     }
     
-    func connect(realm: Realm) {
-        self.realm = realm
-    }
-    
-    // 採番
-    func getGenreNo() -> Int{
-        
-        let result = realm.objects(Genre.self).sorted(byKeyPath: "genreId", ascending: false).first
-        
-        if (result == nil){
-            return 0
-        }else{
-            return result!.genreId + 1
-        }
-    }
-    
     func create(dic: Dictionary<String, Any?>){
         var newDic = dic
         let genre = Genre()
-        newDic["genreId"] = getGenreNo()
+        newDic["genreId"] = getId()
         genre.fromDic(newDic)
         try! realm.write {
             realm.add(genre)
@@ -55,7 +37,7 @@ final class GenreDao: NSObject, Dao {
         return genres
     }
     
-    func update(genreId: Int, dic: Dictionary<String, Any?>){
+    func update(genreId: String, dic: Dictionary<String, Any?>){
         let genre = getGenres(filter: NSPredicate(format: "genreId = %@", argumentArray: [genreId])).first
         try! realm.write {
             genre?.update(dic)

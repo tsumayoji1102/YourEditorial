@@ -10,7 +10,7 @@ import RealmSwift
 
 class Genre: Object {
     
-    @objc dynamic var genreId: Int    = 0
+    @objc dynamic var genreId: String = ""
     @objc dynamic var name:    String = ""
     @objc dynamic var createdAt: Date? = Date()
     @objc dynamic var updatedAt: Date? = Date()
@@ -20,7 +20,7 @@ class Genre: Object {
     }
     
     func fromDic(_ dic: Dictionary<String, Any?>){
-        self.genreId    = dic["genreId"]   != nil ? dic["genreId"]   as! Int    : self.genreId
+        self.genreId    = dic["genreId"]   != nil ? dic["genreId"]   as! String : self.genreId
         self.name       = dic["name"]      != nil ? dic["name"]      as! String : self.name
         self.createdAt  = dic["createdAt"] != nil ? dic["createdAt"] as? Date   : self.createdAt
         self.updatedAt  = dic["updatedAt"] != nil ? dic["updatedAt"] as? Date   : self.updatedAt

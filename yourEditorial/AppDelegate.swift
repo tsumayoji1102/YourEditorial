@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let standardGenre = Genre()
             let date = Date()
             standardGenre.fromDic([
-                "genreId": 0,
+                "genreId": UUID().uuidString,
                 "name":"お気に入り",
                 "updatedAt":date,
                 "createdAt":date

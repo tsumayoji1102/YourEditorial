@@ -41,6 +41,22 @@ final class DaoFactory: NSObject {
     }
 }
 
-protocol Dao: NSObject {
+protocol DaoDelegate: NSObject {
     func connect(realm: Realm)
+    func getId() -> String
+}
+
+class Dao: NSObject, DaoDelegate {
+    
+    var realm: Realm!
+    
+    func connect(realm: Realm) {
+        self.realm = realm
+    }
+    
+    func getId() -> String {
+        var id = UUID().uuidString
+        Log.getLogWithMessage(message: "id: \(id)")
+        return id
+    }
 }

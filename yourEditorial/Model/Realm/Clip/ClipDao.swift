@@ -8,35 +8,17 @@
 import UIKit
 import RealmSwift
 
-final class ClipDao: NSObject, Dao {
-    
-    var realm: Realm!
+final class ClipDao: Dao {
     
     init(realm: Realm){
         super.init()
         connect(realm: realm)
     }
     
-    func connect(realm: Realm) {
-        self.realm = realm
-    }
-    
-    // 採番
-    func getClipNo() -> Int{
-        
-        let result = realm.objects(Clip.self).sorted(byKeyPath: "clipId", ascending: false).first
-        
-        if (result == nil){
-            return 0
-        }else{
-            return result!.clipId + 1
-        }
-    }
-    
     func create(dic: Dictionary<String, Any?>){
         var newDic = dic
         let clip = Clip()
-        newDic["clipId"] = getClipNo()
+        newDic["clipId"] = getId()
         clip.fromDic(newDic)
         try! realm.write {
             realm.add(clip)

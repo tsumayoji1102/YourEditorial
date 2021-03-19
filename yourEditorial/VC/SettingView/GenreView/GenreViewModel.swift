@@ -27,7 +27,7 @@ final class GenreViewModel: NSObject {
         genreDao.create(dic: dic)
     }
     
-    func updateGenreName(genreId: Int, name: String){
+    func updateGenreName(genreId: String, name: String){
         let dic = ["name": name, "updatedAt": Date()] as [String : Any?]
         genreDao.update(genreId: genreId, dic: dic)
     }
