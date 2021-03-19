@@ -9,6 +9,7 @@ import UIKit
 import PKHUD
 
 protocol MemoViewDelegate: AnyObject{
+    func setMemo() -> String
     func getMemo(_ memo: String)
 }
 
@@ -60,6 +61,11 @@ class MemoViewController: UIViewController {
         decideButton.addTarget(self, action: #selector(setMemo(_:)), for: .touchDown)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        memoTextView.text = delegate?.setMemo()
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -70,6 +76,7 @@ class MemoViewController: UIViewController {
         HUD.flash(.progress, delay: 0.0)
         delegate?.getMemo(memoTextView.text)
         HUD.hide()
+        memoTextView.text = ""
         self.dismiss(animated: true, completion: nil)
     }
     

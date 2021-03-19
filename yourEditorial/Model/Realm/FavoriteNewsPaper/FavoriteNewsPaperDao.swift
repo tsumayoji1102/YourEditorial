@@ -38,7 +38,7 @@ final class FavoriteNewsPaperDao: Dao {
     }
     
     func delete(favoriteNewsPaperName: String){
-        let favoriteNewsPaper = getFavoriteNewsPapers(filter: NSPredicate(format: "favoriteNewsPaperName = %@", argumentArray: [favoriteNewsPaperName])).first
+        let favoriteNewsPaper = getFavoriteNewsPapers(filter: NSPredicate(format: "newsPaperName = %@", argumentArray: [favoriteNewsPaperName])).first
         try! realm.write {
             realm.delete(favoriteNewsPaper!)
         }

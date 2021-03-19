@@ -33,4 +33,14 @@ class Clip: Object {
         self.updatedAt = dic["updatedAt"] != nil ? dic["updatedAt"] as? Date  : Date()
         self.genreId   = dic["genreId"]   != nil ? dic["genreId"]   as! String: ""
     }
+    
+    func update(_ dic: Dictionary<String, Any?>){
+        self.name      = dic["name"]      != nil ? dic["name"]      as! String: name
+        self.newsPaper = dic["newsPaper"] != nil ? dic["newsPaper"] as! String: newsPaper
+        self.memo      = dic["memo"]      != nil ? dic["memo"]      as! String: memo
+        self.url       = dic["url"]       != nil ? dic["url"]       as! String: url
+        self.createdAt = dic["createdAt"] != nil ? dic["createdAt"] as? Date  : createdAt
+        self.updatedAt = dic["updatedAt"] != nil ? dic["updatedAt"] as? Date  : updatedAt
+        self.genreId   = dic["genreId"]   != nil ? dic["genreId"]   as! String: genreId
+    }
 }

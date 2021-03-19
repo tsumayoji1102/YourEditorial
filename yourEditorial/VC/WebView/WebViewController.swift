@@ -256,6 +256,10 @@ extension WebViewController: MemoViewDelegate{
         Log.getLogWithMessage(message: "memo: \(memo)")
         viewModel.updateMemo(clipId: clip.clipId, memo: memo)
     }
+    
+    func setMemo() -> String {
+        return clip.memo
+    }
 }
 
 

@@ -41,7 +41,7 @@ final class ClipDao: Dao {
     func update(clipId: String, dic: Dictionary<String, Any?>){
         let clip = getClips(filter: NSPredicate(format: "clipId = %@", argumentArray: [clipId])).first
         try! realm.write {
-            clip?.fromDic(dic)
+            clip?.update(dic)
         }
     }
     
