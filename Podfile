@@ -7,6 +7,8 @@ target 'yourEditorial' do
 
   # Pods for yourEditorial
   pod 'TPKeyboardAvoiding'
+  pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
   pod 'Google-Mobile-Ads-SDK'

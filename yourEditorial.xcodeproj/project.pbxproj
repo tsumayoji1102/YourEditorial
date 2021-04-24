@@ -45,6 +45,9 @@
 		E77C5E56254861AC00F65677 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E55254861AC00F65677 /* WebViewModel.swift */; };
 		E77C5E59254862F900F65677 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E58254862F900F65677 /* Genre.swift */; };
 		E77C5E5C2548657F00F65677 /* GenreDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E5B2548657F00F65677 /* GenreDao.swift */; };
+		E78EF7652633BC2A0095945E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78EF7642633BC2A0095945E /* LoginViewController.swift */; };
+		E78EF76D2633BD260095945E /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E78EF76C2633BD260095945E /* LoginView.storyboard */; };
+		E78EF7732633C58D0095945E /* FirebaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78EF7722633C58D0095945E /* FirebaseAuth.swift */; };
 		E79492D5257E7138006D79B9 /* SettingView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E79492D4257E7138006D79B9 /* SettingView.storyboard */; };
 		E79492D7257E7205006D79B9 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79492D6257E7205006D79B9 /* SettingViewController.swift */; };
 		E79492D9257E7962006D79B9 /* GenreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79492D8257E7962006D79B9 /* GenreViewController.swift */; };
@@ -132,6 +135,9 @@
 		E77C5E55254861AC00F65677 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		E77C5E58254862F900F65677 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		E77C5E5B2548657F00F65677 /* GenreDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreDao.swift; sourceTree = "<group>"; };
+		E78EF7642633BC2A0095945E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E78EF76C2633BD260095945E /* LoginView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginView.storyboard; sourceTree = "<group>"; };
+		E78EF7722633C58D0095945E /* FirebaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuth.swift; sourceTree = "<group>"; };
 		E79492D4257E7138006D79B9 /* SettingView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingView.storyboard; sourceTree = "<group>"; };
 		E79492D6257E7205006D79B9 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		E79492D8257E7962006D79B9 /* GenreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreViewController.swift; sourceTree = "<group>"; };
@@ -270,6 +276,7 @@
 		E719F0F7253DDAFB00E54D1E /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				E78EF7602633BC050095945E /* LoginView */,
 				E7FDA3CA257D0F5E00DDBDD5 /* SettingView */,
 				E72E54EF254E6A7500402151 /* SelectView */,
 				E77C5E5E2548670B00F65677 /* WebView */,
@@ -314,6 +321,7 @@
 		E758B9E92545C4A800EED590 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E78EF7712633C4230095945E /* Firebase */,
 				E77C5E522548533000F65677 /* NSObject */,
 				E758B9EA2545C4BE00EED590 /* Realm */,
 			);
@@ -404,6 +412,23 @@
 			path = WebView;
 			sourceTree = "<group>";
 		};
+		E78EF7602633BC050095945E /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				E78EF7642633BC2A0095945E /* LoginViewController.swift */,
+				E78EF76C2633BD260095945E /* LoginView.storyboard */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+		E78EF7712633C4230095945E /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				E78EF7722633C58D0095945E /* FirebaseAuth.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		E7EC457125559C9F0015BB09 /* ClipingViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,12 +475,12 @@
 			buildConfigurationList = E719F0D2253DC11300E54D1E /* Build configuration list for PBXNativeTarget "yourEditorial" */;
 			buildPhases = (
 				6F9E4E9700FD2B20D6C363B0 /* [CP] Check Pods Manifest.lock */,
-				6B6637CBBD9E3C00B36FDECF /* [CP] Prepare Artifacts */,
 				E719F0A1253DC11300E54D1E /* Sources */,
 				E719F0A2253DC11300E54D1E /* Frameworks */,
 				E719F0A3253DC11300E54D1E /* Resources */,
 				85CE8A680DC32A051EE1B48D /* [CP] Embed Pods Frameworks */,
 				E7F901822589078B00E314DB /* CrashLytics */,
+				66F5B519E78FE0502D1E705D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -490,11 +515,11 @@
 			buildConfigurationList = E719F0D8253DC11300E54D1E /* Build configuration list for PBXNativeTarget "yourEditorialUITests" */;
 			buildPhases = (
 				E6A6AC14CAC10538873C1D1C /* [CP] Check Pods Manifest.lock */,
-				14AEFD2E589D4C06E228493C /* [CP] Prepare Artifacts */,
 				E719F0C5253DC11300E54D1E /* Sources */,
 				E719F0C6253DC11300E54D1E /* Frameworks */,
 				E719F0C7253DC11300E54D1E /* Resources */,
 				8AC8523182AD96C2EE3952AE /* [CP] Embed Pods Frameworks */,
+				1BDB89F9432921DAAAEEEEAF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -560,6 +585,7 @@
 				E719F0B5253DC11300E54D1E /* Assets.xcassets in Resources */,
 				E7FDA3A1257A580A00DDBDD5 /* carthageConfig.xcconfig in Resources */,
 				E79492D5257E7138006D79B9 /* SettingView.storyboard in Resources */,
+				E78EF76D2633BD260095945E /* LoginView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,21 +606,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		14AEFD2E589D4C06E228493C /* [CP] Prepare Artifacts */ = {
+		1BDB89F9432921DAAAEEEEAF /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yourEditorial-yourEditorialUITests/Pods-yourEditorial-yourEditorialUITests-artifacts-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-yourEditorial-yourEditorialUITests/Pods-yourEditorial-yourEditorialUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Prepare Artifacts";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yourEditorial-yourEditorialUITests/Pods-yourEditorial-yourEditorialUITests-artifacts-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-yourEditorial-yourEditorialUITests/Pods-yourEditorial-yourEditorialUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yourEditorial-yourEditorialUITests/Pods-yourEditorial-yourEditorialUITests-artifacts.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yourEditorial-yourEditorialUITests/Pods-yourEditorial-yourEditorialUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		523C28031B6CB42FA42060EE /* [CP] Check Pods Manifest.lock */ = {
@@ -619,21 +645,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6B6637CBBD9E3C00B36FDECF /* [CP] Prepare Artifacts */ = {
+		66F5B519E78FE0502D1E705D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yourEditorial/Pods-yourEditorial-artifacts-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-yourEditorial/Pods-yourEditorial-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Prepare Artifacts";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yourEditorial/Pods-yourEditorial-artifacts-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-yourEditorial/Pods-yourEditorial-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yourEditorial/Pods-yourEditorial-artifacts.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yourEditorial/Pods-yourEditorial-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6F9E4E9700FD2B20D6C363B0 /* [CP] Check Pods Manifest.lock */ = {
@@ -739,6 +765,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E78EF7652633BC2A0095945E /* LoginViewController.swift in Sources */,
 				E799F4592560C03200316434 /* ClipingViewModel.swift in Sources */,
 				E72E54F1254E6A9800402151 /* SelectViewController.swift in Sources */,
 				E719F0A9253DC11300E54D1E /* AppDelegate.swift in Sources */,
@@ -747,6 +774,7 @@
 				E79492D7257E7205006D79B9 /* SettingViewController.swift in Sources */,
 				E7FDA3CC257D0F7A00DDBDD5 /* SettingNavigationController.swift in Sources */,
 				E758B9F32545D5B100EED590 /* Log.swift in Sources */,
+				E78EF7732633C58D0095945E /* FirebaseAuth.swift in Sources */,
 				E77C5E56254861AC00F65677 /* WebViewModel.swift in Sources */,
 				E77C5E5C2548657F00F65677 /* GenreDao.swift in Sources */,
 				E72E54FA254EEF1C00402151 /* FavoriteNewsPaperDao.swift in Sources */,
@@ -951,7 +979,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = HUDNR7MJW2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -978,7 +1006,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = HUDNR7MJW2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
