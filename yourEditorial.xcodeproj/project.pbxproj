@@ -46,7 +46,6 @@
 		E77C5E59254862F900F65677 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E58254862F900F65677 /* Genre.swift */; };
 		E77C5E5C2548657F00F65677 /* GenreDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E5B2548657F00F65677 /* GenreDao.swift */; };
 		E78EF7652633BC2A0095945E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78EF7642633BC2A0095945E /* LoginViewController.swift */; };
-		E78EF76D2633BD260095945E /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E78EF76C2633BD260095945E /* LoginView.storyboard */; };
 		E78EF7732633C58D0095945E /* FirebaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78EF7722633C58D0095945E /* FirebaseAuth.swift */; };
 		E79492D5257E7138006D79B9 /* SettingView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E79492D4257E7138006D79B9 /* SettingView.storyboard */; };
 		E79492D7257E7205006D79B9 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79492D6257E7205006D79B9 /* SettingViewController.swift */; };
@@ -136,7 +135,6 @@
 		E77C5E58254862F900F65677 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		E77C5E5B2548657F00F65677 /* GenreDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreDao.swift; sourceTree = "<group>"; };
 		E78EF7642633BC2A0095945E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		E78EF76C2633BD260095945E /* LoginView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginView.storyboard; sourceTree = "<group>"; };
 		E78EF7722633C58D0095945E /* FirebaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuth.swift; sourceTree = "<group>"; };
 		E79492D4257E7138006D79B9 /* SettingView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingView.storyboard; sourceTree = "<group>"; };
 		E79492D6257E7205006D79B9 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -416,7 +414,6 @@
 			isa = PBXGroup;
 			children = (
 				E78EF7642633BC2A0095945E /* LoginViewController.swift */,
-				E78EF76C2633BD260095945E /* LoginView.storyboard */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -585,7 +582,6 @@
 				E719F0B5253DC11300E54D1E /* Assets.xcassets in Resources */,
 				E7FDA3A1257A580A00DDBDD5 /* carthageConfig.xcconfig in Resources */,
 				E79492D5257E7138006D79B9 /* SettingView.storyboard in Resources */,
-				E78EF76D2633BD260095945E /* LoginView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
