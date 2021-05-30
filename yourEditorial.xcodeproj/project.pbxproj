@@ -36,7 +36,6 @@
 		E75FA8CE257387B7001BE0F6 /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75FA8CD257387B7001BE0F6 /* HomeNavigationController.swift */; };
 		E761EEAD256A8C7D0059D1AA /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E761EEAC256A8C7D0059D1AA /* nanopb.framework */; };
 		E761EEB1256A8CF30059D1AA /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E761EEB0256A8CF30059D1AA /* FirebaseCore.framework */; };
-		E761EEB7256A92F00059D1AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E761EEB6256A92F00059D1AA /* GoogleService-Info.plist */; };
 		E774F6F425CFF88100C3E9A7 /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774F6F325CFF88100C3E9A7 /* MemoViewController.swift */; };
 		E77C5E472546AAC700F65677 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E462546AAC700F65677 /* extension.swift */; };
 		E77C5E4C25470E4000F65677 /* ClipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C5E4B25470E4000F65677 /* ClipsViewController.swift */; };
@@ -53,6 +52,7 @@
 		E79492DB257FD70E006D79B9 /* GenreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79492DA257FD70E006D79B9 /* GenreViewModel.swift */; };
 		E799F4592560C03200316434 /* ClipingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E799F4582560C03200316434 /* ClipingViewModel.swift */; };
 		E79E89A6253DE53400A14E75 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E89A5253DE53400A14E75 /* WebViewController.swift */; };
+		E7E0EACD26621CDC00F41B26 /* env in Resources */ = {isa = PBXBuildFile; fileRef = E7E0EACC26621CDB00F41B26 /* env */; };
 		E7E896C92545E41700E3078B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E719F0AE253DC11300E54D1E /* Main.storyboard */; };
 		E7EC457325559CCA0015BB09 /* ClipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EC457225559CCA0015BB09 /* ClipingViewController.swift */; };
 		E7F9017F2583E66700E314DB /* AboutThisAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9017E2583E66700E314DB /* AboutThisAppViewController.swift */; };
@@ -80,18 +80,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		263056DEDBE237381B2B4728 /* Pods-yourEditorial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorial.debug.xcconfig"; path = "Target Support Files/Pods-yourEditorial/Pods-yourEditorial.debug.xcconfig"; sourceTree = "<group>"; };
+		03DF696546AC302A27A624EF /* Pods-yourEditorialTests.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorialTests.release-dev.xcconfig"; path = "Target Support Files/Pods-yourEditorialTests/Pods-yourEditorialTests.release-dev.xcconfig"; sourceTree = "<group>"; };
+		10E6368ACF2B6A09FF195A4B /* Pods-yourEditorial-yourEditorialUITests.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorial-yourEditorialUITests.release-prod.xcconfig"; path = "Target Support Files/Pods-yourEditorial-yourEditorialUITests/Pods-yourEditorial-yourEditorialUITests.release-prod.xcconfig"; sourceTree = "<group>"; };
+		1CEE96E43B7A9DD104A4236F /* Pods-yourEditorial.debug-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorial.debug-dev.xcconfig"; path = "Target Support Files/Pods-yourEditorial/Pods-yourEditorial.debug-dev.xcconfig"; sourceTree = "<group>"; };
 		279814A9CB327E8459A13DB9 /* Pods_yourEditorial_yourEditorialUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yourEditorial_yourEditorialUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		33E2704BE9CAEC970F6D38F2 /* Pods-yourEditorialTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorialTests.release.xcconfig"; path = "Target Support Files/Pods-yourEditorialTests/Pods-yourEditorialTests.release.xcconfig"; sourceTree = "<group>"; };
-		504FACFB9E655032FA47C1F6 /* Pods-yourEditorialTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorialTests.debug.xcconfig"; path = "Target Support Files/Pods-yourEditorialTests/Pods-yourEditorialTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5834FF1AE10478DDF2CFB877 /* Pods-yourEditorial-yourEditorialUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorial-yourEditorialUITests.release.xcconfig"; path = "Target Support Files/Pods-yourEditorial-yourEditorialUITests/Pods-yourEditorial-yourEditorialUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3C3EF1E7C8C1BCB8C1E0D2A1 /* Pods-yourEditorial.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorial.release-dev.xcconfig"; path = "Target Support Files/Pods-yourEditorial/Pods-yourEditorial.release-dev.xcconfig"; sourceTree = "<group>"; };
 		5DB236849B8350268C566596 /* Pods_yourEditorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yourEditorial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		69742A9D19734D9566F100A1 /* Pods-yourEditorial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorial.release.xcconfig"; path = "Target Support Files/Pods-yourEditorial/Pods-yourEditorial.release.xcconfig"; sourceTree = "<group>"; };
-		6E92D24918DD160B965702FD /* Pods-yourEditorial-yourEditorialUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorial-yourEditorialUITests.debug.xcconfig"; path = "Target Support Files/Pods-yourEditorial-yourEditorialUITests/Pods-yourEditorial-yourEditorialUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		70746DB09EAF7BA9C4F26214 /* Pods-yourEditorialTests.debug-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorialTests.debug-prod.xcconfig"; path = "Target Support Files/Pods-yourEditorialTests/Pods-yourEditorialTests.debug-prod.xcconfig"; sourceTree = "<group>"; };
+		7D4DE8BF2C3F0D8A38D3685B /* Pods-yourEditorial.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorial.release-prod.xcconfig"; path = "Target Support Files/Pods-yourEditorial/Pods-yourEditorial.release-prod.xcconfig"; sourceTree = "<group>"; };
+		818DE968682FC97F8DDF5F03 /* Pods-yourEditorialTests.debug-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorialTests.debug-dev.xcconfig"; path = "Target Support Files/Pods-yourEditorialTests/Pods-yourEditorialTests.debug-dev.xcconfig"; sourceTree = "<group>"; };
+		8B0A44B8D9DABA196694C3C6 /* Pods-yourEditorial.debug-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorial.debug-prod.xcconfig"; path = "Target Support Files/Pods-yourEditorial/Pods-yourEditorial.debug-prod.xcconfig"; sourceTree = "<group>"; };
 		AB871D4DBB05C4FE158DBD9E /* Pods_yourEditorialTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yourEditorialTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE27E10DEC72C303A9657743 /* Pods-yourEditorial-yourEditorialUITests.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorial-yourEditorialUITests.release-dev.xcconfig"; path = "Target Support Files/Pods-yourEditorial-yourEditorialUITests/Pods-yourEditorial-yourEditorialUITests.release-dev.xcconfig"; sourceTree = "<group>"; };
+		E1A3283C1D98EF3B9EABB570 /* Pods-yourEditorial-yourEditorialUITests.debug-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorial-yourEditorialUITests.debug-prod.xcconfig"; path = "Target Support Files/Pods-yourEditorial-yourEditorialUITests/Pods-yourEditorial-yourEditorialUITests.debug-prod.xcconfig"; sourceTree = "<group>"; };
 		E70B65782566979A009AED98 /* ClipsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipsViewCell.swift; sourceTree = "<group>"; };
 		E70B657A256698CC009AED98 /* DateFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateFormat.swift; path = ../../../usefulAlarm/usefulAlerm/Useful/DateFormat.swift; sourceTree = "<group>"; };
-		E719F0A5253DC11300E54D1E /* yourEditorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yourEditorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E719F0A5253DC11300E54D1E /* yourEditorial(dev).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "yourEditorial(dev).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E719F0A8253DC11300E54D1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E719F0AA253DC11300E54D1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E719F0AF253DC11300E54D1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -125,7 +129,6 @@
 		E75FA8CD257387B7001BE0F6 /* HomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
 		E761EEAC256A8C7D0059D1AA /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E761EEB0256A8CF30059D1AA /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E761EEB6256A92F00059D1AA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E774F6F325CFF88100C3E9A7 /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		E77C5E462546AAC700F65677 /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 		E77C5E4B25470E4000F65677 /* ClipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipsViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +137,7 @@
 		E77C5E55254861AC00F65677 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		E77C5E58254862F900F65677 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		E77C5E5B2548657F00F65677 /* GenreDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreDao.swift; sourceTree = "<group>"; };
+		E78D0EB5946733DDFCBF8F0A /* Pods-yourEditorialTests.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorialTests.release-prod.xcconfig"; path = "Target Support Files/Pods-yourEditorialTests/Pods-yourEditorialTests.release-prod.xcconfig"; sourceTree = "<group>"; };
 		E78EF7642633BC2A0095945E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E78EF7722633C58D0095945E /* FirebaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuth.swift; sourceTree = "<group>"; };
 		E79492D4257E7138006D79B9 /* SettingView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingView.storyboard; sourceTree = "<group>"; };
@@ -142,12 +146,14 @@
 		E79492DA257FD70E006D79B9 /* GenreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreViewModel.swift; sourceTree = "<group>"; };
 		E799F4582560C03200316434 /* ClipingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipingViewModel.swift; sourceTree = "<group>"; };
 		E79E89A5253DE53400A14E75 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		E7E0EACC26621CDB00F41B26 /* env */ = {isa = PBXFileReference; lastKnownFileType = folder; path = env; sourceTree = "<group>"; };
 		E7EC457225559CCA0015BB09 /* ClipingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipingViewController.swift; sourceTree = "<group>"; };
 		E7F9017E2583E66700E314DB /* AboutThisAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutThisAppViewController.swift; sourceTree = "<group>"; };
 		E7FDA3A0257A580A00DDBDD5 /* carthageConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = carthageConfig.xcconfig; sourceTree = "<group>"; };
 		E7FDA3BF257A64A200DDBDD5 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7FDA3C3257A64AE00DDBDD5 /* PKHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PKHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7FDA3CB257D0F7A00DDBDD5 /* SettingNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNavigationController.swift; sourceTree = "<group>"; };
+		F5795D3C41545A4B0962345D /* Pods-yourEditorial-yourEditorialUITests.debug-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yourEditorial-yourEditorialUITests.debug-dev.xcconfig"; path = "Target Support Files/Pods-yourEditorial-yourEditorialUITests/Pods-yourEditorial-yourEditorialUITests.debug-dev.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,12 +191,18 @@
 		301627A486D278A96DF7479D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				263056DEDBE237381B2B4728 /* Pods-yourEditorial.debug.xcconfig */,
-				69742A9D19734D9566F100A1 /* Pods-yourEditorial.release.xcconfig */,
-				6E92D24918DD160B965702FD /* Pods-yourEditorial-yourEditorialUITests.debug.xcconfig */,
-				5834FF1AE10478DDF2CFB877 /* Pods-yourEditorial-yourEditorialUITests.release.xcconfig */,
-				504FACFB9E655032FA47C1F6 /* Pods-yourEditorialTests.debug.xcconfig */,
-				33E2704BE9CAEC970F6D38F2 /* Pods-yourEditorialTests.release.xcconfig */,
+				1CEE96E43B7A9DD104A4236F /* Pods-yourEditorial.debug-dev.xcconfig */,
+				8B0A44B8D9DABA196694C3C6 /* Pods-yourEditorial.debug-prod.xcconfig */,
+				3C3EF1E7C8C1BCB8C1E0D2A1 /* Pods-yourEditorial.release-dev.xcconfig */,
+				7D4DE8BF2C3F0D8A38D3685B /* Pods-yourEditorial.release-prod.xcconfig */,
+				F5795D3C41545A4B0962345D /* Pods-yourEditorial-yourEditorialUITests.debug-dev.xcconfig */,
+				E1A3283C1D98EF3B9EABB570 /* Pods-yourEditorial-yourEditorialUITests.debug-prod.xcconfig */,
+				CE27E10DEC72C303A9657743 /* Pods-yourEditorial-yourEditorialUITests.release-dev.xcconfig */,
+				10E6368ACF2B6A09FF195A4B /* Pods-yourEditorial-yourEditorialUITests.release-prod.xcconfig */,
+				818DE968682FC97F8DDF5F03 /* Pods-yourEditorialTests.debug-dev.xcconfig */,
+				70746DB09EAF7BA9C4F26214 /* Pods-yourEditorialTests.debug-prod.xcconfig */,
+				03DF696546AC302A27A624EF /* Pods-yourEditorialTests.release-dev.xcconfig */,
+				E78D0EB5946733DDFCBF8F0A /* Pods-yourEditorialTests.release-prod.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -216,7 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				E7FDA3A0257A580A00DDBDD5 /* carthageConfig.xcconfig */,
-				E761EEB6256A92F00059D1AA /* GoogleService-Info.plist */,
+				E7E0EACC26621CDB00F41B26 /* env */,
 				E719F0A7253DC11300E54D1E /* yourEditorial */,
 				E719F0C1253DC11300E54D1E /* yourEditorialTests */,
 				E719F0CC253DC11300E54D1E /* yourEditorialUITests */,
@@ -229,7 +241,7 @@
 		E719F0A6253DC11300E54D1E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E719F0A5253DC11300E54D1E /* yourEditorial.app */,
+				E719F0A5253DC11300E54D1E /* yourEditorial(dev).app */,
 				E719F0BE253DC11300E54D1E /* yourEditorialTests.xctest */,
 				E719F0C9253DC11300E54D1E /* yourEditorialUITests.xctest */,
 			);
@@ -478,6 +490,7 @@
 				85CE8A680DC32A051EE1B48D /* [CP] Embed Pods Frameworks */,
 				E7F901822589078B00E314DB /* CrashLytics */,
 				66F5B519E78FE0502D1E705D /* [CP] Copy Pods Resources */,
+				E7E0EB1B26622EAC00F41B26 /* firebase env */,
 			);
 			buildRules = (
 			);
@@ -485,7 +498,7 @@
 			);
 			name = yourEditorial;
 			productName = yourEditorial;
-			productReference = E719F0A5253DC11300E54D1E /* yourEditorial.app */;
+			productReference = E719F0A5253DC11300E54D1E /* yourEditorial(dev).app */;
 			productType = "com.apple.product-type.application";
 		};
 		E719F0BD253DC11300E54D1E /* yourEditorialTests */ = {
@@ -576,9 +589,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7E896C92545E41700E3078B /* Main.storyboard in Resources */,
-				E761EEB7256A92F00059D1AA /* GoogleService-Info.plist in Resources */,
 				E719F0B8253DC11300E54D1E /* LaunchScreen.storyboard in Resources */,
 				E72B5D5C2578E09800E5084A /* SelectViewStoryBoard.storyboard in Resources */,
+				E7E0EACD26621CDC00F41B26 /* env in Resources */,
 				E719F0B5253DC11300E54D1E /* Assets.xcassets in Resources */,
 				E7FDA3A1257A580A00DDBDD5 /* carthageConfig.xcconfig in Resources */,
 				E79492D5257E7138006D79B9 /* SettingView.storyboard in Resources */,
@@ -736,6 +749,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E7E0EB1B26622EAC00F41B26 /* firebase env */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "firebase env";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n\necho \"★★★\"\necho \"-----${CONFIGURATION}-----\"\necho \"-----${SRCROOT}-----\"\necho \"-----${BUILT_PRODUCTS_DIR}-----\"\necho \"-----${PRODUCT_NAME}-----\"\n\nif [ \"${CONFIGURATION}\" = \"Debug-dev\" ]  ; then\n  cp \"$SRCROOT/env/dev/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n  echo \"Development GoogleService-Info copied.\"\n  \nelif [ \"${CONFIGURATION}\" = \"Release-dev\" ] ; then\n  cp \"$SRCROOT/env/dev/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n  \nelif [ \"${CONFIGURATION}\" = \"Debug-prod\" ] ; then\n  cp \"$SRCROOT/env/prod/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n  \nelif [ \"${CONFIGURATION}\" = \"Release-prod\" ] ; then\n  cp \"$SRCROOT/env/prod/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\nfi\n";
+		};
 		E7F901822589078B00E314DB /* CrashLytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -752,7 +783,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\nif [ \"${CONFIGURATION}\" = \"Debug-dev\" && \"${CONFIGURATION}\" = \"Release-dev\" ]; then\n${PODS_ROOT}/FirebaseCrashlytics/run -gsp ${PROJECT_DIR}/env/dev/GoogleService-Info.plist\nelif [ \"${CONFIGURATION}\" = \"Release-prod\" && \"${CONFIGURATION}\" = \"Release-prod\" ]; then\n${PODS_ROOT}/FirebaseCrashlytics/run -gsp ${PROJECT_DIR}/env/prod/GoogleService-Info.plist\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -852,8 +883,9 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E719F0D0253DC11300E54D1E /* Debug */ = {
+		E719F0D0253DC11300E54D1E /* Debug-dev */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CEE96E43B7A9DD104A4236F /* Pods-yourEditorial.debug-dev.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -911,10 +943,11 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
-			name = Debug;
+			name = "Debug-dev";
 		};
-		E719F0D1253DC11300E54D1E /* Release */ = {
+		E719F0D1253DC11300E54D1E /* Release-dev */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C3EF1E7C8C1BCB8C1E0D2A1 /* Pods-yourEditorial.release-dev.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -961,16 +994,219 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = "Release-dev";
 		};
-		E719F0D3253DC11300E54D1E /* Debug */ = {
+		E719F0D3253DC11300E54D1E /* Debug-dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 263056DEDBE237381B2B4728 /* Pods-yourEditorial.debug.xcconfig */;
+			baseConfigurationReference = 1CEE96E43B7A9DD104A4236F /* Pods-yourEditorial.debug-dev.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = HUDNR7MJW2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = yourEditorial/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tsumayoji-project.your-editorial-dev";
+				PRODUCT_NAME = "$(TARGET_NAME)(dev)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-dev";
+		};
+		E719F0D4253DC11300E54D1E /* Release-dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C3EF1E7C8C1BCB8C1E0D2A1 /* Pods-yourEditorial.release-dev.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = HUDNR7MJW2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = yourEditorial/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tsumayoji-project.your-editorial-dev";
+				PRODUCT_NAME = "$(TARGET_NAME)(dev)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-dev";
+		};
+		E719F0D6253DC11300E54D1E /* Debug-dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 818DE968682FC97F8DDF5F03 /* Pods-yourEditorialTests.debug-dev.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HUDNR7MJW2;
+				INFOPLIST_FILE = yourEditorialTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "tsumayoji-project.yourEditorialTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yourEditorial.app/yourEditorial";
+			};
+			name = "Debug-dev";
+		};
+		E719F0D7253DC11300E54D1E /* Release-dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03DF696546AC302A27A624EF /* Pods-yourEditorialTests.release-dev.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HUDNR7MJW2;
+				INFOPLIST_FILE = yourEditorialTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "tsumayoji-project.yourEditorialTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yourEditorial.app/yourEditorial";
+			};
+			name = "Release-dev";
+		};
+		E719F0D9253DC11300E54D1E /* Debug-dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5795D3C41545A4B0962345D /* Pods-yourEditorial-yourEditorialUITests.debug-dev.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HUDNR7MJW2;
+				INFOPLIST_FILE = yourEditorialUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "tsumayoji-project.yourEditorialUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = yourEditorial;
+			};
+			name = "Debug-dev";
+		};
+		E719F0DA253DC11300E54D1E /* Release-dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE27E10DEC72C303A9657743 /* Pods-yourEditorial-yourEditorialUITests.release-dev.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HUDNR7MJW2;
+				INFOPLIST_FILE = yourEditorialUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "tsumayoji-project.yourEditorialUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = yourEditorial;
+			};
+			name = "Release-dev";
+		};
+		E7E0EB1326622DFE00F41B26 /* Release-prod */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E78D0EB5946733DDFCBF8F0A /* Pods-yourEditorialTests.release-prod.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-prod";
+		};
+		E7E0EB1426622DFE00F41B26 /* Release-prod */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D4DE8BF2C3F0D8A38D3685B /* Pods-yourEditorial.release-prod.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -993,11 +1229,118 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Debug;
+			name = "Release-prod";
 		};
-		E719F0D4253DC11300E54D1E /* Release */ = {
+		E7E0EB1526622DFE00F41B26 /* Release-prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69742A9D19734D9566F100A1 /* Pods-yourEditorial.release.xcconfig */;
+			baseConfigurationReference = E78D0EB5946733DDFCBF8F0A /* Pods-yourEditorialTests.release-prod.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HUDNR7MJW2;
+				INFOPLIST_FILE = yourEditorialTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "tsumayoji-project.yourEditorialTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yourEditorial.app/yourEditorial";
+			};
+			name = "Release-prod";
+		};
+		E7E0EB1626622DFE00F41B26 /* Release-prod */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10E6368ACF2B6A09FF195A4B /* Pods-yourEditorial-yourEditorialUITests.release-prod.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HUDNR7MJW2;
+				INFOPLIST_FILE = yourEditorialUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "tsumayoji-project.yourEditorialUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = yourEditorial;
+			};
+			name = "Release-prod";
+		};
+		E7E0EB1726622E1500F41B26 /* Debug-prod */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B0A44B8D9DABA196694C3C6 /* Pods-yourEditorial.debug-prod.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = "Debug-prod";
+		};
+		E7E0EB1826622E1500F41B26 /* Debug-prod */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B0A44B8D9DABA196694C3C6 /* Pods-yourEditorial.debug-prod.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1015,16 +1358,17 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tsumayoji-project.your-editorial";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Release;
+			name = "Debug-prod";
 		};
-		E719F0D6253DC11300E54D1E /* Debug */ = {
+		E7E0EB1926622E1500F41B26 /* Debug-prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 504FACFB9E655032FA47C1F6 /* Pods-yourEditorialTests.debug.xcconfig */;
+			baseConfigurationReference = 70746DB09EAF7BA9C4F26214 /* Pods-yourEditorialTests.debug-prod.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1043,34 +1387,11 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yourEditorial.app/yourEditorial";
 			};
-			name = Debug;
+			name = "Debug-prod";
 		};
-		E719F0D7253DC11300E54D1E /* Release */ = {
+		E7E0EB1A26622E1500F41B26 /* Debug-prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 33E2704BE9CAEC970F6D38F2 /* Pods-yourEditorialTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HUDNR7MJW2;
-				INFOPLIST_FILE = yourEditorialTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "tsumayoji-project.yourEditorialTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yourEditorial.app/yourEditorial";
-			};
-			name = Release;
-		};
-		E719F0D9253DC11300E54D1E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E92D24918DD160B965702FD /* Pods-yourEditorial-yourEditorialUITests.debug.xcconfig */;
+			baseConfigurationReference = E1A3283C1D98EF3B9EABB570 /* Pods-yourEditorial-yourEditorialUITests.debug-prod.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1088,29 +1409,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = yourEditorial;
 			};
-			name = Debug;
-		};
-		E719F0DA253DC11300E54D1E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5834FF1AE10478DDF2CFB877 /* Pods-yourEditorial-yourEditorialUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HUDNR7MJW2;
-				INFOPLIST_FILE = yourEditorialUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "tsumayoji-project.yourEditorialUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = yourEditorial;
-			};
-			name = Release;
+			name = "Debug-prod";
 		};
 /* End XCBuildConfiguration section */
 
@@ -1118,38 +1417,46 @@
 		E719F0A0253DC11300E54D1E /* Build configuration list for PBXProject "yourEditorial" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E719F0D0253DC11300E54D1E /* Debug */,
-				E719F0D1253DC11300E54D1E /* Release */,
+				E719F0D0253DC11300E54D1E /* Debug-dev */,
+				E7E0EB1726622E1500F41B26 /* Debug-prod */,
+				E719F0D1253DC11300E54D1E /* Release-dev */,
+				E7E0EB1326622DFE00F41B26 /* Release-prod */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = "Debug-dev";
 		};
 		E719F0D2253DC11300E54D1E /* Build configuration list for PBXNativeTarget "yourEditorial" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E719F0D3253DC11300E54D1E /* Debug */,
-				E719F0D4253DC11300E54D1E /* Release */,
+				E719F0D3253DC11300E54D1E /* Debug-dev */,
+				E7E0EB1826622E1500F41B26 /* Debug-prod */,
+				E719F0D4253DC11300E54D1E /* Release-dev */,
+				E7E0EB1426622DFE00F41B26 /* Release-prod */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = "Debug-dev";
 		};
 		E719F0D5253DC11300E54D1E /* Build configuration list for PBXNativeTarget "yourEditorialTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E719F0D6253DC11300E54D1E /* Debug */,
-				E719F0D7253DC11300E54D1E /* Release */,
+				E719F0D6253DC11300E54D1E /* Debug-dev */,
+				E7E0EB1926622E1500F41B26 /* Debug-prod */,
+				E719F0D7253DC11300E54D1E /* Release-dev */,
+				E7E0EB1526622DFE00F41B26 /* Release-prod */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = "Debug-dev";
 		};
 		E719F0D8253DC11300E54D1E /* Build configuration list for PBXNativeTarget "yourEditorialUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E719F0D9253DC11300E54D1E /* Debug */,
-				E719F0DA253DC11300E54D1E /* Release */,
+				E719F0D9253DC11300E54D1E /* Debug-dev */,
+				E7E0EB1A26622E1500F41B26 /* Debug-prod */,
+				E719F0DA253DC11300E54D1E /* Release-dev */,
+				E7E0EB1626622DFE00F41B26 /* Release-prod */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = "Debug-dev";
 		};
 /* End XCConfigurationList section */
 

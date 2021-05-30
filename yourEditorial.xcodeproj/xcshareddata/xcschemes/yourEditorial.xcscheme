@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E719F0A4253DC11300E54D1E"
-               BuildableName = "yourEditorial.app"
+               BuildableName = "yourEditorial(dev).app"
                BlueprintName = "yourEditorial"
                ReferencedContainer = "container:yourEditorial.xcodeproj">
             </BuildableReference>
@@ -23,7 +23,7 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Debug-prod"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -51,7 +51,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Debug-prod"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -65,14 +65,14 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E719F0A4253DC11300E54D1E"
-            BuildableName = "yourEditorial.app"
+            BuildableName = "yourEditorial(dev).app"
             BlueprintName = "yourEditorial"
             ReferencedContainer = "container:yourEditorial.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug-prod"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -82,17 +82,17 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E719F0A4253DC11300E54D1E"
-            BuildableName = "yourEditorial.app"
+            BuildableName = "yourEditorial(dev).app"
             BlueprintName = "yourEditorial"
             ReferencedContainer = "container:yourEditorial.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Debug">
+      buildConfiguration = "Debug-prod">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Debug-prod"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

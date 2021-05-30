@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
         loginView.allowsSelection = false
         
         let labelDefaultFont = UIFont.boldSystemFont(ofSize: 14)
-        let textFieldDefaultFont = UIFont.systemFont(ofSize: 20)
+        let textFieldDefaultFont = UIFont.systemFont(ofSize: 16)
         
         loginIdField = UITextField()
         loginIdField.font = textFieldDefaultFont

@@ -1889,7 +1889,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Google-Mobile-Ads-SDK
 
-Copyright 2020 Google
+Copyright 2021 Google
 
 ## GoogleAppMeasurement
 
@@ -2107,7 +2107,7 @@ Copyright 2019 Google
 
 ## GoogleUserMessagingPlatform
 
-Copyright 2020 Google
+Copyright 2021 Google
 
 ## GoogleUtilities
 

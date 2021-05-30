@@ -51,9 +51,9 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/UserDefaults (~> 7.0)
     - PromisesObjC (~> 1.2)
-  - Google-Mobile-Ads-SDK (7.67.1):
-    - GoogleAppMeasurement (~> 7.0)
-    - GoogleUserMessagingPlatform (~> 1.1)
+  - Google-Mobile-Ads-SDK (8.5.0):
+    - GoogleAppMeasurement (< 9.0, >= 7.0)
+    - GoogleUserMessagingPlatform (>= 1.1)
   - GoogleAppMeasurement (7.0.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
     - GoogleUtilities/MethodSwizzler (~> 7.0)
@@ -66,7 +66,7 @@ PODS:
     - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleUserMessagingPlatform (1.3.0)
+  - GoogleUserMessagingPlatform (2.0.0)
   - GoogleUtilities/AppDelegateSwizzler (7.0.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -148,11 +148,11 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 5f4aa04fdb04923693cc704c7ef9158bdf41a48b
   FirebaseCrashlytics: bd430b7323e8b49492a93e563e81899d0615f917
   FirebaseInstallations: c28d4bcbb5c6884d1a39afbc0bd7fc590e31e9b7
-  Google-Mobile-Ads-SDK: 4c11bba9a823ed16c42f14d42feebc7678fbfd6a
+  Google-Mobile-Ads-SDK: 6f5c41bf73db1656e5b203ba9c31e3d0899a128d
   GoogleAppMeasurement: 7790ef975d1d463c8614cd949a847e612edf087a
   GoogleDataTransport: 6ce8004a961db1b905740d7be106c61ba7e89c21
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
-  GoogleUserMessagingPlatform: 1d4b6946710d18cec34742054092e2c2bddae61f
+  GoogleUserMessagingPlatform: ab890ce5f6620f293a21b6bdd82e416a2c73aeca
   GoogleUtilities: ffb2f4159f2c897c6e8992bd7fbcdef8a300589c
   GTMAppAuth: 5b53231ef6920f149ab84b2969cb0ab572da3077
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
@@ -163,6 +163,6 @@ SPEC CHECKSUMS:
   RealmSwift: 1302b0ab60f3105a2b214a735eeb0938607cf16b
   TPKeyboardAvoiding: d55b3ea7b362540af8fcf36aa3ed2e87bf210cc6
 
-PODFILE CHECKSUM: d88b1f6702c5edad1a60af2888b129c1041908af
+PODFILE CHECKSUM: 12bd5bc341b2d7e0907e0cfe142f649211e07214
 
 COCOAPODS: 1.10.1
