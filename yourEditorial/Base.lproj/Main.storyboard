@@ -28,7 +28,7 @@
         <!--homeVC-->
         <scene sceneID="rPv-Hx-17O">
             <objects>
-                <viewController storyboardIdentifier="homeVC" title="homeVC" id="wkH-V7-Paf" customClass="HomeViewController" customModule="yourEditorial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="homeVC" storyboardIdentifier="homeVC" title="homeVC" id="wkH-V7-Paf" customClass="HomeViewController" customModule="yourEditorial" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XHi-lQ-ali">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

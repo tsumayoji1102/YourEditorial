@@ -30,6 +30,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.isHidden = true
+        
         self.view.backgroundColor = UIColor.systemGroupedBackground
         
         loginView.delegate = self
@@ -70,6 +72,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc func tapLoginButton(_ :UIButton){
+        self.navigationController?.navigationBar.isHidden = false
         let homeVC = self.storyboard?.instantiateViewController(identifier: "homeVC") as! HomeViewController
         self.show(homeVC, sender: nil)
     }
