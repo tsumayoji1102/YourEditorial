@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WPR-ye-c1V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NXI-pI-ubn">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -18,17 +18,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="wkH-V7-Paf" kind="relationship" relationship="rootViewController" id="Xpc-Jr-mKg"/>
+                        <segue destination="WPR-ye-c1V" kind="relationship" relationship="rootViewController" id="OwH-WX-EKW"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k1z-Om-wpr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-665" y="-431"/>
+            <point key="canvasLocation" x="-1881" y="-384"/>
         </scene>
-        <!--Home View Controller-->
+        <!--homeVC-->
         <scene sceneID="rPv-Hx-17O">
             <objects>
-                <viewController id="wkH-V7-Paf" customClass="HomeViewController" customModule="yourEditorial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeVC" title="homeVC" id="wkH-V7-Paf" customClass="HomeViewController" customModule="yourEditorial" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XHi-lQ-ali">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -59,7 +59,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D1A-pt-HJw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="179.71014492753625" y="-431.25"/>
+            <point key="canvasLocation" x="-32" y="-455"/>
         </scene>
         <!--News Paper Editorials View Controller-->
         <scene sceneID="tO1-to-RJa">
@@ -326,7 +326,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sZB-ji-D2c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1391" y="-431"/>
+            <point key="canvasLocation" x="-1028" y="-431"/>
         </scene>
     </scenes>
     <resources>

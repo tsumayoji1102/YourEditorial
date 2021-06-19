@@ -70,8 +70,8 @@ class LoginViewController: UIViewController {
     }
     
     @objc func tapLoginButton(_ :UIButton){
-        let mainNaviVC = self.storyboard?.instantiateViewController(identifier: "HomeNaviVC") as! HomeNavigationController
-        self.present(mainNaviVC, animated: true, completion: nil)
+        let homeVC = self.storyboard?.instantiateViewController(identifier: "homeVC") as! HomeViewController
+        self.show(homeVC, sender: nil)
     }
 }
 
