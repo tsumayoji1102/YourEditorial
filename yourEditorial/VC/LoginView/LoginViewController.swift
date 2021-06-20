@@ -13,9 +13,9 @@ class LoginViewController: UIViewController {
         case IdField = 0
         case passwordField
         case decide
+        case createAccount
         case google
         case twitter
-        case facebook
         case tagCount
     }
 
@@ -26,6 +26,7 @@ class LoginViewController: UIViewController {
     private var loginPasswordLabel:  UILabel!
     private var loginPasswordField:  UITextField!
     private var loginButton:         UIButton!
+    private var createAccountButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +63,11 @@ class LoginViewController: UIViewController {
         loginButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         loginButton.addTarget(self, action: #selector(tapLoginButton(_:)), for: .allTouchEvents)
         
+        createAccountButton = UIButton()
+        createAccountButton.setTitle("アカウント作成はこちら", for: .normal)
+        createAccountButton.setTitleColor(.systemBlue, for: .normal)
+        createAccountButton.titleLabel?.font = labelDefaultFont
+        createAccountButton.addTarget(self, action: #selector(tapCreateAccountButton(_:)), for: .allTouchEvents)
     }
     
     override func viewWillLayoutSubviews() {
@@ -75,6 +81,12 @@ class LoginViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
         let homeVC = self.storyboard?.instantiateViewController(identifier: "homeVC") as! HomeViewController
         self.show(homeVC, sender: nil)
+    }
+    
+    @objc func tapCreateAccountButton(_ :UIButton){
+        let createAccountVC = self.storyboard?.instantiateViewController(identifier: "createAccountVC") as! CreateAccountViewController
+        self.present(createAccountVC, animated: true, completion: nil)
+        
     }
 }
 
@@ -109,11 +121,13 @@ extension LoginViewController: UITableViewDelegate, UITableViewDataSource {
             loginButton.frame = CGRect(x: 50, y: 10, width: cellWidth - 50 * 2, height: 50)
             cell.contentView.addSubview(loginButton)
             break
+        case LoginViewTag.createAccount.rawValue:
+            createAccountButton.frame = CGRect(x: 50, y: 10, width: cellWidth - 50 * 2, height: 30)
+            cell.contentView.addSubview(createAccountButton)
+            break
         case LoginViewTag.google.rawValue:
             break
         case LoginViewTag.twitter.rawValue:
-            break
-        case LoginViewTag.facebook.rawValue:
             break
         default:
             break
@@ -130,11 +144,11 @@ extension LoginViewController: UITableViewDelegate, UITableViewDataSource {
             return 90
         case LoginViewTag.decide.rawValue:
             return 70
+        case LoginViewTag.createAccount.rawValue:
+            return 50
         case LoginViewTag.google.rawValue:
             return 80
         case LoginViewTag.twitter.rawValue:
-            return 80
-        case LoginViewTag.facebook.rawValue:
             return 80
         default:
             return 0

@@ -99,6 +99,8 @@
 		E79492D7257E7205006D79B9 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79492D6257E7205006D79B9 /* SettingViewController.swift */; };
 		E79492D9257E7962006D79B9 /* GenreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79492D8257E7962006D79B9 /* GenreViewController.swift */; };
 		E79492DB257FD70E006D79B9 /* GenreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79492DA257FD70E006D79B9 /* GenreViewModel.swift */; };
+		E7986B21267F1089002DFF41 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7986B20267F1089002DFF41 /* CreateAccountViewController.swift */; };
+		E7986B80267F1C1B002DFF41 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7986B20267F1089002DFF41 /* CreateAccountViewController.swift */; };
 		E799F4592560C03200316434 /* ClipingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E799F4582560C03200316434 /* ClipingViewModel.swift */; };
 		E79E89A6253DE53400A14E75 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79E89A5253DE53400A14E75 /* WebViewController.swift */; };
 		E7E0EACD26621CDC00F41B26 /* env in Resources */ = {isa = PBXBuildFile; fileRef = E7E0EACC26621CDB00F41B26 /* env */; };
@@ -176,7 +178,6 @@
 		E758B9F02545C7AB00EED590 /* DaoFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaoFactory.swift; sourceTree = "<group>"; };
 		E758B9F22545D5B100EED590 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		E75F4509267E16BB00878840 /* yourEditorial(dev).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "yourEditorial(dev).app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E75F458A267E1C2600878840 /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectViewController.swift; path = yourEditorial/VC/SelectView/SelectViewController.swift; sourceTree = "<group>"; };
 		E75FA8CD257387B7001BE0F6 /* HomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
 		E761EEAC256A8C7D0059D1AA /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E761EEB0256A8CF30059D1AA /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +196,7 @@
 		E79492D6257E7205006D79B9 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		E79492D8257E7962006D79B9 /* GenreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreViewController.swift; sourceTree = "<group>"; };
 		E79492DA257FD70E006D79B9 /* GenreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreViewModel.swift; sourceTree = "<group>"; };
+		E7986B20267F1089002DFF41 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		E799F4582560C03200316434 /* ClipingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipingViewModel.swift; sourceTree = "<group>"; };
 		E79E89A5253DE53400A14E75 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		E7E0EACC26621CDB00F41B26 /* env */ = {isa = PBXFileReference; lastKnownFileType = folder; path = env; sourceTree = "<group>"; };
@@ -290,7 +292,6 @@
 		E719F09C253DC11300E54D1E = {
 			isa = PBXGroup;
 			children = (
-				E75F458A267E1C2600878840 /* SelectViewController.swift */,
 				E7FDA3A0257A580A00DDBDD5 /* carthageConfig.xcconfig */,
 				E7E0EACC26621CDB00F41B26 /* env */,
 				E719F0A7253DC11300E54D1E /* yourEditorial */,
@@ -491,6 +492,7 @@
 			isa = PBXGroup;
 			children = (
 				E78EF7642633BC2A0095945E /* LoginViewController.swift */,
+				E7986B20267F1089002DFF41 /* CreateAccountViewController.swift */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -997,6 +999,7 @@
 				E758B9F32545D5B100EED590 /* Log.swift in Sources */,
 				E78EF7732633C58D0095945E /* FirebaseAuth.swift in Sources */,
 				E77C5E56254861AC00F65677 /* WebViewModel.swift in Sources */,
+				E7986B21267F1089002DFF41 /* CreateAccountViewController.swift in Sources */,
 				E77C5E5C2548657F00F65677 /* GenreDao.swift in Sources */,
 				E72E54FA254EEF1C00402151 /* FavoriteNewsPaperDao.swift in Sources */,
 				E72E54F8254EEEC400402151 /* NewsPaperEditorialViewModel.swift in Sources */,
@@ -1076,6 +1079,7 @@
 				E75F44EA267E16BB00878840 /* ClipsViewController.swift in Sources */,
 				E75F44EB267E16BB00878840 /* TransitionController.swift in Sources */,
 				E75F44EC267E16BB00878840 /* FavoriteNewsPaper.swift in Sources */,
+				E7986B80267F1C1B002DFF41 /* CreateAccountViewController.swift in Sources */,
 				E75F44ED267E16BB00878840 /* Clip.swift in Sources */,
 				E75F44EE267E16BB00878840 /* ClipDao.swift in Sources */,
 				E75F44EF267E16BB00878840 /* extension.swift in Sources */,

@@ -61,6 +61,21 @@
             </objects>
             <point key="canvasLocation" x="-32" y="-455"/>
         </scene>
+        <!--createAccountPageVC-->
+        <scene sceneID="AE0-BG-kkY">
+            <objects>
+                <viewController restorationIdentifier="createAccountVC" storyboardIdentifier="createAccountVC" title="createAccountPageVC" id="9YQ-mt-1oT" customClass="CreateAccountViewController" customModule="yourEditorial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cw5-pb-xf0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="al2-u4-1xH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ssb-7n-GIR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1048" y="300"/>
+        </scene>
         <!--News Paper Editorials View Controller-->
         <scene sceneID="tO1-to-RJa">
             <objects>
@@ -174,7 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uyy-aI-K69" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1607.2463768115942" y="253.79464285714283"/>
+            <point key="canvasLocation" x="929" y="253"/>
         </scene>
         <!--WebViewController-->
         <scene sceneID="qPB-bP-kTo">
@@ -240,7 +255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KSJ-fA-Wdu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2597" y="244"/>
+            <point key="canvasLocation" x="1726" y="252"/>
         </scene>
         <!--Memo View Controller-->
         <scene sceneID="6Rx-3c-1LZ">
